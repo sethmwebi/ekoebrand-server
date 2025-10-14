@@ -1,0 +1,89 @@
+[
+  {
+    "id": "e7bd61aa-035e-4d91-afdf-190b4180e0f5",
+    "name": "Denim Jacket",
+    "slug": "denim-jacket",
+    "description": "Stylish blue denim jacket",
+    "price": 599900,
+    "stock": 20,
+    "images": [
+      "https://m.media-amazon.com/images/I/61cB-WFhrML._AC_SY500_.jpg"
+    ],
+    "categoryId": "f016022c-cd6b-4f51-9288-20c40d2847a3",
+    "createdAt": "2025-02-15T00:00:00Z",
+    "updatedAt": "2025-02-15T00:00:00Z"
+  },
+  {
+    "id": "928ae22b-de7d-401c-97ba-d2ece59bfc66",
+    "name": "Leather Handbag",
+    "slug": "leather-handbag",
+    "description": "Premium leather handbag",
+    "price": 1499900,
+    "stock": 15,
+    "images": [
+      "https://m.media-amazon.com/images/I/61ZJlxRC2ZL._AC_SY500_.jpg"
+    ],
+    "categoryId": "4b3cb023-fd1c-4e4a-98bb-ad97d14c878f",
+    "createdAt": "2025-02-15T00:00:00Z",
+    "updatedAt": "2025-02-15T00:00:00Z"
+  },
+  {
+    "id": "ef6ec2ec-48d8-47b9-9488-05cb20cad218",
+    "name": "Gold Necklace",
+    "slug": "gold-necklace",
+    "description": "Elegant gold necklace",
+    "price": 999900,
+    "stock": 10,
+    "images": [
+      "https://m.media-amazon.com/images/I/61OHLiIUVVL._AC_SY625_.jpg"
+    ],
+    "categoryId": "2d8eb9df-81b1-43e6-b191-09aaae399134",
+    "createdAt": "2025-02-15T00:00:00Z",
+    "updatedAt": "2025-02-15T00:00:00Z"
+  },
+  {
+    "id": "e7b20550-ffe3-4951-9e28-0340a87c893d",
+    "name": "Summer Dress",
+    "slug": "summer-dress",
+    "description": "Lightweight floral summer dress",
+    "price": 749900,
+    "stock": 25,
+    "images": [
+      "https://m.media-amazon.com/images/I/71yb+1TYoSS._AC_SX522_.jpg",
+      "https://m.media-amazon.com/images/I/81039i73HCS._AC_SX522_.jpg"
+    ],
+    "categoryId": "f016022c-cd6b-4f51-9288-20c40d2847a3",
+    "createdAt": "2025-02-15T00:00:00Z",
+    "updatedAt": "2025-02-15T00:00:00Z"
+  },
+  {
+    "id": "61fffdaf-d96f-4398-9a59-b2ff7398c76b",
+    "name": "Hooded Sweatshirt",
+    "slug": "hooded-sweatshirt",
+    "description": "Casual charcoal grey hoodie",
+    "price": 549900,
+    "stock": 30,
+    "images": [
+      "https://m.media-amazon.com/images/I/51cB8iGPJZL._AC_SY500_.jpg",
+      "https://m.media-amazon.com/images/I/51bDAtvuVzL._AC_SY500_.jpg"
+    ],
+    "categoryId": "f016022c-cd6b-4f51-9288-20c40d2847a3",
+    "createdAt": "2025-02-15T00:00:00Z",
+    "updatedAt": "2025-02-15T00:00:00Z"
+  },
+  {
+    "id": "8427e4bd-9cfa-4993-adc7-8e3527f8dcf2",
+    "name": "Silver Bracelet",
+    "slug": "silver-bracelet",
+    "description": "Minimalist sterling silver bracelet",
+    "price": 429900,
+    "stock": 40,
+    "images": [
+      "https://m.media-amazon.com/images/I/61G9HJtFJFL._AC_SY625_.jpg",
+      "https://m.media-amazon.com/images/I/81DFX77tReL._AC_SY625_.jpg"
+    ],
+    "categoryId": "2d8eb9df-81b1-43e6-b191-09aaae399134",
+    "createdAt": "2025-02-15T00:00:00Z",
+    "updatedAt": "2025-02-15T00:00:00Z"
+  }
+]

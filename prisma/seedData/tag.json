@@ -1,0 +1,42 @@
+[
+  {
+    "id": "97a8eccd-f59f-4032-8c0c-746ebd40d26c",
+    "name": "Trending",
+    "description": "Products that are currently popular and in high demand."
+  },
+  {
+    "id": "fd59bf63-6eaa-47c8-bcbf-a7db81ad2c30",
+    "name": "Eco-Friendly",
+    "description": "Products that are environmentally sustainable and made with eco-conscious materials."
+  },
+  {
+    "id": "607673a6-f745-4192-b83c-d810560cb76f",
+    "name": "Luxury",
+    "description": "High-end, premium products that offer exceptional quality and exclusivity."
+  },
+  {
+    "id": "634a5ef6-94bc-4570-a3e8-f6113bfb24ca",
+    "name": "Casual",
+    "description": "Everyday, comfortable products suitable for relaxed and informal settings."
+  },
+  {
+    "id": "823c5a93-1928-4f09-beed-1cd1dca30da4",
+    "name": "Summer Collection",
+    "description": "Products designed for the summer season, featuring lightweight and vibrant styles."
+  },
+  {
+    "id": "5002353b-0c0d-4f3c-ae91-0b5b1137504f",
+    "name": "Handmade",
+    "description": "Products crafted by hand, emphasizing unique artistry and attention to detail."
+  },
+  {
+    "id": "6c3528df-72ef-489b-9ea3-3b59750e7fb4",
+    "name": "Unisex",
+    "description": "Products designed to be suitable for both men and women, offering versatile styling."
+  },
+  {
+    "id": "eb98376c-4305-4084-9c26-552db1da14e1",
+    "name": "Limited Edition",
+    "description": "Exclusive products produced in limited quantities, offering rarity and uniqueness."
+  }
+]

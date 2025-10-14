@@ -1,0 +1,50 @@
+[
+  {
+    "id": "162c31eb-4539-435b-9cb4-136b583be378",
+    "street": "123 Koinange Street",
+    "city": "Nairobi",
+    "county": "Nairobi County",
+    "postalCode": "00100",
+    "pickupLocation": "Near Hilton Hotel",
+    "country": "Kenya",
+    "userId": "219fb0b8-559f-4c3e-9dd3-2588f3ea5a99",
+    "createdAt": "2025-02-15T00:00:00Z",
+    "updatedAt": "2025-02-15T00:00:00Z"
+  },
+  {
+    "id": "a48cca2f-1cf8-42d9-bd95-b4a871955f95",
+    "street": "456 Mombasa-Malindi Road",
+    "city": "Mombasa",
+    "county": "Mombasa County",
+    "postalCode": "80100",
+    "pickupLocation": "Opposite Fort Jesus",
+    "country": "Kenya",
+    "userId": "f48468f5-1e2d-40d7-8fb1-1b961095dcf0",
+    "createdAt": "2025-02-15T00:00:00Z",
+    "updatedAt": "2025-02-15T00:00:00Z"
+  },
+  {
+    "id": "ad010245-c34f-4fc5-b26d-568c41f930e8",
+    "street": "789 Oginga Odinga Road",
+    "city": "Kisumu",
+    "county": "Kisumu County",
+    "postalCode": "40100",
+    "pickupLocation": "Next to Lake Victoria",
+    "country": "Kenya",
+    "userId": "5fbb4d1a-e6ec-40b5-a472-8f9d64998424",
+    "createdAt": "2025-02-15T00:00:00Z",
+    "updatedAt": "2025-02-15T00:00:00Z"
+  },
+  {
+    "id": "0feafa60-e3e4-4e6a-90a9-30fb551018cd",
+    "street": "321 Kenyatta Avenue",
+    "city": "Nakuru",
+    "county": "Nakuru County",
+    "postalCode": "20100",
+    "pickupLocation": null,
+    "country": "Kenya",
+    "userId": "f3830cfa-946c-47c4-bab7-29594036f8d8",
+    "createdAt": "2025-02-15T00:00:00Z",
+    "updatedAt": "2025-02-15T00:00:00Z"
+  }
+]

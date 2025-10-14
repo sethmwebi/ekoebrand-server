@@ -1,0 +1,17 @@
+[
+  {
+    "id": "f016022c-cd6b-4f51-9288-20c40d2847a3",
+    "name": "apparel",
+    "description": "A wide range of apparel including shirts, dresses, jeans, and activewear."
+  },
+  {
+    "id": "2d8eb9df-81b1-43e6-b191-09aaae399134",
+    "name": "accessories",
+    "description": "Stylish add-ons like hats, scarves, belts, sunglasses, and jewelry to complement your look."
+  },
+  {
+    "id": "4b3cb023-fd1c-4e4a-98bb-ad97d14c878f",
+    "name": "bags",
+    "description": "Functional and fashionable bags, including handbags, backpacks, totes, and clutches."
+  }
+]

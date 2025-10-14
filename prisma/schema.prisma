@@ -1,0 +1,259 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
+  output        = "../generated/prisma_client"
+}
+
+enum Role {
+  USER
+  ADMIN
+  SUPERADMIN
+}
+
+// User model representing customers
+model User {
+  id            String     @id @default(cuid())
+  name          String?
+  email         String     @unique
+  emailVerified DateTime?
+  mobileNumber  String?
+  image         String?
+  password      String?
+  role          Role       @default(USER)
+  accounts      Account[]
+  address       Address?
+  refreshToken  String?
+  orders        Order[]
+  reviews       Review[]
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+  cartItem      CartItem[]
+  emails        Email[]
+}
+
+// Account model for user's authentication accounts
+model Account {
+  provider          String
+  providerAccountId String
+  userId            String  @unique
+  type              String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([provider, providerAccountId])
+}
+
+// VerificationToken model
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@id([identifier, token])
+}
+
+// Address model for user's shipping address
+model Address {
+  id             String  @id @default(cuid())
+  street         String
+  city           String
+  county         String
+  postalCode     String
+  pickupLocation String?
+  country        String  @default("Kenya")
+  user           User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId         String  @unique
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Category model
+model Category {
+  id          String    @id @default(cuid())
+  name        String
+  description String?
+  products    Product[]
+}
+
+model ProductTags {
+  productId String
+  tagId     String
+
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  tag     Tag     @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@id([productId, tagId])
+}
+
+// Tag model
+model Tag {
+  id          String        @id @default(cuid())
+  name        String
+  description String?
+  products    ProductTags[]
+}
+
+// Product model
+model Product {
+  id          String        @id @default(cuid())
+  name        String
+  description String
+  slug        String        @unique @default("")
+  price       Int
+  stock       Int
+  images      String[] // URLs of product images
+  category    Category?     @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  categoryId  String?
+  tags        ProductTags[]
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  reviews     Review[]
+  orderItem   OrderItem[]
+  cartItem    CartItem[]
+
+  @@index([slug])
+}
+
+model CartItem {
+  userId    String
+  productId String
+  quantity  Int
+
+  user    User    @relation(fields: [userId], references: [id])
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@id([userId, productId])
+}
+
+enum OrderStatus {
+  SCHEDULED
+  FAILED
+  PARTIALLY_FULLFILLED
+  AWAITING_PAYMENT
+  BACK_ORDERED
+  ON_HOLD
+  REFUNDED
+  RETURNED
+  DELIVERED
+  SHIPPED
+  CANCELLED
+  COMPLETED
+  PROCESSING
+  PENDING
+}
+
+// Order model
+model Order {
+  id         String      @id @default(cuid())
+  createdAt  DateTime    @default(now())
+  status     OrderStatus @default(PENDING)
+  totalPrice Float
+  user       User        @relation(fields: [userId], references: [id])
+  userId     String
+  items      OrderItem[]
+  payment    Payment?
+  Email      Email[]
+}
+
+// OrderItem model representing items in an order
+model OrderItem {
+  id        String  @id @default(cuid())
+  quantity  Int
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  productId String
+  order     Order   @relation(fields: [orderId], references: [id])
+  orderId   String
+}
+
+enum PaymentStatus {
+  PENDING
+  CHARGEBACK
+  VOIDED
+  CAPTURED
+  AUTHORIZED
+  PARTIALLY_REFUNDED
+  REFUNDED
+  FAILED
+  COMPLETED
+}
+
+// Payment model
+model Payment {
+  id                String        @id @default(cuid())
+  amount            Float
+  currency          String        @default("ksh")
+  status            PaymentStatus @default(PENDING)
+  checkoutRequestId String?       @unique
+  failureReason     String?
+  orderId           String?       @unique
+  order             Order?        @relation(fields: [orderId], references: [id])
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+}
+
+// Email model for tracking sent emails
+model Email {
+  id          String      @id @default(cuid())
+  to          String
+  subject     String
+  template    String? // Template name used (optional)
+  content     String
+  status      EmailStatus @default(PENDING)
+  retryCount  Int         @default(0)
+  error       String?
+  userId      String? // User who triggered the email
+  user        User?       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  orderId     String? // reference to related order
+  order       Order?      @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  resendId    String?
+  scheduledAt DateTime? // for scheduled emails
+  sentAt      DateTime?
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  @@index([to])
+  @@index([status])
+  @@index([createdAt])
+  @@index([userId])
+  @@index([orderId])
+}
+
+// Email status enum
+enum EmailStatus {
+  PENDING
+  SENT
+  FAILED
+  RETRYING
+  BOUNCED
+  DELIVERED
+  OPENED
+  CLICKED
+}
+
+// Review model
+model Review {
+  id        String   @id @default(cuid())
+  rating    Int // Rating out of 5
+  comment   String?
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  productId String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

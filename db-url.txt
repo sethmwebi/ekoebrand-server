@@ -1,0 +1,1 @@
+postgresql://postgres:mwebimoriasi@db:5432/ekoe

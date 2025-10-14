@@ -1,0 +1,12 @@
+[
+  {
+    "identifier": "seth.mwebi@example.com",
+    "token": "bfb568df-0bfd-43a4-a280-468d648fc828",
+    "expires": "2025-02-16T00:00:00Z"
+  },
+  {
+    "identifier": "prudence.uchi@example.com",
+    "token": "f129d6c7-441b-4b30-8112-fcb744025828",
+    "expires": "2025-02-16T00:00:00Z"
+  }
+]

@@ -1,0 +1,38 @@
+[
+  {
+    "id": "fe593dea-3739-4d94-8266-4a4f229ec33e",
+    "amount": 5999,
+    "currency": "KES",
+    "status": "COMPLETED",
+    "orderId": "23570e95-c7f0-427c-bc64-1a50a2fc5924",
+    "createdAt": "2025-02-16T00:00:00Z",
+    "updatedAt": "2025-02-16T00:00:00Z"
+  },
+  {
+    "id": "e21a9280-456c-4637-b379-b56dc2dfbcfe",
+    "amount": 14999,
+    "currency": "KES",
+    "status": "COMPLETED",
+    "orderId": "49fdfb56-ac23-4632-b8b1-81b2ad9788ce",
+    "createdAt": "2025-02-16T00:00:00Z",
+    "updatedAt": "2025-02-16T00:00:00Z"
+  },
+  {
+    "id": "a25f9d90-0df9-4476-8ede-a3686f22fc06",
+    "amount": 9999,
+    "currency": "KES",
+    "status": "PENDING",
+    "orderId": "678d342d-413d-498c-8990-80a9c0165c4e",
+    "createdAt": "2025-02-16T00:00:00Z",
+    "updatedAt": "2025-02-16T00:00:00Z"
+  },
+  {
+    "id": "558e0cfe-fb15-4bd4-9ed0-5dc301d56b1d",
+    "amount": 7499,
+    "currency": "KES",
+    "status": "FAILED",
+    "orderId": "9156c68b-1e78-4ed7-8a94-552e618f2b14",
+    "createdAt": "2025-02-16T00:00:00Z",
+    "updatedAt": "2025-02-16T00:00:00Z"
+  }
+]
