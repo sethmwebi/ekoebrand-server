@@ -31,7 +31,7 @@ require("./utils/passport-config.ts");
 
 const app: Express = express();
 
-const server = app.listen(envalid.PORT || 8000, "0.0.0.0", () => {
+const server = app.listen(Number(envalid.PORT) || 8000, "0.0.0.0", () => {
   console.log(`Server listening on 0.0.0.0:${envalid.PORT || 8000}`);
 });
 const io = new Server(server, {
