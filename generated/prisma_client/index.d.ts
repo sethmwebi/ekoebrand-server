@@ -29,6 +29,11 @@ export type Account = $Result.DefaultSelection<Prisma.$AccountPayload>
  */
 export type VerificationToken = $Result.DefaultSelection<Prisma.$VerificationTokenPayload>
 /**
+ * Model ResetToken
+ * 
+ */
+export type ResetToken = $Result.DefaultSelection<Prisma.$ResetTokenPayload>
+/**
  * Model Address
  * 
  */
@@ -310,6 +315,16 @@ export class PrismaClient<
     * ```
     */
   get verificationToken(): Prisma.VerificationTokenDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.resetToken`: Exposes CRUD operations for the **ResetToken** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ResetTokens
+    * const resetTokens = await prisma.resetToken.findMany()
+    * ```
+    */
+  get resetToken(): Prisma.ResetTokenDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.address`: Exposes CRUD operations for the **Address** model.
@@ -863,6 +878,7 @@ export namespace Prisma {
     User: 'User',
     Account: 'Account',
     VerificationToken: 'VerificationToken',
+    ResetToken: 'ResetToken',
     Address: 'Address',
     Category: 'Category',
     ProductTags: 'ProductTags',
@@ -892,7 +908,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "account" | "verificationToken" | "address" | "category" | "productTags" | "tag" | "product" | "cartItem" | "order" | "orderItem" | "payment" | "email" | "review"
+      modelProps: "user" | "account" | "verificationToken" | "resetToken" | "address" | "category" | "productTags" | "tag" | "product" | "cartItem" | "order" | "orderItem" | "payment" | "email" | "review"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1115,6 +1131,80 @@ export namespace Prisma {
           count: {
             args: Prisma.VerificationTokenCountArgs<ExtArgs>
             result: $Utils.Optional<VerificationTokenCountAggregateOutputType> | number
+          }
+        }
+      }
+      ResetToken: {
+        payload: Prisma.$ResetTokenPayload<ExtArgs>
+        fields: Prisma.ResetTokenFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ResetTokenFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResetTokenPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ResetTokenFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResetTokenPayload>
+          }
+          findFirst: {
+            args: Prisma.ResetTokenFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResetTokenPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ResetTokenFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResetTokenPayload>
+          }
+          findMany: {
+            args: Prisma.ResetTokenFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResetTokenPayload>[]
+          }
+          create: {
+            args: Prisma.ResetTokenCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResetTokenPayload>
+          }
+          createMany: {
+            args: Prisma.ResetTokenCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ResetTokenCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResetTokenPayload>[]
+          }
+          delete: {
+            args: Prisma.ResetTokenDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResetTokenPayload>
+          }
+          update: {
+            args: Prisma.ResetTokenUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResetTokenPayload>
+          }
+          deleteMany: {
+            args: Prisma.ResetTokenDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ResetTokenUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ResetTokenUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResetTokenPayload>[]
+          }
+          upsert: {
+            args: Prisma.ResetTokenUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResetTokenPayload>
+          }
+          aggregate: {
+            args: Prisma.ResetTokenAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateResetToken>
+          }
+          groupBy: {
+            args: Prisma.ResetTokenGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ResetTokenGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ResetTokenCountArgs<ExtArgs>
+            result: $Utils.Optional<ResetTokenCountAggregateOutputType> | number
           }
         }
       }
@@ -2031,6 +2121,7 @@ export namespace Prisma {
     user?: UserOmit
     account?: AccountOmit
     verificationToken?: VerificationTokenOmit
+    resetToken?: ResetTokenOmit
     address?: AddressOmit
     category?: CategoryOmit
     productTags?: ProductTagsOmit
@@ -2127,6 +2218,7 @@ export namespace Prisma {
     reviews: number
     cartItem: number
     emails: number
+    resetTokens: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2135,6 +2227,7 @@ export namespace Prisma {
     reviews?: boolean | UserCountOutputTypeCountReviewsArgs
     cartItem?: boolean | UserCountOutputTypeCountCartItemArgs
     emails?: boolean | UserCountOutputTypeCountEmailsArgs
+    resetTokens?: boolean | UserCountOutputTypeCountResetTokensArgs
   }
 
   // Custom InputTypes
@@ -2181,6 +2274,13 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountEmailsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: EmailWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountResetTokensArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ResetTokenWhereInput
   }
 
 
@@ -2566,6 +2666,7 @@ export namespace Prisma {
     reviews?: boolean | User$reviewsArgs<ExtArgs>
     cartItem?: boolean | User$cartItemArgs<ExtArgs>
     emails?: boolean | User$emailsArgs<ExtArgs>
+    resetTokens?: boolean | User$resetTokensArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -2619,6 +2720,7 @@ export namespace Prisma {
     reviews?: boolean | User$reviewsArgs<ExtArgs>
     cartItem?: boolean | User$cartItemArgs<ExtArgs>
     emails?: boolean | User$emailsArgs<ExtArgs>
+    resetTokens?: boolean | User$resetTokensArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2633,6 +2735,7 @@ export namespace Prisma {
       reviews: Prisma.$ReviewPayload<ExtArgs>[]
       cartItem: Prisma.$CartItemPayload<ExtArgs>[]
       emails: Prisma.$EmailPayload<ExtArgs>[]
+      resetTokens: Prisma.$ResetTokenPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -3046,6 +3149,7 @@ export namespace Prisma {
     reviews<T extends User$reviewsArgs<ExtArgs> = {}>(args?: Subset<T, User$reviewsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     cartItem<T extends User$cartItemArgs<ExtArgs> = {}>(args?: Subset<T, User$cartItemArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CartItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     emails<T extends User$emailsArgs<ExtArgs> = {}>(args?: Subset<T, User$emailsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmailPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    resetTokens<T extends User$resetTokensArgs<ExtArgs> = {}>(args?: Subset<T, User$resetTokensArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ResetTokenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3610,6 +3714,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: EmailScalarFieldEnum | EmailScalarFieldEnum[]
+  }
+
+  /**
+   * User.resetTokens
+   */
+  export type User$resetTokensArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResetToken
+     */
+    select?: ResetTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ResetToken
+     */
+    omit?: ResetTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResetTokenInclude<ExtArgs> | null
+    where?: ResetTokenWhereInput
+    orderBy?: ResetTokenOrderByWithRelationInput | ResetTokenOrderByWithRelationInput[]
+    cursor?: ResetTokenWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ResetTokenScalarFieldEnum | ResetTokenScalarFieldEnum[]
   }
 
   /**
@@ -5767,6 +5895,1077 @@ export namespace Prisma {
      * Omit specific fields from the VerificationToken
      */
     omit?: VerificationTokenOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ResetToken
+   */
+
+  export type AggregateResetToken = {
+    _count: ResetTokenCountAggregateOutputType | null
+    _min: ResetTokenMinAggregateOutputType | null
+    _max: ResetTokenMaxAggregateOutputType | null
+  }
+
+  export type ResetTokenMinAggregateOutputType = {
+    id: string | null
+    token: string | null
+    userId: string | null
+    expires: Date | null
+    used: boolean | null
+    createdAt: Date | null
+  }
+
+  export type ResetTokenMaxAggregateOutputType = {
+    id: string | null
+    token: string | null
+    userId: string | null
+    expires: Date | null
+    used: boolean | null
+    createdAt: Date | null
+  }
+
+  export type ResetTokenCountAggregateOutputType = {
+    id: number
+    token: number
+    userId: number
+    expires: number
+    used: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type ResetTokenMinAggregateInputType = {
+    id?: true
+    token?: true
+    userId?: true
+    expires?: true
+    used?: true
+    createdAt?: true
+  }
+
+  export type ResetTokenMaxAggregateInputType = {
+    id?: true
+    token?: true
+    userId?: true
+    expires?: true
+    used?: true
+    createdAt?: true
+  }
+
+  export type ResetTokenCountAggregateInputType = {
+    id?: true
+    token?: true
+    userId?: true
+    expires?: true
+    used?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type ResetTokenAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ResetToken to aggregate.
+     */
+    where?: ResetTokenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ResetTokens to fetch.
+     */
+    orderBy?: ResetTokenOrderByWithRelationInput | ResetTokenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ResetTokenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ResetTokens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ResetTokens.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ResetTokens
+    **/
+    _count?: true | ResetTokenCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ResetTokenMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ResetTokenMaxAggregateInputType
+  }
+
+  export type GetResetTokenAggregateType<T extends ResetTokenAggregateArgs> = {
+        [P in keyof T & keyof AggregateResetToken]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateResetToken[P]>
+      : GetScalarType<T[P], AggregateResetToken[P]>
+  }
+
+
+
+
+  export type ResetTokenGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ResetTokenWhereInput
+    orderBy?: ResetTokenOrderByWithAggregationInput | ResetTokenOrderByWithAggregationInput[]
+    by: ResetTokenScalarFieldEnum[] | ResetTokenScalarFieldEnum
+    having?: ResetTokenScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ResetTokenCountAggregateInputType | true
+    _min?: ResetTokenMinAggregateInputType
+    _max?: ResetTokenMaxAggregateInputType
+  }
+
+  export type ResetTokenGroupByOutputType = {
+    id: string
+    token: string
+    userId: string
+    expires: Date
+    used: boolean
+    createdAt: Date
+    _count: ResetTokenCountAggregateOutputType | null
+    _min: ResetTokenMinAggregateOutputType | null
+    _max: ResetTokenMaxAggregateOutputType | null
+  }
+
+  type GetResetTokenGroupByPayload<T extends ResetTokenGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ResetTokenGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ResetTokenGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ResetTokenGroupByOutputType[P]>
+            : GetScalarType<T[P], ResetTokenGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ResetTokenSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    token?: boolean
+    userId?: boolean
+    expires?: boolean
+    used?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["resetToken"]>
+
+  export type ResetTokenSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    token?: boolean
+    userId?: boolean
+    expires?: boolean
+    used?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["resetToken"]>
+
+  export type ResetTokenSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    token?: boolean
+    userId?: boolean
+    expires?: boolean
+    used?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["resetToken"]>
+
+  export type ResetTokenSelectScalar = {
+    id?: boolean
+    token?: boolean
+    userId?: boolean
+    expires?: boolean
+    used?: boolean
+    createdAt?: boolean
+  }
+
+  export type ResetTokenOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "token" | "userId" | "expires" | "used" | "createdAt", ExtArgs["result"]["resetToken"]>
+  export type ResetTokenInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type ResetTokenIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type ResetTokenIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $ResetTokenPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ResetToken"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      token: string
+      userId: string
+      expires: Date
+      used: boolean
+      createdAt: Date
+    }, ExtArgs["result"]["resetToken"]>
+    composites: {}
+  }
+
+  type ResetTokenGetPayload<S extends boolean | null | undefined | ResetTokenDefaultArgs> = $Result.GetResult<Prisma.$ResetTokenPayload, S>
+
+  type ResetTokenCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ResetTokenFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ResetTokenCountAggregateInputType | true
+    }
+
+  export interface ResetTokenDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ResetToken'], meta: { name: 'ResetToken' } }
+    /**
+     * Find zero or one ResetToken that matches the filter.
+     * @param {ResetTokenFindUniqueArgs} args - Arguments to find a ResetToken
+     * @example
+     * // Get one ResetToken
+     * const resetToken = await prisma.resetToken.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ResetTokenFindUniqueArgs>(args: SelectSubset<T, ResetTokenFindUniqueArgs<ExtArgs>>): Prisma__ResetTokenClient<$Result.GetResult<Prisma.$ResetTokenPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ResetToken that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ResetTokenFindUniqueOrThrowArgs} args - Arguments to find a ResetToken
+     * @example
+     * // Get one ResetToken
+     * const resetToken = await prisma.resetToken.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ResetTokenFindUniqueOrThrowArgs>(args: SelectSubset<T, ResetTokenFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ResetTokenClient<$Result.GetResult<Prisma.$ResetTokenPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ResetToken that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ResetTokenFindFirstArgs} args - Arguments to find a ResetToken
+     * @example
+     * // Get one ResetToken
+     * const resetToken = await prisma.resetToken.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ResetTokenFindFirstArgs>(args?: SelectSubset<T, ResetTokenFindFirstArgs<ExtArgs>>): Prisma__ResetTokenClient<$Result.GetResult<Prisma.$ResetTokenPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ResetToken that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ResetTokenFindFirstOrThrowArgs} args - Arguments to find a ResetToken
+     * @example
+     * // Get one ResetToken
+     * const resetToken = await prisma.resetToken.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ResetTokenFindFirstOrThrowArgs>(args?: SelectSubset<T, ResetTokenFindFirstOrThrowArgs<ExtArgs>>): Prisma__ResetTokenClient<$Result.GetResult<Prisma.$ResetTokenPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ResetTokens that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ResetTokenFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ResetTokens
+     * const resetTokens = await prisma.resetToken.findMany()
+     * 
+     * // Get first 10 ResetTokens
+     * const resetTokens = await prisma.resetToken.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const resetTokenWithIdOnly = await prisma.resetToken.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ResetTokenFindManyArgs>(args?: SelectSubset<T, ResetTokenFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ResetTokenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ResetToken.
+     * @param {ResetTokenCreateArgs} args - Arguments to create a ResetToken.
+     * @example
+     * // Create one ResetToken
+     * const ResetToken = await prisma.resetToken.create({
+     *   data: {
+     *     // ... data to create a ResetToken
+     *   }
+     * })
+     * 
+     */
+    create<T extends ResetTokenCreateArgs>(args: SelectSubset<T, ResetTokenCreateArgs<ExtArgs>>): Prisma__ResetTokenClient<$Result.GetResult<Prisma.$ResetTokenPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ResetTokens.
+     * @param {ResetTokenCreateManyArgs} args - Arguments to create many ResetTokens.
+     * @example
+     * // Create many ResetTokens
+     * const resetToken = await prisma.resetToken.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ResetTokenCreateManyArgs>(args?: SelectSubset<T, ResetTokenCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ResetTokens and returns the data saved in the database.
+     * @param {ResetTokenCreateManyAndReturnArgs} args - Arguments to create many ResetTokens.
+     * @example
+     * // Create many ResetTokens
+     * const resetToken = await prisma.resetToken.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ResetTokens and only return the `id`
+     * const resetTokenWithIdOnly = await prisma.resetToken.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ResetTokenCreateManyAndReturnArgs>(args?: SelectSubset<T, ResetTokenCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ResetTokenPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ResetToken.
+     * @param {ResetTokenDeleteArgs} args - Arguments to delete one ResetToken.
+     * @example
+     * // Delete one ResetToken
+     * const ResetToken = await prisma.resetToken.delete({
+     *   where: {
+     *     // ... filter to delete one ResetToken
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ResetTokenDeleteArgs>(args: SelectSubset<T, ResetTokenDeleteArgs<ExtArgs>>): Prisma__ResetTokenClient<$Result.GetResult<Prisma.$ResetTokenPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ResetToken.
+     * @param {ResetTokenUpdateArgs} args - Arguments to update one ResetToken.
+     * @example
+     * // Update one ResetToken
+     * const resetToken = await prisma.resetToken.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ResetTokenUpdateArgs>(args: SelectSubset<T, ResetTokenUpdateArgs<ExtArgs>>): Prisma__ResetTokenClient<$Result.GetResult<Prisma.$ResetTokenPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ResetTokens.
+     * @param {ResetTokenDeleteManyArgs} args - Arguments to filter ResetTokens to delete.
+     * @example
+     * // Delete a few ResetTokens
+     * const { count } = await prisma.resetToken.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ResetTokenDeleteManyArgs>(args?: SelectSubset<T, ResetTokenDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ResetTokens.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ResetTokenUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ResetTokens
+     * const resetToken = await prisma.resetToken.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ResetTokenUpdateManyArgs>(args: SelectSubset<T, ResetTokenUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ResetTokens and returns the data updated in the database.
+     * @param {ResetTokenUpdateManyAndReturnArgs} args - Arguments to update many ResetTokens.
+     * @example
+     * // Update many ResetTokens
+     * const resetToken = await prisma.resetToken.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ResetTokens and only return the `id`
+     * const resetTokenWithIdOnly = await prisma.resetToken.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ResetTokenUpdateManyAndReturnArgs>(args: SelectSubset<T, ResetTokenUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ResetTokenPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ResetToken.
+     * @param {ResetTokenUpsertArgs} args - Arguments to update or create a ResetToken.
+     * @example
+     * // Update or create a ResetToken
+     * const resetToken = await prisma.resetToken.upsert({
+     *   create: {
+     *     // ... data to create a ResetToken
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ResetToken we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ResetTokenUpsertArgs>(args: SelectSubset<T, ResetTokenUpsertArgs<ExtArgs>>): Prisma__ResetTokenClient<$Result.GetResult<Prisma.$ResetTokenPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ResetTokens.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ResetTokenCountArgs} args - Arguments to filter ResetTokens to count.
+     * @example
+     * // Count the number of ResetTokens
+     * const count = await prisma.resetToken.count({
+     *   where: {
+     *     // ... the filter for the ResetTokens we want to count
+     *   }
+     * })
+    **/
+    count<T extends ResetTokenCountArgs>(
+      args?: Subset<T, ResetTokenCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ResetTokenCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ResetToken.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ResetTokenAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ResetTokenAggregateArgs>(args: Subset<T, ResetTokenAggregateArgs>): Prisma.PrismaPromise<GetResetTokenAggregateType<T>>
+
+    /**
+     * Group by ResetToken.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ResetTokenGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ResetTokenGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ResetTokenGroupByArgs['orderBy'] }
+        : { orderBy?: ResetTokenGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ResetTokenGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetResetTokenGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ResetToken model
+   */
+  readonly fields: ResetTokenFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ResetToken.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ResetTokenClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ResetToken model
+   */
+  interface ResetTokenFieldRefs {
+    readonly id: FieldRef<"ResetToken", 'String'>
+    readonly token: FieldRef<"ResetToken", 'String'>
+    readonly userId: FieldRef<"ResetToken", 'String'>
+    readonly expires: FieldRef<"ResetToken", 'DateTime'>
+    readonly used: FieldRef<"ResetToken", 'Boolean'>
+    readonly createdAt: FieldRef<"ResetToken", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ResetToken findUnique
+   */
+  export type ResetTokenFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResetToken
+     */
+    select?: ResetTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ResetToken
+     */
+    omit?: ResetTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResetTokenInclude<ExtArgs> | null
+    /**
+     * Filter, which ResetToken to fetch.
+     */
+    where: ResetTokenWhereUniqueInput
+  }
+
+  /**
+   * ResetToken findUniqueOrThrow
+   */
+  export type ResetTokenFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResetToken
+     */
+    select?: ResetTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ResetToken
+     */
+    omit?: ResetTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResetTokenInclude<ExtArgs> | null
+    /**
+     * Filter, which ResetToken to fetch.
+     */
+    where: ResetTokenWhereUniqueInput
+  }
+
+  /**
+   * ResetToken findFirst
+   */
+  export type ResetTokenFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResetToken
+     */
+    select?: ResetTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ResetToken
+     */
+    omit?: ResetTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResetTokenInclude<ExtArgs> | null
+    /**
+     * Filter, which ResetToken to fetch.
+     */
+    where?: ResetTokenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ResetTokens to fetch.
+     */
+    orderBy?: ResetTokenOrderByWithRelationInput | ResetTokenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ResetTokens.
+     */
+    cursor?: ResetTokenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ResetTokens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ResetTokens.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ResetTokens.
+     */
+    distinct?: ResetTokenScalarFieldEnum | ResetTokenScalarFieldEnum[]
+  }
+
+  /**
+   * ResetToken findFirstOrThrow
+   */
+  export type ResetTokenFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResetToken
+     */
+    select?: ResetTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ResetToken
+     */
+    omit?: ResetTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResetTokenInclude<ExtArgs> | null
+    /**
+     * Filter, which ResetToken to fetch.
+     */
+    where?: ResetTokenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ResetTokens to fetch.
+     */
+    orderBy?: ResetTokenOrderByWithRelationInput | ResetTokenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ResetTokens.
+     */
+    cursor?: ResetTokenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ResetTokens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ResetTokens.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ResetTokens.
+     */
+    distinct?: ResetTokenScalarFieldEnum | ResetTokenScalarFieldEnum[]
+  }
+
+  /**
+   * ResetToken findMany
+   */
+  export type ResetTokenFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResetToken
+     */
+    select?: ResetTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ResetToken
+     */
+    omit?: ResetTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResetTokenInclude<ExtArgs> | null
+    /**
+     * Filter, which ResetTokens to fetch.
+     */
+    where?: ResetTokenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ResetTokens to fetch.
+     */
+    orderBy?: ResetTokenOrderByWithRelationInput | ResetTokenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ResetTokens.
+     */
+    cursor?: ResetTokenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ResetTokens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ResetTokens.
+     */
+    skip?: number
+    distinct?: ResetTokenScalarFieldEnum | ResetTokenScalarFieldEnum[]
+  }
+
+  /**
+   * ResetToken create
+   */
+  export type ResetTokenCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResetToken
+     */
+    select?: ResetTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ResetToken
+     */
+    omit?: ResetTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResetTokenInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ResetToken.
+     */
+    data: XOR<ResetTokenCreateInput, ResetTokenUncheckedCreateInput>
+  }
+
+  /**
+   * ResetToken createMany
+   */
+  export type ResetTokenCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ResetTokens.
+     */
+    data: ResetTokenCreateManyInput | ResetTokenCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ResetToken createManyAndReturn
+   */
+  export type ResetTokenCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResetToken
+     */
+    select?: ResetTokenSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ResetToken
+     */
+    omit?: ResetTokenOmit<ExtArgs> | null
+    /**
+     * The data used to create many ResetTokens.
+     */
+    data: ResetTokenCreateManyInput | ResetTokenCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResetTokenIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ResetToken update
+   */
+  export type ResetTokenUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResetToken
+     */
+    select?: ResetTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ResetToken
+     */
+    omit?: ResetTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResetTokenInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ResetToken.
+     */
+    data: XOR<ResetTokenUpdateInput, ResetTokenUncheckedUpdateInput>
+    /**
+     * Choose, which ResetToken to update.
+     */
+    where: ResetTokenWhereUniqueInput
+  }
+
+  /**
+   * ResetToken updateMany
+   */
+  export type ResetTokenUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ResetTokens.
+     */
+    data: XOR<ResetTokenUpdateManyMutationInput, ResetTokenUncheckedUpdateManyInput>
+    /**
+     * Filter which ResetTokens to update
+     */
+    where?: ResetTokenWhereInput
+    /**
+     * Limit how many ResetTokens to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ResetToken updateManyAndReturn
+   */
+  export type ResetTokenUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResetToken
+     */
+    select?: ResetTokenSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ResetToken
+     */
+    omit?: ResetTokenOmit<ExtArgs> | null
+    /**
+     * The data used to update ResetTokens.
+     */
+    data: XOR<ResetTokenUpdateManyMutationInput, ResetTokenUncheckedUpdateManyInput>
+    /**
+     * Filter which ResetTokens to update
+     */
+    where?: ResetTokenWhereInput
+    /**
+     * Limit how many ResetTokens to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResetTokenIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ResetToken upsert
+   */
+  export type ResetTokenUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResetToken
+     */
+    select?: ResetTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ResetToken
+     */
+    omit?: ResetTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResetTokenInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ResetToken to update in case it exists.
+     */
+    where: ResetTokenWhereUniqueInput
+    /**
+     * In case the ResetToken found by the `where` argument doesn't exist, create a new ResetToken with this data.
+     */
+    create: XOR<ResetTokenCreateInput, ResetTokenUncheckedCreateInput>
+    /**
+     * In case the ResetToken was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ResetTokenUpdateInput, ResetTokenUncheckedUpdateInput>
+  }
+
+  /**
+   * ResetToken delete
+   */
+  export type ResetTokenDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResetToken
+     */
+    select?: ResetTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ResetToken
+     */
+    omit?: ResetTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResetTokenInclude<ExtArgs> | null
+    /**
+     * Filter which ResetToken to delete.
+     */
+    where: ResetTokenWhereUniqueInput
+  }
+
+  /**
+   * ResetToken deleteMany
+   */
+  export type ResetTokenDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ResetTokens to delete
+     */
+    where?: ResetTokenWhereInput
+    /**
+     * Limit how many ResetTokens to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ResetToken without action
+   */
+  export type ResetTokenDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResetToken
+     */
+    select?: ResetTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ResetToken
+     */
+    omit?: ResetTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResetTokenInclude<ExtArgs> | null
   }
 
 
@@ -18272,6 +19471,18 @@ export namespace Prisma {
   export type VerificationTokenScalarFieldEnum = (typeof VerificationTokenScalarFieldEnum)[keyof typeof VerificationTokenScalarFieldEnum]
 
 
+  export const ResetTokenScalarFieldEnum: {
+    id: 'id',
+    token: 'token',
+    userId: 'userId',
+    expires: 'expires',
+    used: 'used',
+    createdAt: 'createdAt'
+  };
+
+  export type ResetTokenScalarFieldEnum = (typeof ResetTokenScalarFieldEnum)[keyof typeof ResetTokenScalarFieldEnum]
+
+
   export const AddressScalarFieldEnum: {
     id: 'id',
     street: 'street',
@@ -18497,6 +19708,13 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
    * Reference to a field of type 'OrderStatus'
    */
   export type EnumOrderStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'OrderStatus'>
@@ -18576,6 +19794,7 @@ export namespace Prisma {
     reviews?: ReviewListRelationFilter
     cartItem?: CartItemListRelationFilter
     emails?: EmailListRelationFilter
+    resetTokens?: ResetTokenListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -18596,6 +19815,7 @@ export namespace Prisma {
     reviews?: ReviewOrderByRelationAggregateInput
     cartItem?: CartItemOrderByRelationAggregateInput
     emails?: EmailOrderByRelationAggregateInput
+    resetTokens?: ResetTokenOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -18619,6 +19839,7 @@ export namespace Prisma {
     reviews?: ReviewListRelationFilter
     cartItem?: CartItemListRelationFilter
     emails?: EmailListRelationFilter
+    resetTokens?: ResetTokenListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -18784,6 +20005,66 @@ export namespace Prisma {
     identifier?: StringWithAggregatesFilter<"VerificationToken"> | string
     token?: StringWithAggregatesFilter<"VerificationToken"> | string
     expires?: DateTimeWithAggregatesFilter<"VerificationToken"> | Date | string
+  }
+
+  export type ResetTokenWhereInput = {
+    AND?: ResetTokenWhereInput | ResetTokenWhereInput[]
+    OR?: ResetTokenWhereInput[]
+    NOT?: ResetTokenWhereInput | ResetTokenWhereInput[]
+    id?: StringFilter<"ResetToken"> | string
+    token?: StringFilter<"ResetToken"> | string
+    userId?: StringFilter<"ResetToken"> | string
+    expires?: DateTimeFilter<"ResetToken"> | Date | string
+    used?: BoolFilter<"ResetToken"> | boolean
+    createdAt?: DateTimeFilter<"ResetToken"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type ResetTokenOrderByWithRelationInput = {
+    id?: SortOrder
+    token?: SortOrder
+    userId?: SortOrder
+    expires?: SortOrder
+    used?: SortOrder
+    createdAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type ResetTokenWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    token?: string
+    AND?: ResetTokenWhereInput | ResetTokenWhereInput[]
+    OR?: ResetTokenWhereInput[]
+    NOT?: ResetTokenWhereInput | ResetTokenWhereInput[]
+    userId?: StringFilter<"ResetToken"> | string
+    expires?: DateTimeFilter<"ResetToken"> | Date | string
+    used?: BoolFilter<"ResetToken"> | boolean
+    createdAt?: DateTimeFilter<"ResetToken"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id" | "token">
+
+  export type ResetTokenOrderByWithAggregationInput = {
+    id?: SortOrder
+    token?: SortOrder
+    userId?: SortOrder
+    expires?: SortOrder
+    used?: SortOrder
+    createdAt?: SortOrder
+    _count?: ResetTokenCountOrderByAggregateInput
+    _max?: ResetTokenMaxOrderByAggregateInput
+    _min?: ResetTokenMinOrderByAggregateInput
+  }
+
+  export type ResetTokenScalarWhereWithAggregatesInput = {
+    AND?: ResetTokenScalarWhereWithAggregatesInput | ResetTokenScalarWhereWithAggregatesInput[]
+    OR?: ResetTokenScalarWhereWithAggregatesInput[]
+    NOT?: ResetTokenScalarWhereWithAggregatesInput | ResetTokenScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ResetToken"> | string
+    token?: StringWithAggregatesFilter<"ResetToken"> | string
+    userId?: StringWithAggregatesFilter<"ResetToken"> | string
+    expires?: DateTimeWithAggregatesFilter<"ResetToken"> | Date | string
+    used?: BoolWithAggregatesFilter<"ResetToken"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"ResetToken"> | Date | string
   }
 
   export type AddressWhereInput = {
@@ -19551,6 +20832,7 @@ export namespace Prisma {
     reviews?: ReviewCreateNestedManyWithoutUserInput
     cartItem?: CartItemCreateNestedManyWithoutUserInput
     emails?: EmailCreateNestedManyWithoutUserInput
+    resetTokens?: ResetTokenCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -19571,6 +20853,7 @@ export namespace Prisma {
     reviews?: ReviewUncheckedCreateNestedManyWithoutUserInput
     cartItem?: CartItemUncheckedCreateNestedManyWithoutUserInput
     emails?: EmailUncheckedCreateNestedManyWithoutUserInput
+    resetTokens?: ResetTokenUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -19591,6 +20874,7 @@ export namespace Prisma {
     reviews?: ReviewUpdateManyWithoutUserNestedInput
     cartItem?: CartItemUpdateManyWithoutUserNestedInput
     emails?: EmailUpdateManyWithoutUserNestedInput
+    resetTokens?: ResetTokenUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -19611,6 +20895,7 @@ export namespace Prisma {
     reviews?: ReviewUncheckedUpdateManyWithoutUserNestedInput
     cartItem?: CartItemUncheckedUpdateManyWithoutUserNestedInput
     emails?: EmailUncheckedUpdateManyWithoutUserNestedInput
+    resetTokens?: ResetTokenUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -19792,6 +21077,68 @@ export namespace Prisma {
     identifier?: StringFieldUpdateOperationsInput | string
     token?: StringFieldUpdateOperationsInput | string
     expires?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ResetTokenCreateInput = {
+    id?: string
+    token: string
+    expires: Date | string
+    used?: boolean
+    createdAt?: Date | string
+    user: UserCreateNestedOneWithoutResetTokensInput
+  }
+
+  export type ResetTokenUncheckedCreateInput = {
+    id?: string
+    token: string
+    userId: string
+    expires: Date | string
+    used?: boolean
+    createdAt?: Date | string
+  }
+
+  export type ResetTokenUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    token?: StringFieldUpdateOperationsInput | string
+    expires?: DateTimeFieldUpdateOperationsInput | Date | string
+    used?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutResetTokensNestedInput
+  }
+
+  export type ResetTokenUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    token?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    expires?: DateTimeFieldUpdateOperationsInput | Date | string
+    used?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ResetTokenCreateManyInput = {
+    id?: string
+    token: string
+    userId: string
+    expires: Date | string
+    used?: boolean
+    createdAt?: Date | string
+  }
+
+  export type ResetTokenUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    token?: StringFieldUpdateOperationsInput | string
+    expires?: DateTimeFieldUpdateOperationsInput | Date | string
+    used?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ResetTokenUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    token?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    expires?: DateTimeFieldUpdateOperationsInput | Date | string
+    used?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AddressCreateInput = {
@@ -20653,6 +22000,12 @@ export namespace Prisma {
     none?: EmailWhereInput
   }
 
+  export type ResetTokenListRelationFilter = {
+    every?: ResetTokenWhereInput
+    some?: ResetTokenWhereInput
+    none?: ResetTokenWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -20675,6 +22028,10 @@ export namespace Prisma {
   }
 
   export type EmailOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ResetTokenOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -20902,6 +22259,46 @@ export namespace Prisma {
     identifier?: SortOrder
     token?: SortOrder
     expires?: SortOrder
+  }
+
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type ResetTokenCountOrderByAggregateInput = {
+    id?: SortOrder
+    token?: SortOrder
+    userId?: SortOrder
+    expires?: SortOrder
+    used?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ResetTokenMaxOrderByAggregateInput = {
+    id?: SortOrder
+    token?: SortOrder
+    userId?: SortOrder
+    expires?: SortOrder
+    used?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ResetTokenMinOrderByAggregateInput = {
+    id?: SortOrder
+    token?: SortOrder
+    userId?: SortOrder
+    expires?: SortOrder
+    used?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type AddressCountOrderByAggregateInput = {
@@ -21507,6 +22904,13 @@ export namespace Prisma {
     connect?: EmailWhereUniqueInput | EmailWhereUniqueInput[]
   }
 
+  export type ResetTokenCreateNestedManyWithoutUserInput = {
+    create?: XOR<ResetTokenCreateWithoutUserInput, ResetTokenUncheckedCreateWithoutUserInput> | ResetTokenCreateWithoutUserInput[] | ResetTokenUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ResetTokenCreateOrConnectWithoutUserInput | ResetTokenCreateOrConnectWithoutUserInput[]
+    createMany?: ResetTokenCreateManyUserInputEnvelope
+    connect?: ResetTokenWhereUniqueInput | ResetTokenWhereUniqueInput[]
+  }
+
   export type AccountUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
@@ -21546,6 +22950,13 @@ export namespace Prisma {
     connectOrCreate?: EmailCreateOrConnectWithoutUserInput | EmailCreateOrConnectWithoutUserInput[]
     createMany?: EmailCreateManyUserInputEnvelope
     connect?: EmailWhereUniqueInput | EmailWhereUniqueInput[]
+  }
+
+  export type ResetTokenUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<ResetTokenCreateWithoutUserInput, ResetTokenUncheckedCreateWithoutUserInput> | ResetTokenCreateWithoutUserInput[] | ResetTokenUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ResetTokenCreateOrConnectWithoutUserInput | ResetTokenCreateOrConnectWithoutUserInput[]
+    createMany?: ResetTokenCreateManyUserInputEnvelope
+    connect?: ResetTokenWhereUniqueInput | ResetTokenWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -21648,6 +23059,20 @@ export namespace Prisma {
     deleteMany?: EmailScalarWhereInput | EmailScalarWhereInput[]
   }
 
+  export type ResetTokenUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ResetTokenCreateWithoutUserInput, ResetTokenUncheckedCreateWithoutUserInput> | ResetTokenCreateWithoutUserInput[] | ResetTokenUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ResetTokenCreateOrConnectWithoutUserInput | ResetTokenCreateOrConnectWithoutUserInput[]
+    upsert?: ResetTokenUpsertWithWhereUniqueWithoutUserInput | ResetTokenUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ResetTokenCreateManyUserInputEnvelope
+    set?: ResetTokenWhereUniqueInput | ResetTokenWhereUniqueInput[]
+    disconnect?: ResetTokenWhereUniqueInput | ResetTokenWhereUniqueInput[]
+    delete?: ResetTokenWhereUniqueInput | ResetTokenWhereUniqueInput[]
+    connect?: ResetTokenWhereUniqueInput | ResetTokenWhereUniqueInput[]
+    update?: ResetTokenUpdateWithWhereUniqueWithoutUserInput | ResetTokenUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ResetTokenUpdateManyWithWhereWithoutUserInput | ResetTokenUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ResetTokenScalarWhereInput | ResetTokenScalarWhereInput[]
+  }
+
   export type AccountUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
@@ -21728,6 +23153,20 @@ export namespace Prisma {
     deleteMany?: EmailScalarWhereInput | EmailScalarWhereInput[]
   }
 
+  export type ResetTokenUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ResetTokenCreateWithoutUserInput, ResetTokenUncheckedCreateWithoutUserInput> | ResetTokenCreateWithoutUserInput[] | ResetTokenUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ResetTokenCreateOrConnectWithoutUserInput | ResetTokenCreateOrConnectWithoutUserInput[]
+    upsert?: ResetTokenUpsertWithWhereUniqueWithoutUserInput | ResetTokenUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ResetTokenCreateManyUserInputEnvelope
+    set?: ResetTokenWhereUniqueInput | ResetTokenWhereUniqueInput[]
+    disconnect?: ResetTokenWhereUniqueInput | ResetTokenWhereUniqueInput[]
+    delete?: ResetTokenWhereUniqueInput | ResetTokenWhereUniqueInput[]
+    connect?: ResetTokenWhereUniqueInput | ResetTokenWhereUniqueInput[]
+    update?: ResetTokenUpdateWithWhereUniqueWithoutUserInput | ResetTokenUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ResetTokenUpdateManyWithWhereWithoutUserInput | ResetTokenUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ResetTokenScalarWhereInput | ResetTokenScalarWhereInput[]
+  }
+
   export type UserCreateNestedOneWithoutAccountsInput = {
     create?: XOR<UserCreateWithoutAccountsInput, UserUncheckedCreateWithoutAccountsInput>
     connectOrCreate?: UserCreateOrConnectWithoutAccountsInput
@@ -21748,6 +23187,24 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutAccountsInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutAccountsInput, UserUpdateWithoutAccountsInput>, UserUncheckedUpdateWithoutAccountsInput>
+  }
+
+  export type UserCreateNestedOneWithoutResetTokensInput = {
+    create?: XOR<UserCreateWithoutResetTokensInput, UserUncheckedCreateWithoutResetTokensInput>
+    connectOrCreate?: UserCreateOrConnectWithoutResetTokensInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
+  }
+
+  export type UserUpdateOneRequiredWithoutResetTokensNestedInput = {
+    create?: XOR<UserCreateWithoutResetTokensInput, UserUncheckedCreateWithoutResetTokensInput>
+    connectOrCreate?: UserCreateOrConnectWithoutResetTokensInput
+    upsert?: UserUpsertWithoutResetTokensInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutResetTokensInput, UserUpdateWithoutResetTokensInput>, UserUncheckedUpdateWithoutResetTokensInput>
   }
 
   export type UserCreateNestedOneWithoutAddressInput = {
@@ -22537,6 +23994,19 @@ export namespace Prisma {
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -22822,6 +24292,32 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type ResetTokenCreateWithoutUserInput = {
+    id?: string
+    token: string
+    expires: Date | string
+    used?: boolean
+    createdAt?: Date | string
+  }
+
+  export type ResetTokenUncheckedCreateWithoutUserInput = {
+    id?: string
+    token: string
+    expires: Date | string
+    used?: boolean
+    createdAt?: Date | string
+  }
+
+  export type ResetTokenCreateOrConnectWithoutUserInput = {
+    where: ResetTokenWhereUniqueInput
+    create: XOR<ResetTokenCreateWithoutUserInput, ResetTokenUncheckedCreateWithoutUserInput>
+  }
+
+  export type ResetTokenCreateManyUserInputEnvelope = {
+    data: ResetTokenCreateManyUserInput | ResetTokenCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
   export type AccountUpsertWithWhereUniqueWithoutUserInput = {
     where: AccountWhereUniqueInput
     update: XOR<AccountUpdateWithoutUserInput, AccountUncheckedUpdateWithoutUserInput>
@@ -23010,6 +24506,34 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Email"> | Date | string
   }
 
+  export type ResetTokenUpsertWithWhereUniqueWithoutUserInput = {
+    where: ResetTokenWhereUniqueInput
+    update: XOR<ResetTokenUpdateWithoutUserInput, ResetTokenUncheckedUpdateWithoutUserInput>
+    create: XOR<ResetTokenCreateWithoutUserInput, ResetTokenUncheckedCreateWithoutUserInput>
+  }
+
+  export type ResetTokenUpdateWithWhereUniqueWithoutUserInput = {
+    where: ResetTokenWhereUniqueInput
+    data: XOR<ResetTokenUpdateWithoutUserInput, ResetTokenUncheckedUpdateWithoutUserInput>
+  }
+
+  export type ResetTokenUpdateManyWithWhereWithoutUserInput = {
+    where: ResetTokenScalarWhereInput
+    data: XOR<ResetTokenUpdateManyMutationInput, ResetTokenUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type ResetTokenScalarWhereInput = {
+    AND?: ResetTokenScalarWhereInput | ResetTokenScalarWhereInput[]
+    OR?: ResetTokenScalarWhereInput[]
+    NOT?: ResetTokenScalarWhereInput | ResetTokenScalarWhereInput[]
+    id?: StringFilter<"ResetToken"> | string
+    token?: StringFilter<"ResetToken"> | string
+    userId?: StringFilter<"ResetToken"> | string
+    expires?: DateTimeFilter<"ResetToken"> | Date | string
+    used?: BoolFilter<"ResetToken"> | boolean
+    createdAt?: DateTimeFilter<"ResetToken"> | Date | string
+  }
+
   export type UserCreateWithoutAccountsInput = {
     id?: string
     name?: string | null
@@ -23027,6 +24551,7 @@ export namespace Prisma {
     reviews?: ReviewCreateNestedManyWithoutUserInput
     cartItem?: CartItemCreateNestedManyWithoutUserInput
     emails?: EmailCreateNestedManyWithoutUserInput
+    resetTokens?: ResetTokenCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAccountsInput = {
@@ -23046,6 +24571,7 @@ export namespace Prisma {
     reviews?: ReviewUncheckedCreateNestedManyWithoutUserInput
     cartItem?: CartItemUncheckedCreateNestedManyWithoutUserInput
     emails?: EmailUncheckedCreateNestedManyWithoutUserInput
+    resetTokens?: ResetTokenUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAccountsInput = {
@@ -23081,6 +24607,7 @@ export namespace Prisma {
     reviews?: ReviewUpdateManyWithoutUserNestedInput
     cartItem?: CartItemUpdateManyWithoutUserNestedInput
     emails?: EmailUpdateManyWithoutUserNestedInput
+    resetTokens?: ResetTokenUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -23095,6 +24622,103 @@ export namespace Prisma {
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    address?: AddressUncheckedUpdateOneWithoutUserNestedInput
+    orders?: OrderUncheckedUpdateManyWithoutUserNestedInput
+    reviews?: ReviewUncheckedUpdateManyWithoutUserNestedInput
+    cartItem?: CartItemUncheckedUpdateManyWithoutUserNestedInput
+    emails?: EmailUncheckedUpdateManyWithoutUserNestedInput
+    resetTokens?: ResetTokenUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserCreateWithoutResetTokensInput = {
+    id?: string
+    name?: string | null
+    email: string
+    emailVerified?: Date | string | null
+    mobileNumber?: string | null
+    image?: string | null
+    password?: string | null
+    role?: $Enums.Role
+    refreshToken?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    address?: AddressCreateNestedOneWithoutUserInput
+    orders?: OrderCreateNestedManyWithoutUserInput
+    reviews?: ReviewCreateNestedManyWithoutUserInput
+    cartItem?: CartItemCreateNestedManyWithoutUserInput
+    emails?: EmailCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutResetTokensInput = {
+    id?: string
+    name?: string | null
+    email: string
+    emailVerified?: Date | string | null
+    mobileNumber?: string | null
+    image?: string | null
+    password?: string | null
+    role?: $Enums.Role
+    refreshToken?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    address?: AddressUncheckedCreateNestedOneWithoutUserInput
+    orders?: OrderUncheckedCreateNestedManyWithoutUserInput
+    reviews?: ReviewUncheckedCreateNestedManyWithoutUserInput
+    cartItem?: CartItemUncheckedCreateNestedManyWithoutUserInput
+    emails?: EmailUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutResetTokensInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutResetTokensInput, UserUncheckedCreateWithoutResetTokensInput>
+  }
+
+  export type UserUpsertWithoutResetTokensInput = {
+    update: XOR<UserUpdateWithoutResetTokensInput, UserUncheckedUpdateWithoutResetTokensInput>
+    create: XOR<UserCreateWithoutResetTokensInput, UserUncheckedCreateWithoutResetTokensInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutResetTokensInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutResetTokensInput, UserUncheckedUpdateWithoutResetTokensInput>
+  }
+
+  export type UserUpdateWithoutResetTokensInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    mobileNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    address?: AddressUpdateOneWithoutUserNestedInput
+    orders?: OrderUpdateManyWithoutUserNestedInput
+    reviews?: ReviewUpdateManyWithoutUserNestedInput
+    cartItem?: CartItemUpdateManyWithoutUserNestedInput
+    emails?: EmailUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutResetTokensInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    mobileNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     address?: AddressUncheckedUpdateOneWithoutUserNestedInput
     orders?: OrderUncheckedUpdateManyWithoutUserNestedInput
     reviews?: ReviewUncheckedUpdateManyWithoutUserNestedInput
@@ -23119,6 +24743,7 @@ export namespace Prisma {
     reviews?: ReviewCreateNestedManyWithoutUserInput
     cartItem?: CartItemCreateNestedManyWithoutUserInput
     emails?: EmailCreateNestedManyWithoutUserInput
+    resetTokens?: ResetTokenCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAddressInput = {
@@ -23138,6 +24763,7 @@ export namespace Prisma {
     reviews?: ReviewUncheckedCreateNestedManyWithoutUserInput
     cartItem?: CartItemUncheckedCreateNestedManyWithoutUserInput
     emails?: EmailUncheckedCreateNestedManyWithoutUserInput
+    resetTokens?: ResetTokenUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAddressInput = {
@@ -23173,6 +24799,7 @@ export namespace Prisma {
     reviews?: ReviewUpdateManyWithoutUserNestedInput
     cartItem?: CartItemUpdateManyWithoutUserNestedInput
     emails?: EmailUpdateManyWithoutUserNestedInput
+    resetTokens?: ResetTokenUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAddressInput = {
@@ -23192,6 +24819,7 @@ export namespace Prisma {
     reviews?: ReviewUncheckedUpdateManyWithoutUserNestedInput
     cartItem?: CartItemUncheckedUpdateManyWithoutUserNestedInput
     emails?: EmailUncheckedUpdateManyWithoutUserNestedInput
+    resetTokens?: ResetTokenUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ProductCreateWithoutCategoryInput = {
@@ -23653,6 +25281,7 @@ export namespace Prisma {
     orders?: OrderCreateNestedManyWithoutUserInput
     reviews?: ReviewCreateNestedManyWithoutUserInput
     emails?: EmailCreateNestedManyWithoutUserInput
+    resetTokens?: ResetTokenCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutCartItemInput = {
@@ -23672,6 +25301,7 @@ export namespace Prisma {
     orders?: OrderUncheckedCreateNestedManyWithoutUserInput
     reviews?: ReviewUncheckedCreateNestedManyWithoutUserInput
     emails?: EmailUncheckedCreateNestedManyWithoutUserInput
+    resetTokens?: ResetTokenUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutCartItemInput = {
@@ -23744,6 +25374,7 @@ export namespace Prisma {
     orders?: OrderUpdateManyWithoutUserNestedInput
     reviews?: ReviewUpdateManyWithoutUserNestedInput
     emails?: EmailUpdateManyWithoutUserNestedInput
+    resetTokens?: ResetTokenUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCartItemInput = {
@@ -23763,6 +25394,7 @@ export namespace Prisma {
     orders?: OrderUncheckedUpdateManyWithoutUserNestedInput
     reviews?: ReviewUncheckedUpdateManyWithoutUserNestedInput
     emails?: EmailUncheckedUpdateManyWithoutUserNestedInput
+    resetTokens?: ResetTokenUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ProductUpsertWithoutCartItemInput = {
@@ -23825,6 +25457,7 @@ export namespace Prisma {
     reviews?: ReviewCreateNestedManyWithoutUserInput
     cartItem?: CartItemCreateNestedManyWithoutUserInput
     emails?: EmailCreateNestedManyWithoutUserInput
+    resetTokens?: ResetTokenCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutOrdersInput = {
@@ -23844,6 +25477,7 @@ export namespace Prisma {
     reviews?: ReviewUncheckedCreateNestedManyWithoutUserInput
     cartItem?: CartItemUncheckedCreateNestedManyWithoutUserInput
     emails?: EmailUncheckedCreateNestedManyWithoutUserInput
+    resetTokens?: ResetTokenUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutOrdersInput = {
@@ -23972,6 +25606,7 @@ export namespace Prisma {
     reviews?: ReviewUpdateManyWithoutUserNestedInput
     cartItem?: CartItemUpdateManyWithoutUserNestedInput
     emails?: EmailUpdateManyWithoutUserNestedInput
+    resetTokens?: ResetTokenUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutOrdersInput = {
@@ -23991,6 +25626,7 @@ export namespace Prisma {
     reviews?: ReviewUncheckedUpdateManyWithoutUserNestedInput
     cartItem?: CartItemUncheckedUpdateManyWithoutUserNestedInput
     emails?: EmailUncheckedUpdateManyWithoutUserNestedInput
+    resetTokens?: ResetTokenUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type OrderItemUpsertWithWhereUniqueWithoutOrderInput = {
@@ -24267,6 +25903,7 @@ export namespace Prisma {
     orders?: OrderCreateNestedManyWithoutUserInput
     reviews?: ReviewCreateNestedManyWithoutUserInput
     cartItem?: CartItemCreateNestedManyWithoutUserInput
+    resetTokens?: ResetTokenCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutEmailsInput = {
@@ -24286,6 +25923,7 @@ export namespace Prisma {
     orders?: OrderUncheckedCreateNestedManyWithoutUserInput
     reviews?: ReviewUncheckedCreateNestedManyWithoutUserInput
     cartItem?: CartItemUncheckedCreateNestedManyWithoutUserInput
+    resetTokens?: ResetTokenUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutEmailsInput = {
@@ -24346,6 +25984,7 @@ export namespace Prisma {
     orders?: OrderUpdateManyWithoutUserNestedInput
     reviews?: ReviewUpdateManyWithoutUserNestedInput
     cartItem?: CartItemUpdateManyWithoutUserNestedInput
+    resetTokens?: ResetTokenUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutEmailsInput = {
@@ -24365,6 +26004,7 @@ export namespace Prisma {
     orders?: OrderUncheckedUpdateManyWithoutUserNestedInput
     reviews?: ReviewUncheckedUpdateManyWithoutUserNestedInput
     cartItem?: CartItemUncheckedUpdateManyWithoutUserNestedInput
+    resetTokens?: ResetTokenUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type OrderUpsertWithoutEmailInput = {
@@ -24415,6 +26055,7 @@ export namespace Prisma {
     orders?: OrderCreateNestedManyWithoutUserInput
     cartItem?: CartItemCreateNestedManyWithoutUserInput
     emails?: EmailCreateNestedManyWithoutUserInput
+    resetTokens?: ResetTokenCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutReviewsInput = {
@@ -24434,6 +26075,7 @@ export namespace Prisma {
     orders?: OrderUncheckedCreateNestedManyWithoutUserInput
     cartItem?: CartItemUncheckedCreateNestedManyWithoutUserInput
     emails?: EmailUncheckedCreateNestedManyWithoutUserInput
+    resetTokens?: ResetTokenUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutReviewsInput = {
@@ -24506,6 +26148,7 @@ export namespace Prisma {
     orders?: OrderUpdateManyWithoutUserNestedInput
     cartItem?: CartItemUpdateManyWithoutUserNestedInput
     emails?: EmailUpdateManyWithoutUserNestedInput
+    resetTokens?: ResetTokenUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutReviewsInput = {
@@ -24525,6 +26168,7 @@ export namespace Prisma {
     orders?: OrderUncheckedUpdateManyWithoutUserNestedInput
     cartItem?: CartItemUncheckedUpdateManyWithoutUserNestedInput
     emails?: EmailUncheckedUpdateManyWithoutUserNestedInput
+    resetTokens?: ResetTokenUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ProductUpsertWithoutReviewsInput = {
@@ -24621,6 +26265,14 @@ export namespace Prisma {
     sentAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+  }
+
+  export type ResetTokenCreateManyUserInput = {
+    id?: string
+    token: string
+    expires: Date | string
+    used?: boolean
+    createdAt?: Date | string
   }
 
   export type AccountUpdateWithoutUserInput = {
@@ -24786,6 +26438,30 @@ export namespace Prisma {
     sentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ResetTokenUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    token?: StringFieldUpdateOperationsInput | string
+    expires?: DateTimeFieldUpdateOperationsInput | Date | string
+    used?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ResetTokenUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    token?: StringFieldUpdateOperationsInput | string
+    expires?: DateTimeFieldUpdateOperationsInput | Date | string
+    used?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ResetTokenUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    token?: StringFieldUpdateOperationsInput | string
+    expires?: DateTimeFieldUpdateOperationsInput | Date | string
+    used?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ProductCreateManyCategoryInput = {

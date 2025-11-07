@@ -17,23 +17,24 @@ enum Role {
 
 // User model representing customers
 model User {
-  id            String     @id @default(cuid())
+  id            String       @id @default(cuid())
   name          String?
-  email         String     @unique
+  email         String       @unique
   emailVerified DateTime?
   mobileNumber  String?
   image         String?
   password      String?
-  role          Role       @default(USER)
+  role          Role         @default(USER)
   accounts      Account[]
   address       Address?
   refreshToken  String?
   orders        Order[]
   reviews       Review[]
-  createdAt     DateTime   @default(now())
-  updatedAt     DateTime   @updatedAt
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
   cartItem      CartItem[]
   emails        Email[]
+  resetTokens   ResetToken[]
 }
 
 // Account model for user's authentication accounts
@@ -61,6 +62,20 @@ model VerificationToken {
   expires    DateTime
 
   @@id([identifier, token])
+}
+
+model ResetToken {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expires   DateTime
+  used      Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([token])
+  @@index([userId])
+  @@index([expires])
 }
 
 // Address model for user's shipping address

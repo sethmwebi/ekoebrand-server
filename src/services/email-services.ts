@@ -440,107 +440,16 @@ export const deleteOrder: RequestHandler = async (req, res, next) => {
   }
 };
 
-// Standalone Email Handlers
-export const sendPasswordReset: RequestHandler = async (req, res, next) => {
+// Add these to your existing email service file
+
+export async function sendAccountVerificationEmail(data: {
+  email: string;
+  verificationToken: string;
+  userId: string;
+}): Promise<EmailResult> {
   try {
-    const {
-      email: userEmail,
-      resetToken,
-      userId,
-    } = PasswordResetSchema.parse(req.body);
-
-    const user = await prisma.user.findUnique({ where: { email: userEmail } });
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
-    }
-
-    const subject = "Password Reset Request";
-    const resetLink = `${process.env.FRONTEND_URL}/reset-password?token=${resetToken}`;
-
-    const htmlContent = `
-      <!DOCTYPE html>
-      <html>
-      <head>
-        <style>
-          body { font-family: Arial, sans-serif; line-height: 1.6; }
-          .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-          .button { background: #EF4444; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; }
-          .warning { color: #EF4444; font-size: 12px; }
-        </style>
-      </head>
-      <body>
-        <div class="container">
-          <h2>Password Reset Request</h2>
-          <p>You requested to reset your password. Click the button below to create a new password:</p>
-          
-          <p><a href="${resetLink}" class="button">Reset Password</a></p>
-          
-          <p class="warning">This link will expire in 1 hour for security reasons.</p>
-          <p>If you didn't request this reset, please ignore this email and your password will remain unchanged.</p>
-        </div>
-      </body>
-      </html>
-    `;
-    const { data, error } = await resend.emails.send({
-      from: "sethmwebi27@gmail.com",
-      to: userEmail,
-      subject,
-      html: htmlContent,
-    });
-
-    const email = await prisma.email.create({
-      data: {
-        to: userEmail,
-        subject,
-        template: "password-reset",
-        resendId: data?.id,
-        content: htmlContent,
-        status: error ? "FAILED" : "SENT",
-        error: error?.message,
-        userId: user.id,
-        sentAt: new Date(),
-      },
-    });
-
-    if (error) {
-      return res.status(500).json({
-        message: "Failed to send password reset email",
-        error: error.message,
-        email,
-      });
-    }
-
-    res.status(201).json({
-      message: "Password reset email sent successfully",
-      email,
-      resendId: data?.id,
-    });
-  } catch (error) {
-    next(error);
-  }
-};
-
-export const sendAccountVerification: RequestHandler = async (
-  req,
-  res,
-  next,
-) => {
-  try {
-    const {
-      email: userEmail,
-      verificationToken,
-      userId,
-    } = AccountVerificationSchema.parse(req.body);
-    const user = await prisma.user.findUnique({
-      where: { email: userEmail },
-    });
-
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
-    }
-
     const subject = "Verify Your Account";
-    const verificationLink = `${process.env.FRONTEND_URL}/verify-account?token=${verificationToken}`;
+    const verificationLink = `${process.env.FRONTEND_URL}/verify-account?token=${data.verificationToken}&userId=${data.userId}`;
 
     const htmlContent = `
       <!DOCTYPE html>
@@ -567,44 +476,107 @@ export const sendAccountVerification: RequestHandler = async (
       </html>
     `;
 
-    const { data, error } = await resend.emails.send({
+    const { data: resendData, error: resendError } = await resend.emails.send({
       from: "sethmwebi27@gmail.com",
-      to: userEmail,
+      to: data.email,
       subject,
       html: htmlContent,
     });
 
-    const email = await prisma.email.create({
+    const emailRecord = await prisma.email.create({
       data: {
-        to: userEmail,
+        to: data.email,
         subject,
         template: "account-verification",
-        resendId: data?.id,
         content: htmlContent,
-        status: error ? "FAILED" : "SENT",
-        error: error?.message,
-        userId: user.id,
+        resendId: resendData?.id,
+        status: resendError ? "FAILED" : "SENT",
+        error: resendError?.message,
+        userId: data.userId,
         sentAt: new Date(),
       },
     });
 
-    if (error) {
-      return res.status(500).json({
-        message: "Failed to send verification email",
-        error: error.message,
-        email,
-      });
+    if (resendError) {
+      return { success: false, email: emailRecord, error: resendError.message };
     }
 
-    res.status(201).json({
-      message: "Account verification email sent successfully",
-      email,
-      resendId: data?.id,
-    });
-  } catch (error) {
-    next(error);
+    return { success: true, email: emailRecord, resendId: resendData?.id };
+  } catch (error: any) {
+    return { success: false, email: null, error: error.message };
   }
-};
+}
+
+export async function sendPasswordResetEmail(data: {
+  email: string;
+  resetToken: string;
+  userId: string;
+}): Promise<EmailResult> {
+  try {
+    const subject = "Password Reset Request";
+    const resetLink = `${process.env.FRONTEND_URL}/reset-password?token=${data.resetToken}`;
+
+    const htmlContent = `
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <style>
+          body { font-family: Arial, sans-serif; line-height: 1.6; }
+          .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+          .button { background: #EF4444; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; display: inline-block; }
+          .warning { color: #EF4444; font-size: 12px; margin-top: 20px; }
+          .info { background: #F3F4F6; padding: 15px; border-radius: 5px; margin: 15px 0; }
+        </style>
+      </head>
+      <body>
+        <div class="container">
+          <h2>Password Reset Request</h2>
+          <p>You requested to reset your password. Click the button below to create a new password:</p>
+          
+          <p><a href="${resetLink}" class="button">Reset Password</a></p>
+          
+          <div class="info">
+            <p><strong>Can't click the button?</strong> Copy and paste this link in your browser:</p>
+            <p>${resetLink}</p>
+          </div>
+          
+          <p class="warning">This link will expire in 1 hour for security reasons.</p>
+          <p>If you didn't request this reset, please ignore this email and your password will remain unchanged.</p>
+        </div>
+      </body>
+      </html>
+    `;
+
+    const { data: resendData, error: resendError } = await resend.emails.send({
+      from: "sethmwebi27@gmail.com",
+      to: data.email,
+      subject,
+      html: htmlContent,
+    });
+
+    const emailRecord = await prisma.email.create({
+      data: {
+        to: data.email,
+        subject,
+        template: "password-reset",
+        content: htmlContent,
+        resendId: resendData?.id,
+        status: resendError ? "FAILED" : "SENT",
+        error: resendError?.message,
+        userId: data.userId,
+        sentAt: new Date(),
+      },
+    });
+
+    if (resendError) {
+      return { success: false, email: emailRecord, error: resendError.message };
+    }
+
+    return { success: true, email: emailRecord, resendId: resendData?.id };
+  } catch (error: any) {
+    return { success: false, email: null, error: error.message };
+  }
+}
 
 export const sendPromotionalEmail: RequestHandler = async (req, res, next) => {
   try {

@@ -1,3 +1,4 @@
+import * as crypto from "crypto";
 import { NextFunction, Request, RequestHandler, Response } from "express";
 import { RegisterSchema } from "../schemas/RegisterSchema";
 import { prisma } from "..";
@@ -7,6 +8,10 @@ import { LoginSchema } from "../schemas/LoginSchema";
 import passport from "passport";
 import jwt from "jsonwebtoken";
 import { User } from "../../generated/prisma_client";
+import {
+  sendAccountVerificationEmail,
+  sendPasswordResetEmail,
+} from "../services/email-services";
 
 export const register: RequestHandler = async (req, res, next) => {
   try {
@@ -18,7 +23,6 @@ export const register: RequestHandler = async (req, res, next) => {
       provider = "credentials",
       role = "USER",
     } = result;
-
     const existingUser = await prisma.user.findUnique({ where: { email } });
     if (existingUser) {
       throw createHttpError(400, "User with this email address already exists");
@@ -40,7 +44,17 @@ export const register: RequestHandler = async (req, res, next) => {
         },
       },
     });
+    const verificationToken = crypto.randomBytes(32).toString("hex");
+    const expires = new Date(Date.now() + 24 * 60 * 60 * 1000);
+    await prisma.verificationToken.create({
+      data: {
+        identifier: user.id,
+        token: verificationToken,
+        expires,
+      },
+    });
 
+    // Generate auth tokens
     const accessToken = jwt.sign(
       { id: user.id, email: user.email, role: user.role },
       process.env.ACCESS_TOKEN_SECRET as string,
@@ -60,7 +74,14 @@ export const register: RequestHandler = async (req, res, next) => {
 
     res.status(201).json({
       accessToken,
-      user: { id: user.id, email: user.email, name: user.name },
+      user: {
+        id: user.id,
+        email: user.email,
+        name: user.name,
+        emailVerified: user.emailVerified,
+      },
+      verificationToken:
+        process.env.NODE_ENV === "development" ? verificationToken : undefined,
     });
   } catch (error) {
     next(error);
@@ -426,6 +447,361 @@ export const getMe: RequestHandler = async (req, res, next) => {
     });
     if (!user) throw createHttpError(404, "User not found");
     res.json(user);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const checkVerificationStatus: RequestHandler = async (
+  req,
+  res,
+  next,
+) => {
+  try {
+    const { userId } = req.params;
+    if (!userId) {
+      throw createHttpError(400, "User ID is required");
+    }
+
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
+      select: {
+        id: true,
+        email: true,
+        emailVerified: true,
+        name: true,
+        createdAt: true,
+      },
+    });
+
+    if (!user) {
+      throw createHttpError(404, "User not found");
+    }
+    res.status(200).json({
+      verified: !!user.emailVerified,
+      email: user.email,
+      userId: user.id,
+      name: user.name,
+      verifiedAt: user.emailVerified,
+      accountCreated: user.createdAt,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const verifyAccount: RequestHandler = async (req, res, next) => {
+  try {
+    const { token, userId } = req.body;
+
+    if (!token || !userId) {
+      throw createHttpError(400, "Token and user ID are required");
+    }
+
+    // Find the verification token
+    const verificationToken = await prisma.verificationToken.findFirst({
+      where: {
+        token,
+        identifier: userId,
+        expires: {
+          gt: new Date(),
+        },
+      },
+    });
+
+    if (!verificationToken) {
+      throw createHttpError(400, "Invalid or expired verification token");
+    }
+
+    // Verify the user's account
+    const user = await prisma.user.update({
+      where: { id: userId },
+      data: {
+        emailVerified: new Date(),
+      },
+      select: {
+        id: true,
+        email: true,
+        emailVerified: true,
+        name: true,
+      },
+    });
+
+    // Delete the used verification token
+    await prisma.verificationToken.deleteMany({
+      where: {
+        identifier: userId,
+        token: token,
+      },
+    });
+
+    res.status(200).json({
+      success: true,
+      message: "Account verified successfully",
+      user: {
+        id: user.id,
+        email: user.email,
+        emailVerified: user.emailVerified,
+        name: user.name,
+      },
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const resendVerification: RequestHandler = async (req, res, next) => {
+  try {
+    const { email, userId } = req.body;
+
+    if (!email || !userId) {
+      throw createHttpError(400, "Email and user ID are required");
+    }
+
+    // Check if user exists and isn't already verified
+    const user = await prisma.user.findUnique({
+      where: { id: userId, email },
+      select: {
+        id: true,
+        email: true,
+        emailVerified: true,
+        name: true,
+      },
+    });
+
+    if (!user) {
+      throw createHttpError(404, "User not found");
+    }
+
+    if (user.emailVerified) {
+      throw createHttpError(400, "Account is already verified");
+    }
+
+    // Generate new verification token
+    const verificationToken =
+      Math.random().toString(36).substring(2) + Date.now().toString(36);
+    const expires = new Date(Date.now() + 24 * 60 * 60 * 1000);
+
+    // Delete any existing tokens for this user
+    await prisma.verificationToken.deleteMany({
+      where: { identifier: userId },
+    });
+
+    // Create new verification token
+    await prisma.verificationToken.create({
+      data: {
+        identifier: userId,
+        token: verificationToken,
+        expires,
+      },
+    });
+
+    // Use your email service to send verification email
+    const emailResult = await sendAccountVerificationEmail({
+      email: user.email,
+      verificationToken,
+      userId: user.id,
+    });
+
+    if (!emailResult.success) {
+      throw createHttpError(500, "Failed to send verification email");
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Verification email sent successfully",
+      verificationToken:
+        process.env.NODE_ENV === "development" ? verificationToken : undefined,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const requestPasswordReset: RequestHandler = async (req, res, next) => {
+  try {
+    const { email } = req.body;
+
+    if (!email) {
+      throw createHttpError(400, "Email is required");
+    }
+
+    // Check if user exists
+    const user = await prisma.user.findUnique({
+      where: { email },
+      select: {
+        id: true,
+        email: true,
+        name: true,
+      },
+    });
+
+    if (!user) {
+      return res.status(200).json({
+        success: true,
+        message:
+          "If an account with that email exists, a reset link has been sent",
+      });
+    }
+
+    // Generate secure reset token
+    const resetToken = crypto.randomBytes(32).toString("hex");
+    const expires = new Date(Date.now() + 60 * 60 * 1000);
+
+    // Delete any existing reset tokens for this user
+    await prisma.resetToken.deleteMany({
+      where: {
+        userId: user.id,
+        OR: [{ used: true }, { expires: { lt: new Date() } }],
+      },
+    });
+
+    // Create new reset token
+    await prisma.resetToken.create({
+      data: {
+        token: resetToken,
+        userId: user.id,
+        expires,
+      },
+    });
+
+    // Use email service to send password reset email
+    const emailResult = await sendPasswordResetEmail({
+      email: user.email,
+      resetToken,
+      userId: user.id,
+    });
+
+    if (!emailResult.success) {
+      console.error("Failed to send password reset email:", emailResult.error);
+      throw createHttpError(500, "Failed to send password reset email");
+    }
+
+    res.status(200).json({
+      success: true,
+      message:
+        "If an account with that email exists, a reset link has been sent",
+      resetToken:
+        process.env.NODE_ENV === "development" ? resetToken : undefined,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const resetPassword: RequestHandler = async (req, res, next) => {
+  try {
+    const { token, newPassword } = req.body;
+
+    if (!token || !newPassword) {
+      throw createHttpError(400, "Token and new password are required");
+    }
+
+    // Find the valid, unused reset token
+    const resetToken = await prisma.resetToken.findFirst({
+      where: {
+        token,
+        used: false,
+        expires: {
+          gt: new Date(),
+        },
+      },
+      include: {
+        user: {
+          select: {
+            id: true,
+            email: true,
+          },
+        },
+      },
+    });
+
+    if (!resetToken) {
+      throw createHttpError(
+        400,
+        "Invalid, expired, or already used reset token",
+      );
+    }
+
+    // Hash new password
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+    // Update user's password and mark token as used in a transaction
+    await prisma.$transaction(async (tx) => {
+      //Update user password
+      await tx.user.update({
+        where: { id: resetToken.userId },
+        data: {
+          password: hashedPassword,
+        },
+      });
+
+      // Mark token as used
+      await tx.resetToken.update({
+        where: { id: resetToken.id },
+        data: {
+          used: true,
+        },
+      });
+
+      // Delete any other unused tokens for this user for security
+      await tx.resetToken.deleteMany({
+        where: {
+          userId: resetToken.userId,
+          used: false,
+        },
+      });
+    });
+
+    res.status(200).json({
+      success: true,
+      message: "Password reset successfully",
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const validateResetToken: RequestHandler = async (req, res, next) => {
+  try {
+    const { token } = req.params;
+
+    if (!token) {
+      throw createHttpError(400, "Token is required");
+    }
+
+    const resetToken = await prisma.resetToken.findFirst({
+      where: {
+        token,
+        used: false,
+        expires: {
+          gt: new Date(),
+        },
+      },
+      select: {
+        id: true,
+        userId: true,
+        expires: true,
+        user: {
+          select: {
+            email: true,
+            name: true,
+          },
+        },
+      },
+    });
+
+    if (!resetToken) {
+      throw createHttpError(400, "Invalid or expired reset token");
+    }
+
+    res.status(200).json({
+      valid: true,
+      userId: resetToken.userId,
+      email: resetToken.user.email,
+      name: resetToken.user.name,
+      expires: resetToken.expires,
+    });
   } catch (error) {
     next(error);
   }

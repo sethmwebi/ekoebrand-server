@@ -27,6 +27,22 @@ authRouter.get(
   AuthControllers.getMe,
 ); // New endpoint
 authRouter.get("/auth/validate", AuthControllers.validateToken);
+
+//Password reset routes
+authRouter.post("/auth/forgot-password", AuthControllers.requestPasswordReset);
+authRouter.post("/auth/reset-password", AuthControllers.resetPassword);
+authRouter.get(
+  "/auth/validate-reset-token/:token",
+  AuthControllers.validateResetToken,
+);
+
+// Verification routes
+authRouter.get(
+  "/auth/verification-status/:userId",
+  AuthControllers.checkVerificationStatus,
+);
+authRouter.post("/auth/verify-account", AuthControllers.verifyAccount);
+authRouter.post("/resend-verification", AuthControllers.resendVerification);
 authRouter.post("/auth/logout", AuthControllers.logout);
 
 export default authRouter;

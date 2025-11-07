@@ -154,6 +154,15 @@ exports.Prisma.VerificationTokenScalarFieldEnum = {
   expires: 'expires'
 };
 
+exports.Prisma.ResetTokenScalarFieldEnum = {
+  id: 'id',
+  token: 'token',
+  userId: 'userId',
+  expires: 'expires',
+  used: 'used',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.AddressScalarFieldEnum = {
   id: 'id',
   street: 'street',
@@ -324,6 +333,7 @@ exports.Prisma.ModelName = {
   User: 'User',
   Account: 'Account',
   VerificationToken: 'VerificationToken',
+  ResetToken: 'ResetToken',
   Address: 'Address',
   Category: 'Category',
   ProductTags: 'ProductTags',
