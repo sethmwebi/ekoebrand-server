@@ -228,7 +228,7 @@ const handleOAuthCallback = async (
   try {
     // Parse state from frontend
     let returnPath = "/store";
-    let frontendBase = "http://localhost:3000";
+    let frontendBase = process.env.NEXT_PUBLIC_FRONTEND_URL;
 
     if (req.query.state) {
       const state = JSON.parse(decodeURIComponent(req.query.state as string));
