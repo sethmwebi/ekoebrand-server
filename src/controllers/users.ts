@@ -400,21 +400,21 @@ export const updateUserAddress: RequestHandler = async (req, res, next) => {
     // Validate with update schema
     const updateData = UpdateAddressSchema.parse(req.body);
 
-    // Check if address exists to determine if we're updating or creating
-    const existingAddress = await prisma.address.findUnique({
+    const existingAddress = await prisma.address.findFirst({
       where: { userId },
     });
 
     let result;
     if (existingAddress) {
       result = await prisma.address.update({
-        where: { userId },
+        where: { id: existingAddress.id }, // Use the address ID instead of userId
         data: {
           ...updateData,
           updatedAt: new Date(),
         },
       });
     } else {
+      // Create new address
       const createData = CreateAddressSchema.parse({
         ...updateData,
         country: updateData.country || "Kenya",
@@ -426,6 +426,7 @@ export const updateUserAddress: RequestHandler = async (req, res, next) => {
         },
       });
     }
+
     const { userId: _, ...responseData } = result;
     res.status(200).json({ success: true, data: responseData });
   } catch (error) {

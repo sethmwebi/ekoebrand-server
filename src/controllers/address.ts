@@ -6,21 +6,20 @@ import {
   UpdateAddressSchema,
 } from "../schemas/AddressSchema";
 
-// Get user's address
+// Get user's first address
 export const getAddress = async (
   req: Request,
   res: Response,
   next: NextFunction,
 ) => {
   try {
-    const user = req.user; // From requireAuth middleware
+    const user = req.user;
     if (!user?.id) {
       throw createHttpError(401, "User not authenticated");
     }
-    const userId = (req.user as { id: string }).id;
 
-    const address = await prisma.address.findUnique({
-      where: { userId },
+    const address = await prisma.address.findFirst({
+      where: { userId: user.id },
     });
 
     if (!address) {
@@ -33,14 +32,14 @@ export const getAddress = async (
   }
 };
 
-// Create or update address (upsert)
+// Create or update address (works with first address)
 export const upsertAddress = async (
   req: Request,
   res: Response,
   next: NextFunction,
 ) => {
   try {
-    const user = req.user; // From requireAuth middleware
+    const user = req.user;
     if (!user?.id) {
       throw createHttpError(401, "User not authenticated");
     }
@@ -48,27 +47,40 @@ export const upsertAddress = async (
     const { street, city, county, postalCode, pickupLocation, country } =
       CreateAddressSchema.parse(req.body);
 
-    const address = await prisma.address.upsert({
+    // Find the first address for this user
+    const existingAddress = await prisma.address.findFirst({
       where: { userId: user.id },
-      update: {
-        street,
-        city,
-        county,
-        postalCode,
-        pickupLocation,
-        country,
-        updatedAt: new Date(),
-      },
-      create: {
-        street,
-        city,
-        county,
-        postalCode,
-        pickupLocation,
-        country,
-        userId: user.id,
-      },
     });
+
+    let address;
+    if (existingAddress) {
+      // Update the existing address
+      address = await prisma.address.update({
+        where: { id: existingAddress.id },
+        data: {
+          street,
+          city,
+          county,
+          postalCode,
+          pickupLocation,
+          country,
+          updatedAt: new Date(),
+        },
+      });
+    } else {
+      // Create new address
+      address = await prisma.address.create({
+        data: {
+          street,
+          city,
+          county,
+          postalCode,
+          pickupLocation,
+          country,
+          userId: user.id,
+        },
+      });
+    }
 
     res.status(200).json(address);
   } catch (error) {
@@ -76,14 +88,14 @@ export const upsertAddress = async (
   }
 };
 
-// Update address
+// Update first address
 export const updateAddress = async (
   req: Request,
   res: Response,
   next: NextFunction,
 ) => {
   try {
-    const user = req.user; // From requireAuth middleware
+    const user = req.user;
     if (!user?.id) {
       throw createHttpError(401, "User not authenticated");
     }
@@ -91,7 +103,8 @@ export const updateAddress = async (
     const { street, city, county, postalCode, pickupLocation, country } =
       UpdateAddressSchema.parse(req.body);
 
-    const existingAddress = await prisma.address.findUnique({
+    // Find the first address for this user
+    const existingAddress = await prisma.address.findFirst({
       where: { userId: user.id },
     });
 
@@ -100,7 +113,7 @@ export const updateAddress = async (
     }
 
     const updatedAddress = await prisma.address.update({
-      where: { userId: user.id },
+      where: { id: existingAddress.id },
       data: {
         street,
         city,
@@ -118,22 +131,21 @@ export const updateAddress = async (
   }
 };
 
-// Delete address
+// Delete first address
 export const deleteAddress = async (
   req: Request,
   res: Response,
   next: NextFunction,
 ) => {
   try {
-    const user = req.user; // From requireAuth middleware
+    const user = req.user;
     if (!user?.id) {
       throw createHttpError(401, "User not authenticated");
     }
 
-    const userId = (req.user as { id: string }).id;
-
-    const existingAddress = await prisma.address.findUnique({
-      where: { userId },
+    // Find the first address for this user
+    const existingAddress = await prisma.address.findFirst({
+      where: { userId: user.id },
     });
 
     if (!existingAddress) {
@@ -141,10 +153,10 @@ export const deleteAddress = async (
     }
 
     await prisma.address.delete({
-      where: { userId },
+      where: { id: existingAddress.id },
     });
 
-    res.status(204).send(); // No content
+    res.status(204).send();
   } catch (error) {
     next(error);
   }

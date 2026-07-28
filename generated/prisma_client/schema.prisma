@@ -17,24 +17,25 @@ enum Role {
 
 // User model representing customers
 model User {
-  id            String       @id @default(cuid())
-  name          String?
-  email         String       @unique
-  emailVerified DateTime?
-  mobileNumber  String?
-  image         String?
-  password      String?
-  role          Role         @default(USER)
-  accounts      Account[]
-  address       Address?
-  refreshToken  String?
-  orders        Order[]
-  reviews       Review[]
-  createdAt     DateTime     @default(now())
-  updatedAt     DateTime     @updatedAt
-  cartItem      CartItem[]
-  emails        Email[]
-  resetTokens   ResetToken[]
+  id             String          @id @default(cuid())
+  name           String?
+  email          String          @unique
+  emailVerified  DateTime?
+  mobileNumber   String?
+  image          String?
+  password       String?
+  role           Role            @default(USER)
+  accounts       Account[]
+  refreshToken   String?
+  orders         Order[]
+  reviews        Review[]
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  cartItem       CartItem[]
+  emails         Email[]
+  resetTokens    ResetToken[]
+  repairBookings RepairBooking[]
+  address        Address[]
 }
 
 // Account model for user's authentication accounts
@@ -78,7 +79,6 @@ model ResetToken {
   @@index([expires])
 }
 
-// Address model for user's shipping address
 model Address {
   id             String  @id @default(cuid())
   street         String
@@ -88,10 +88,12 @@ model Address {
   pickupLocation String?
   country        String  @default("Kenya")
   user           User    @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId         String  @unique
+  userId         String
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  repairBooking RepairBooking[]
 }
 
 // Category model
@@ -258,6 +260,130 @@ enum EmailStatus {
   DELIVERED
   OPENED
   CLICKED
+}
+
+enum RepairStatus {
+  PENDING
+  CONFIRMED
+  IN_PROGRESS
+  WAITING_FOR_MATERIALS
+  READY_FOR_PICKUP
+  COMPLETED
+  CANCELLED
+}
+
+enum ClothingType {
+  SHIRT
+  TROUSERS
+  DRESS
+  SKIRT
+  JACKET
+  COAT
+  SUIT
+  JEANS
+  SWEATER
+  OTHER
+}
+
+enum RepairType {
+  ALTERATION
+  HEM_MENDING
+  ZIPPER_REPLACEMENT
+  BUTTON_REPLACEMENT
+  PATCH_REPAIR
+  SEAM_MENDING
+  SIZE_ADJUSTMENT
+  FABRIC_PATCHING
+  TAILORING
+  OTHER
+}
+
+enum FabricType {
+  COTTON
+  LINEN
+  SILK
+  WOOL
+  POLYESTER
+  DENIM
+  KNIT
+  LEATHER
+  SUEDE
+  OTHER
+}
+
+model RepairBooking {
+  id String @id @default(cuid())
+
+  // Customer Information
+  user          User   @relation(fields: [userId], references: [id])
+  userId        String
+  customerName  String
+  customerEmail String
+  customerPhone String
+
+  // Clothing Information
+  clothingType ClothingType
+  clothingItem String // "work shirt", "wedding dress"
+  brand        String?
+  fabricType   FabricType
+  color        String?
+  size         String? // e.g "M", "42", "10-12"
+
+  // Repair Details
+  repairTypes         RepairType[] // Multiple types can be selected
+  description         String // Detailed description of what needs repair
+  images              String[] // Photos of the clothing item
+  specialInstructions String? // Any special requests
+
+  // Measurements (for alterations)
+  currentMeasurements Json?
+  desiredMeasurements String?
+
+  // Pricing and status
+  status        RepairStatus @default(PENDING)
+  estimatedCost Float?
+  actualCost    Float?
+  depositPaid   Float?
+  urgency       Boolean      @default(false)
+
+  // Repair Details
+  tailorNotes    String?
+  materialsUsed  String[] // List of materials used(thread, zippers, buttons, etc.)
+  completionTime Int? // Estimated completion time in days
+
+  // Scheduling
+  preferredPickupDate DateTime?
+  estimatedReadyDate  DateTime?
+  completedAt         DateTime?
+
+  // Location
+  pickupLocation   Address? @relation(fields: [pickupLocationId], references: [id])
+  pickupLocationId String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+  @@index([status])
+  @@index([estimatedReadyDate])
+}
+
+model RepairService {
+  id            String        @id @default(cuid())
+  serviceName   String
+  repairType    RepairType
+  clothingType  ClothingType?
+  fabricType    FabricType?
+  description   String?
+  baseCost      Float
+  complexity    String? // SIMPLE, MODERATE, COMPLEX
+  estimatedTime Int? // Estimated time in hours
+  isActive      Boolean       @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([serviceName, repairType, clothingType])
 }
 
 // Review model

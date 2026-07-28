@@ -84,6 +84,16 @@ export type Payment = $Result.DefaultSelection<Prisma.$PaymentPayload>
  */
 export type Email = $Result.DefaultSelection<Prisma.$EmailPayload>
 /**
+ * Model RepairBooking
+ * 
+ */
+export type RepairBooking = $Result.DefaultSelection<Prisma.$RepairBookingPayload>
+/**
+ * Model RepairService
+ * 
+ */
+export type RepairService = $Result.DefaultSelection<Prisma.$RepairServicePayload>
+/**
  * Model Review
  * 
  */
@@ -150,6 +160,67 @@ export const EmailStatus: {
 
 export type EmailStatus = (typeof EmailStatus)[keyof typeof EmailStatus]
 
+
+export const RepairStatus: {
+  PENDING: 'PENDING',
+  CONFIRMED: 'CONFIRMED',
+  IN_PROGRESS: 'IN_PROGRESS',
+  WAITING_FOR_MATERIALS: 'WAITING_FOR_MATERIALS',
+  READY_FOR_PICKUP: 'READY_FOR_PICKUP',
+  COMPLETED: 'COMPLETED',
+  CANCELLED: 'CANCELLED'
+};
+
+export type RepairStatus = (typeof RepairStatus)[keyof typeof RepairStatus]
+
+
+export const ClothingType: {
+  SHIRT: 'SHIRT',
+  TROUSERS: 'TROUSERS',
+  DRESS: 'DRESS',
+  SKIRT: 'SKIRT',
+  JACKET: 'JACKET',
+  COAT: 'COAT',
+  SUIT: 'SUIT',
+  JEANS: 'JEANS',
+  SWEATER: 'SWEATER',
+  OTHER: 'OTHER'
+};
+
+export type ClothingType = (typeof ClothingType)[keyof typeof ClothingType]
+
+
+export const RepairType: {
+  ALTERATION: 'ALTERATION',
+  HEM_MENDING: 'HEM_MENDING',
+  ZIPPER_REPLACEMENT: 'ZIPPER_REPLACEMENT',
+  BUTTON_REPLACEMENT: 'BUTTON_REPLACEMENT',
+  PATCH_REPAIR: 'PATCH_REPAIR',
+  SEAM_MENDING: 'SEAM_MENDING',
+  SIZE_ADJUSTMENT: 'SIZE_ADJUSTMENT',
+  FABRIC_PATCHING: 'FABRIC_PATCHING',
+  TAILORING: 'TAILORING',
+  OTHER: 'OTHER'
+};
+
+export type RepairType = (typeof RepairType)[keyof typeof RepairType]
+
+
+export const FabricType: {
+  COTTON: 'COTTON',
+  LINEN: 'LINEN',
+  SILK: 'SILK',
+  WOOL: 'WOOL',
+  POLYESTER: 'POLYESTER',
+  DENIM: 'DENIM',
+  KNIT: 'KNIT',
+  LEATHER: 'LEATHER',
+  SUEDE: 'SUEDE',
+  OTHER: 'OTHER'
+};
+
+export type FabricType = (typeof FabricType)[keyof typeof FabricType]
+
 }
 
 export type Role = $Enums.Role
@@ -167,6 +238,22 @@ export const PaymentStatus: typeof $Enums.PaymentStatus
 export type EmailStatus = $Enums.EmailStatus
 
 export const EmailStatus: typeof $Enums.EmailStatus
+
+export type RepairStatus = $Enums.RepairStatus
+
+export const RepairStatus: typeof $Enums.RepairStatus
+
+export type ClothingType = $Enums.ClothingType
+
+export const ClothingType: typeof $Enums.ClothingType
+
+export type RepairType = $Enums.RepairType
+
+export const RepairType: typeof $Enums.RepairType
+
+export type FabricType = $Enums.FabricType
+
+export const FabricType: typeof $Enums.FabricType
 
 /**
  * ##  Prisma Client ʲˢ
@@ -425,6 +512,26 @@ export class PrismaClient<
     * ```
     */
   get email(): Prisma.EmailDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.repairBooking`: Exposes CRUD operations for the **RepairBooking** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more RepairBookings
+    * const repairBookings = await prisma.repairBooking.findMany()
+    * ```
+    */
+  get repairBooking(): Prisma.RepairBookingDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.repairService`: Exposes CRUD operations for the **RepairService** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more RepairServices
+    * const repairServices = await prisma.repairService.findMany()
+    * ```
+    */
+  get repairService(): Prisma.RepairServiceDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.review`: Exposes CRUD operations for the **Review** model.
@@ -889,6 +996,8 @@ export namespace Prisma {
     OrderItem: 'OrderItem',
     Payment: 'Payment',
     Email: 'Email',
+    RepairBooking: 'RepairBooking',
+    RepairService: 'RepairService',
     Review: 'Review'
   };
 
@@ -908,7 +1017,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "account" | "verificationToken" | "resetToken" | "address" | "category" | "productTags" | "tag" | "product" | "cartItem" | "order" | "orderItem" | "payment" | "email" | "review"
+      modelProps: "user" | "account" | "verificationToken" | "resetToken" | "address" | "category" | "productTags" | "tag" | "product" | "cartItem" | "order" | "orderItem" | "payment" | "email" | "repairBooking" | "repairService" | "review"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1948,6 +2057,154 @@ export namespace Prisma {
           }
         }
       }
+      RepairBooking: {
+        payload: Prisma.$RepairBookingPayload<ExtArgs>
+        fields: Prisma.RepairBookingFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.RepairBookingFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepairBookingPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.RepairBookingFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepairBookingPayload>
+          }
+          findFirst: {
+            args: Prisma.RepairBookingFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepairBookingPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.RepairBookingFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepairBookingPayload>
+          }
+          findMany: {
+            args: Prisma.RepairBookingFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepairBookingPayload>[]
+          }
+          create: {
+            args: Prisma.RepairBookingCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepairBookingPayload>
+          }
+          createMany: {
+            args: Prisma.RepairBookingCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.RepairBookingCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepairBookingPayload>[]
+          }
+          delete: {
+            args: Prisma.RepairBookingDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepairBookingPayload>
+          }
+          update: {
+            args: Prisma.RepairBookingUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepairBookingPayload>
+          }
+          deleteMany: {
+            args: Prisma.RepairBookingDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.RepairBookingUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.RepairBookingUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepairBookingPayload>[]
+          }
+          upsert: {
+            args: Prisma.RepairBookingUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepairBookingPayload>
+          }
+          aggregate: {
+            args: Prisma.RepairBookingAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateRepairBooking>
+          }
+          groupBy: {
+            args: Prisma.RepairBookingGroupByArgs<ExtArgs>
+            result: $Utils.Optional<RepairBookingGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.RepairBookingCountArgs<ExtArgs>
+            result: $Utils.Optional<RepairBookingCountAggregateOutputType> | number
+          }
+        }
+      }
+      RepairService: {
+        payload: Prisma.$RepairServicePayload<ExtArgs>
+        fields: Prisma.RepairServiceFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.RepairServiceFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepairServicePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.RepairServiceFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepairServicePayload>
+          }
+          findFirst: {
+            args: Prisma.RepairServiceFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepairServicePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.RepairServiceFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepairServicePayload>
+          }
+          findMany: {
+            args: Prisma.RepairServiceFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepairServicePayload>[]
+          }
+          create: {
+            args: Prisma.RepairServiceCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepairServicePayload>
+          }
+          createMany: {
+            args: Prisma.RepairServiceCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.RepairServiceCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepairServicePayload>[]
+          }
+          delete: {
+            args: Prisma.RepairServiceDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepairServicePayload>
+          }
+          update: {
+            args: Prisma.RepairServiceUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepairServicePayload>
+          }
+          deleteMany: {
+            args: Prisma.RepairServiceDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.RepairServiceUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.RepairServiceUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepairServicePayload>[]
+          }
+          upsert: {
+            args: Prisma.RepairServiceUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RepairServicePayload>
+          }
+          aggregate: {
+            args: Prisma.RepairServiceAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateRepairService>
+          }
+          groupBy: {
+            args: Prisma.RepairServiceGroupByArgs<ExtArgs>
+            result: $Utils.Optional<RepairServiceGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.RepairServiceCountArgs<ExtArgs>
+            result: $Utils.Optional<RepairServiceCountAggregateOutputType> | number
+          }
+        }
+      }
       Review: {
         payload: Prisma.$ReviewPayload<ExtArgs>
         fields: Prisma.ReviewFieldRefs
@@ -2132,6 +2389,8 @@ export namespace Prisma {
     orderItem?: OrderItemOmit
     payment?: PaymentOmit
     email?: EmailOmit
+    repairBooking?: RepairBookingOmit
+    repairService?: RepairServiceOmit
     review?: ReviewOmit
   }
 
@@ -2219,6 +2478,8 @@ export namespace Prisma {
     cartItem: number
     emails: number
     resetTokens: number
+    repairBookings: number
+    address: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2228,6 +2489,8 @@ export namespace Prisma {
     cartItem?: boolean | UserCountOutputTypeCountCartItemArgs
     emails?: boolean | UserCountOutputTypeCountEmailsArgs
     resetTokens?: boolean | UserCountOutputTypeCountResetTokensArgs
+    repairBookings?: boolean | UserCountOutputTypeCountRepairBookingsArgs
+    address?: boolean | UserCountOutputTypeCountAddressArgs
   }
 
   // Custom InputTypes
@@ -2281,6 +2544,51 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountResetTokensArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ResetTokenWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountRepairBookingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RepairBookingWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountAddressArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AddressWhereInput
+  }
+
+
+  /**
+   * Count Type AddressCountOutputType
+   */
+
+  export type AddressCountOutputType = {
+    repairBooking: number
+  }
+
+  export type AddressCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    repairBooking?: boolean | AddressCountOutputTypeCountRepairBookingArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * AddressCountOutputType without action
+   */
+  export type AddressCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AddressCountOutputType
+     */
+    select?: AddressCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * AddressCountOutputType without action
+   */
+  export type AddressCountOutputTypeCountRepairBookingArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RepairBookingWhereInput
   }
 
 
@@ -2661,12 +2969,13 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     accounts?: boolean | User$accountsArgs<ExtArgs>
-    address?: boolean | User$addressArgs<ExtArgs>
     orders?: boolean | User$ordersArgs<ExtArgs>
     reviews?: boolean | User$reviewsArgs<ExtArgs>
     cartItem?: boolean | User$cartItemArgs<ExtArgs>
     emails?: boolean | User$emailsArgs<ExtArgs>
     resetTokens?: boolean | User$resetTokensArgs<ExtArgs>
+    repairBookings?: boolean | User$repairBookingsArgs<ExtArgs>
+    address?: boolean | User$addressArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -2715,12 +3024,13 @@ export namespace Prisma {
   export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "emailVerified" | "mobileNumber" | "image" | "password" | "role" | "refreshToken" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     accounts?: boolean | User$accountsArgs<ExtArgs>
-    address?: boolean | User$addressArgs<ExtArgs>
     orders?: boolean | User$ordersArgs<ExtArgs>
     reviews?: boolean | User$reviewsArgs<ExtArgs>
     cartItem?: boolean | User$cartItemArgs<ExtArgs>
     emails?: boolean | User$emailsArgs<ExtArgs>
     resetTokens?: boolean | User$resetTokensArgs<ExtArgs>
+    repairBookings?: boolean | User$repairBookingsArgs<ExtArgs>
+    address?: boolean | User$addressArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2730,12 +3040,13 @@ export namespace Prisma {
     name: "User"
     objects: {
       accounts: Prisma.$AccountPayload<ExtArgs>[]
-      address: Prisma.$AddressPayload<ExtArgs> | null
       orders: Prisma.$OrderPayload<ExtArgs>[]
       reviews: Prisma.$ReviewPayload<ExtArgs>[]
       cartItem: Prisma.$CartItemPayload<ExtArgs>[]
       emails: Prisma.$EmailPayload<ExtArgs>[]
       resetTokens: Prisma.$ResetTokenPayload<ExtArgs>[]
+      repairBookings: Prisma.$RepairBookingPayload<ExtArgs>[]
+      address: Prisma.$AddressPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -3144,12 +3455,13 @@ export namespace Prisma {
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     accounts<T extends User$accountsArgs<ExtArgs> = {}>(args?: Subset<T, User$accountsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    address<T extends User$addressArgs<ExtArgs> = {}>(args?: Subset<T, User$addressArgs<ExtArgs>>): Prisma__AddressClient<$Result.GetResult<Prisma.$AddressPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     orders<T extends User$ordersArgs<ExtArgs> = {}>(args?: Subset<T, User$ordersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     reviews<T extends User$reviewsArgs<ExtArgs> = {}>(args?: Subset<T, User$reviewsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     cartItem<T extends User$cartItemArgs<ExtArgs> = {}>(args?: Subset<T, User$cartItemArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CartItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     emails<T extends User$emailsArgs<ExtArgs> = {}>(args?: Subset<T, User$emailsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmailPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     resetTokens<T extends User$resetTokensArgs<ExtArgs> = {}>(args?: Subset<T, User$resetTokensArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ResetTokenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    repairBookings<T extends User$repairBookingsArgs<ExtArgs> = {}>(args?: Subset<T, User$repairBookingsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RepairBookingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    address<T extends User$addressArgs<ExtArgs> = {}>(args?: Subset<T, User$addressArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AddressPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3602,25 +3914,6 @@ export namespace Prisma {
   }
 
   /**
-   * User.address
-   */
-  export type User$addressArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Address
-     */
-    select?: AddressSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Address
-     */
-    omit?: AddressOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AddressInclude<ExtArgs> | null
-    where?: AddressWhereInput
-  }
-
-  /**
    * User.orders
    */
   export type User$ordersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3738,6 +4031,54 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ResetTokenScalarFieldEnum | ResetTokenScalarFieldEnum[]
+  }
+
+  /**
+   * User.repairBookings
+   */
+  export type User$repairBookingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepairBooking
+     */
+    select?: RepairBookingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepairBooking
+     */
+    omit?: RepairBookingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepairBookingInclude<ExtArgs> | null
+    where?: RepairBookingWhereInput
+    orderBy?: RepairBookingOrderByWithRelationInput | RepairBookingOrderByWithRelationInput[]
+    cursor?: RepairBookingWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: RepairBookingScalarFieldEnum | RepairBookingScalarFieldEnum[]
+  }
+
+  /**
+   * User.address
+   */
+  export type User$addressArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Address
+     */
+    select?: AddressSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Address
+     */
+    omit?: AddressOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddressInclude<ExtArgs> | null
+    where?: AddressWhereInput
+    orderBy?: AddressOrderByWithRelationInput | AddressOrderByWithRelationInput[]
+    cursor?: AddressWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AddressScalarFieldEnum | AddressScalarFieldEnum[]
   }
 
   /**
@@ -7174,6 +7515,8 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
+    repairBooking?: boolean | Address$repairBookingArgs<ExtArgs>
+    _count?: boolean | AddressCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["address"]>
 
   export type AddressSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -7220,6 +7563,8 @@ export namespace Prisma {
   export type AddressOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "street" | "city" | "county" | "postalCode" | "pickupLocation" | "country" | "userId" | "createdAt" | "updatedAt", ExtArgs["result"]["address"]>
   export type AddressInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
+    repairBooking?: boolean | Address$repairBookingArgs<ExtArgs>
+    _count?: boolean | AddressCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type AddressIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -7232,6 +7577,7 @@ export namespace Prisma {
     name: "Address"
     objects: {
       user: Prisma.$UserPayload<ExtArgs>
+      repairBooking: Prisma.$RepairBookingPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -7639,6 +7985,7 @@ export namespace Prisma {
   export interface Prisma__AddressClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    repairBooking<T extends Address$repairBookingArgs<ExtArgs> = {}>(args?: Subset<T, Address$repairBookingArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RepairBookingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -8071,6 +8418,30 @@ export namespace Prisma {
      * Limit how many Addresses to delete.
      */
     limit?: number
+  }
+
+  /**
+   * Address.repairBooking
+   */
+  export type Address$repairBookingArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepairBooking
+     */
+    select?: RepairBookingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepairBooking
+     */
+    omit?: RepairBookingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepairBookingInclude<ExtArgs> | null
+    where?: RepairBookingWhereInput
+    orderBy?: RepairBookingOrderByWithRelationInput | RepairBookingOrderByWithRelationInput[]
+    cursor?: RepairBookingWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: RepairBookingScalarFieldEnum | RepairBookingScalarFieldEnum[]
   }
 
   /**
@@ -18289,6 +18660,2583 @@ export namespace Prisma {
 
 
   /**
+   * Model RepairBooking
+   */
+
+  export type AggregateRepairBooking = {
+    _count: RepairBookingCountAggregateOutputType | null
+    _avg: RepairBookingAvgAggregateOutputType | null
+    _sum: RepairBookingSumAggregateOutputType | null
+    _min: RepairBookingMinAggregateOutputType | null
+    _max: RepairBookingMaxAggregateOutputType | null
+  }
+
+  export type RepairBookingAvgAggregateOutputType = {
+    estimatedCost: number | null
+    actualCost: number | null
+    depositPaid: number | null
+    completionTime: number | null
+  }
+
+  export type RepairBookingSumAggregateOutputType = {
+    estimatedCost: number | null
+    actualCost: number | null
+    depositPaid: number | null
+    completionTime: number | null
+  }
+
+  export type RepairBookingMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    customerName: string | null
+    customerEmail: string | null
+    customerPhone: string | null
+    clothingType: $Enums.ClothingType | null
+    clothingItem: string | null
+    brand: string | null
+    fabricType: $Enums.FabricType | null
+    color: string | null
+    size: string | null
+    description: string | null
+    specialInstructions: string | null
+    desiredMeasurements: string | null
+    status: $Enums.RepairStatus | null
+    estimatedCost: number | null
+    actualCost: number | null
+    depositPaid: number | null
+    urgency: boolean | null
+    tailorNotes: string | null
+    completionTime: number | null
+    preferredPickupDate: Date | null
+    estimatedReadyDate: Date | null
+    completedAt: Date | null
+    pickupLocationId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type RepairBookingMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    customerName: string | null
+    customerEmail: string | null
+    customerPhone: string | null
+    clothingType: $Enums.ClothingType | null
+    clothingItem: string | null
+    brand: string | null
+    fabricType: $Enums.FabricType | null
+    color: string | null
+    size: string | null
+    description: string | null
+    specialInstructions: string | null
+    desiredMeasurements: string | null
+    status: $Enums.RepairStatus | null
+    estimatedCost: number | null
+    actualCost: number | null
+    depositPaid: number | null
+    urgency: boolean | null
+    tailorNotes: string | null
+    completionTime: number | null
+    preferredPickupDate: Date | null
+    estimatedReadyDate: Date | null
+    completedAt: Date | null
+    pickupLocationId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type RepairBookingCountAggregateOutputType = {
+    id: number
+    userId: number
+    customerName: number
+    customerEmail: number
+    customerPhone: number
+    clothingType: number
+    clothingItem: number
+    brand: number
+    fabricType: number
+    color: number
+    size: number
+    repairTypes: number
+    description: number
+    images: number
+    specialInstructions: number
+    currentMeasurements: number
+    desiredMeasurements: number
+    status: number
+    estimatedCost: number
+    actualCost: number
+    depositPaid: number
+    urgency: number
+    tailorNotes: number
+    materialsUsed: number
+    completionTime: number
+    preferredPickupDate: number
+    estimatedReadyDate: number
+    completedAt: number
+    pickupLocationId: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type RepairBookingAvgAggregateInputType = {
+    estimatedCost?: true
+    actualCost?: true
+    depositPaid?: true
+    completionTime?: true
+  }
+
+  export type RepairBookingSumAggregateInputType = {
+    estimatedCost?: true
+    actualCost?: true
+    depositPaid?: true
+    completionTime?: true
+  }
+
+  export type RepairBookingMinAggregateInputType = {
+    id?: true
+    userId?: true
+    customerName?: true
+    customerEmail?: true
+    customerPhone?: true
+    clothingType?: true
+    clothingItem?: true
+    brand?: true
+    fabricType?: true
+    color?: true
+    size?: true
+    description?: true
+    specialInstructions?: true
+    desiredMeasurements?: true
+    status?: true
+    estimatedCost?: true
+    actualCost?: true
+    depositPaid?: true
+    urgency?: true
+    tailorNotes?: true
+    completionTime?: true
+    preferredPickupDate?: true
+    estimatedReadyDate?: true
+    completedAt?: true
+    pickupLocationId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type RepairBookingMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    customerName?: true
+    customerEmail?: true
+    customerPhone?: true
+    clothingType?: true
+    clothingItem?: true
+    brand?: true
+    fabricType?: true
+    color?: true
+    size?: true
+    description?: true
+    specialInstructions?: true
+    desiredMeasurements?: true
+    status?: true
+    estimatedCost?: true
+    actualCost?: true
+    depositPaid?: true
+    urgency?: true
+    tailorNotes?: true
+    completionTime?: true
+    preferredPickupDate?: true
+    estimatedReadyDate?: true
+    completedAt?: true
+    pickupLocationId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type RepairBookingCountAggregateInputType = {
+    id?: true
+    userId?: true
+    customerName?: true
+    customerEmail?: true
+    customerPhone?: true
+    clothingType?: true
+    clothingItem?: true
+    brand?: true
+    fabricType?: true
+    color?: true
+    size?: true
+    repairTypes?: true
+    description?: true
+    images?: true
+    specialInstructions?: true
+    currentMeasurements?: true
+    desiredMeasurements?: true
+    status?: true
+    estimatedCost?: true
+    actualCost?: true
+    depositPaid?: true
+    urgency?: true
+    tailorNotes?: true
+    materialsUsed?: true
+    completionTime?: true
+    preferredPickupDate?: true
+    estimatedReadyDate?: true
+    completedAt?: true
+    pickupLocationId?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type RepairBookingAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which RepairBooking to aggregate.
+     */
+    where?: RepairBookingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RepairBookings to fetch.
+     */
+    orderBy?: RepairBookingOrderByWithRelationInput | RepairBookingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: RepairBookingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RepairBookings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RepairBookings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned RepairBookings
+    **/
+    _count?: true | RepairBookingCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: RepairBookingAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: RepairBookingSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: RepairBookingMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: RepairBookingMaxAggregateInputType
+  }
+
+  export type GetRepairBookingAggregateType<T extends RepairBookingAggregateArgs> = {
+        [P in keyof T & keyof AggregateRepairBooking]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateRepairBooking[P]>
+      : GetScalarType<T[P], AggregateRepairBooking[P]>
+  }
+
+
+
+
+  export type RepairBookingGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RepairBookingWhereInput
+    orderBy?: RepairBookingOrderByWithAggregationInput | RepairBookingOrderByWithAggregationInput[]
+    by: RepairBookingScalarFieldEnum[] | RepairBookingScalarFieldEnum
+    having?: RepairBookingScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: RepairBookingCountAggregateInputType | true
+    _avg?: RepairBookingAvgAggregateInputType
+    _sum?: RepairBookingSumAggregateInputType
+    _min?: RepairBookingMinAggregateInputType
+    _max?: RepairBookingMaxAggregateInputType
+  }
+
+  export type RepairBookingGroupByOutputType = {
+    id: string
+    userId: string
+    customerName: string
+    customerEmail: string
+    customerPhone: string
+    clothingType: $Enums.ClothingType
+    clothingItem: string
+    brand: string | null
+    fabricType: $Enums.FabricType
+    color: string | null
+    size: string | null
+    repairTypes: $Enums.RepairType[]
+    description: string
+    images: string[]
+    specialInstructions: string | null
+    currentMeasurements: JsonValue | null
+    desiredMeasurements: string | null
+    status: $Enums.RepairStatus
+    estimatedCost: number | null
+    actualCost: number | null
+    depositPaid: number | null
+    urgency: boolean
+    tailorNotes: string | null
+    materialsUsed: string[]
+    completionTime: number | null
+    preferredPickupDate: Date | null
+    estimatedReadyDate: Date | null
+    completedAt: Date | null
+    pickupLocationId: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: RepairBookingCountAggregateOutputType | null
+    _avg: RepairBookingAvgAggregateOutputType | null
+    _sum: RepairBookingSumAggregateOutputType | null
+    _min: RepairBookingMinAggregateOutputType | null
+    _max: RepairBookingMaxAggregateOutputType | null
+  }
+
+  type GetRepairBookingGroupByPayload<T extends RepairBookingGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<RepairBookingGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof RepairBookingGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], RepairBookingGroupByOutputType[P]>
+            : GetScalarType<T[P], RepairBookingGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type RepairBookingSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    customerName?: boolean
+    customerEmail?: boolean
+    customerPhone?: boolean
+    clothingType?: boolean
+    clothingItem?: boolean
+    brand?: boolean
+    fabricType?: boolean
+    color?: boolean
+    size?: boolean
+    repairTypes?: boolean
+    description?: boolean
+    images?: boolean
+    specialInstructions?: boolean
+    currentMeasurements?: boolean
+    desiredMeasurements?: boolean
+    status?: boolean
+    estimatedCost?: boolean
+    actualCost?: boolean
+    depositPaid?: boolean
+    urgency?: boolean
+    tailorNotes?: boolean
+    materialsUsed?: boolean
+    completionTime?: boolean
+    preferredPickupDate?: boolean
+    estimatedReadyDate?: boolean
+    completedAt?: boolean
+    pickupLocationId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    pickupLocation?: boolean | RepairBooking$pickupLocationArgs<ExtArgs>
+  }, ExtArgs["result"]["repairBooking"]>
+
+  export type RepairBookingSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    customerName?: boolean
+    customerEmail?: boolean
+    customerPhone?: boolean
+    clothingType?: boolean
+    clothingItem?: boolean
+    brand?: boolean
+    fabricType?: boolean
+    color?: boolean
+    size?: boolean
+    repairTypes?: boolean
+    description?: boolean
+    images?: boolean
+    specialInstructions?: boolean
+    currentMeasurements?: boolean
+    desiredMeasurements?: boolean
+    status?: boolean
+    estimatedCost?: boolean
+    actualCost?: boolean
+    depositPaid?: boolean
+    urgency?: boolean
+    tailorNotes?: boolean
+    materialsUsed?: boolean
+    completionTime?: boolean
+    preferredPickupDate?: boolean
+    estimatedReadyDate?: boolean
+    completedAt?: boolean
+    pickupLocationId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    pickupLocation?: boolean | RepairBooking$pickupLocationArgs<ExtArgs>
+  }, ExtArgs["result"]["repairBooking"]>
+
+  export type RepairBookingSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    customerName?: boolean
+    customerEmail?: boolean
+    customerPhone?: boolean
+    clothingType?: boolean
+    clothingItem?: boolean
+    brand?: boolean
+    fabricType?: boolean
+    color?: boolean
+    size?: boolean
+    repairTypes?: boolean
+    description?: boolean
+    images?: boolean
+    specialInstructions?: boolean
+    currentMeasurements?: boolean
+    desiredMeasurements?: boolean
+    status?: boolean
+    estimatedCost?: boolean
+    actualCost?: boolean
+    depositPaid?: boolean
+    urgency?: boolean
+    tailorNotes?: boolean
+    materialsUsed?: boolean
+    completionTime?: boolean
+    preferredPickupDate?: boolean
+    estimatedReadyDate?: boolean
+    completedAt?: boolean
+    pickupLocationId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    pickupLocation?: boolean | RepairBooking$pickupLocationArgs<ExtArgs>
+  }, ExtArgs["result"]["repairBooking"]>
+
+  export type RepairBookingSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    customerName?: boolean
+    customerEmail?: boolean
+    customerPhone?: boolean
+    clothingType?: boolean
+    clothingItem?: boolean
+    brand?: boolean
+    fabricType?: boolean
+    color?: boolean
+    size?: boolean
+    repairTypes?: boolean
+    description?: boolean
+    images?: boolean
+    specialInstructions?: boolean
+    currentMeasurements?: boolean
+    desiredMeasurements?: boolean
+    status?: boolean
+    estimatedCost?: boolean
+    actualCost?: boolean
+    depositPaid?: boolean
+    urgency?: boolean
+    tailorNotes?: boolean
+    materialsUsed?: boolean
+    completionTime?: boolean
+    preferredPickupDate?: boolean
+    estimatedReadyDate?: boolean
+    completedAt?: boolean
+    pickupLocationId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type RepairBookingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "customerName" | "customerEmail" | "customerPhone" | "clothingType" | "clothingItem" | "brand" | "fabricType" | "color" | "size" | "repairTypes" | "description" | "images" | "specialInstructions" | "currentMeasurements" | "desiredMeasurements" | "status" | "estimatedCost" | "actualCost" | "depositPaid" | "urgency" | "tailorNotes" | "materialsUsed" | "completionTime" | "preferredPickupDate" | "estimatedReadyDate" | "completedAt" | "pickupLocationId" | "createdAt" | "updatedAt", ExtArgs["result"]["repairBooking"]>
+  export type RepairBookingInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    pickupLocation?: boolean | RepairBooking$pickupLocationArgs<ExtArgs>
+  }
+  export type RepairBookingIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    pickupLocation?: boolean | RepairBooking$pickupLocationArgs<ExtArgs>
+  }
+  export type RepairBookingIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    pickupLocation?: boolean | RepairBooking$pickupLocationArgs<ExtArgs>
+  }
+
+  export type $RepairBookingPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "RepairBooking"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      pickupLocation: Prisma.$AddressPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      customerName: string
+      customerEmail: string
+      customerPhone: string
+      clothingType: $Enums.ClothingType
+      clothingItem: string
+      brand: string | null
+      fabricType: $Enums.FabricType
+      color: string | null
+      size: string | null
+      repairTypes: $Enums.RepairType[]
+      description: string
+      images: string[]
+      specialInstructions: string | null
+      currentMeasurements: Prisma.JsonValue | null
+      desiredMeasurements: string | null
+      status: $Enums.RepairStatus
+      estimatedCost: number | null
+      actualCost: number | null
+      depositPaid: number | null
+      urgency: boolean
+      tailorNotes: string | null
+      materialsUsed: string[]
+      completionTime: number | null
+      preferredPickupDate: Date | null
+      estimatedReadyDate: Date | null
+      completedAt: Date | null
+      pickupLocationId: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["repairBooking"]>
+    composites: {}
+  }
+
+  type RepairBookingGetPayload<S extends boolean | null | undefined | RepairBookingDefaultArgs> = $Result.GetResult<Prisma.$RepairBookingPayload, S>
+
+  type RepairBookingCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<RepairBookingFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: RepairBookingCountAggregateInputType | true
+    }
+
+  export interface RepairBookingDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['RepairBooking'], meta: { name: 'RepairBooking' } }
+    /**
+     * Find zero or one RepairBooking that matches the filter.
+     * @param {RepairBookingFindUniqueArgs} args - Arguments to find a RepairBooking
+     * @example
+     * // Get one RepairBooking
+     * const repairBooking = await prisma.repairBooking.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends RepairBookingFindUniqueArgs>(args: SelectSubset<T, RepairBookingFindUniqueArgs<ExtArgs>>): Prisma__RepairBookingClient<$Result.GetResult<Prisma.$RepairBookingPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one RepairBooking that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {RepairBookingFindUniqueOrThrowArgs} args - Arguments to find a RepairBooking
+     * @example
+     * // Get one RepairBooking
+     * const repairBooking = await prisma.repairBooking.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends RepairBookingFindUniqueOrThrowArgs>(args: SelectSubset<T, RepairBookingFindUniqueOrThrowArgs<ExtArgs>>): Prisma__RepairBookingClient<$Result.GetResult<Prisma.$RepairBookingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first RepairBooking that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RepairBookingFindFirstArgs} args - Arguments to find a RepairBooking
+     * @example
+     * // Get one RepairBooking
+     * const repairBooking = await prisma.repairBooking.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends RepairBookingFindFirstArgs>(args?: SelectSubset<T, RepairBookingFindFirstArgs<ExtArgs>>): Prisma__RepairBookingClient<$Result.GetResult<Prisma.$RepairBookingPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first RepairBooking that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RepairBookingFindFirstOrThrowArgs} args - Arguments to find a RepairBooking
+     * @example
+     * // Get one RepairBooking
+     * const repairBooking = await prisma.repairBooking.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends RepairBookingFindFirstOrThrowArgs>(args?: SelectSubset<T, RepairBookingFindFirstOrThrowArgs<ExtArgs>>): Prisma__RepairBookingClient<$Result.GetResult<Prisma.$RepairBookingPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more RepairBookings that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RepairBookingFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all RepairBookings
+     * const repairBookings = await prisma.repairBooking.findMany()
+     * 
+     * // Get first 10 RepairBookings
+     * const repairBookings = await prisma.repairBooking.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const repairBookingWithIdOnly = await prisma.repairBooking.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends RepairBookingFindManyArgs>(args?: SelectSubset<T, RepairBookingFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RepairBookingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a RepairBooking.
+     * @param {RepairBookingCreateArgs} args - Arguments to create a RepairBooking.
+     * @example
+     * // Create one RepairBooking
+     * const RepairBooking = await prisma.repairBooking.create({
+     *   data: {
+     *     // ... data to create a RepairBooking
+     *   }
+     * })
+     * 
+     */
+    create<T extends RepairBookingCreateArgs>(args: SelectSubset<T, RepairBookingCreateArgs<ExtArgs>>): Prisma__RepairBookingClient<$Result.GetResult<Prisma.$RepairBookingPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many RepairBookings.
+     * @param {RepairBookingCreateManyArgs} args - Arguments to create many RepairBookings.
+     * @example
+     * // Create many RepairBookings
+     * const repairBooking = await prisma.repairBooking.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends RepairBookingCreateManyArgs>(args?: SelectSubset<T, RepairBookingCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many RepairBookings and returns the data saved in the database.
+     * @param {RepairBookingCreateManyAndReturnArgs} args - Arguments to create many RepairBookings.
+     * @example
+     * // Create many RepairBookings
+     * const repairBooking = await prisma.repairBooking.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many RepairBookings and only return the `id`
+     * const repairBookingWithIdOnly = await prisma.repairBooking.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends RepairBookingCreateManyAndReturnArgs>(args?: SelectSubset<T, RepairBookingCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RepairBookingPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a RepairBooking.
+     * @param {RepairBookingDeleteArgs} args - Arguments to delete one RepairBooking.
+     * @example
+     * // Delete one RepairBooking
+     * const RepairBooking = await prisma.repairBooking.delete({
+     *   where: {
+     *     // ... filter to delete one RepairBooking
+     *   }
+     * })
+     * 
+     */
+    delete<T extends RepairBookingDeleteArgs>(args: SelectSubset<T, RepairBookingDeleteArgs<ExtArgs>>): Prisma__RepairBookingClient<$Result.GetResult<Prisma.$RepairBookingPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one RepairBooking.
+     * @param {RepairBookingUpdateArgs} args - Arguments to update one RepairBooking.
+     * @example
+     * // Update one RepairBooking
+     * const repairBooking = await prisma.repairBooking.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends RepairBookingUpdateArgs>(args: SelectSubset<T, RepairBookingUpdateArgs<ExtArgs>>): Prisma__RepairBookingClient<$Result.GetResult<Prisma.$RepairBookingPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more RepairBookings.
+     * @param {RepairBookingDeleteManyArgs} args - Arguments to filter RepairBookings to delete.
+     * @example
+     * // Delete a few RepairBookings
+     * const { count } = await prisma.repairBooking.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends RepairBookingDeleteManyArgs>(args?: SelectSubset<T, RepairBookingDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more RepairBookings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RepairBookingUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many RepairBookings
+     * const repairBooking = await prisma.repairBooking.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends RepairBookingUpdateManyArgs>(args: SelectSubset<T, RepairBookingUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more RepairBookings and returns the data updated in the database.
+     * @param {RepairBookingUpdateManyAndReturnArgs} args - Arguments to update many RepairBookings.
+     * @example
+     * // Update many RepairBookings
+     * const repairBooking = await prisma.repairBooking.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more RepairBookings and only return the `id`
+     * const repairBookingWithIdOnly = await prisma.repairBooking.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends RepairBookingUpdateManyAndReturnArgs>(args: SelectSubset<T, RepairBookingUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RepairBookingPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one RepairBooking.
+     * @param {RepairBookingUpsertArgs} args - Arguments to update or create a RepairBooking.
+     * @example
+     * // Update or create a RepairBooking
+     * const repairBooking = await prisma.repairBooking.upsert({
+     *   create: {
+     *     // ... data to create a RepairBooking
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the RepairBooking we want to update
+     *   }
+     * })
+     */
+    upsert<T extends RepairBookingUpsertArgs>(args: SelectSubset<T, RepairBookingUpsertArgs<ExtArgs>>): Prisma__RepairBookingClient<$Result.GetResult<Prisma.$RepairBookingPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of RepairBookings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RepairBookingCountArgs} args - Arguments to filter RepairBookings to count.
+     * @example
+     * // Count the number of RepairBookings
+     * const count = await prisma.repairBooking.count({
+     *   where: {
+     *     // ... the filter for the RepairBookings we want to count
+     *   }
+     * })
+    **/
+    count<T extends RepairBookingCountArgs>(
+      args?: Subset<T, RepairBookingCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], RepairBookingCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a RepairBooking.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RepairBookingAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends RepairBookingAggregateArgs>(args: Subset<T, RepairBookingAggregateArgs>): Prisma.PrismaPromise<GetRepairBookingAggregateType<T>>
+
+    /**
+     * Group by RepairBooking.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RepairBookingGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends RepairBookingGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: RepairBookingGroupByArgs['orderBy'] }
+        : { orderBy?: RepairBookingGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, RepairBookingGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetRepairBookingGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the RepairBooking model
+   */
+  readonly fields: RepairBookingFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for RepairBooking.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__RepairBookingClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    pickupLocation<T extends RepairBooking$pickupLocationArgs<ExtArgs> = {}>(args?: Subset<T, RepairBooking$pickupLocationArgs<ExtArgs>>): Prisma__AddressClient<$Result.GetResult<Prisma.$AddressPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the RepairBooking model
+   */
+  interface RepairBookingFieldRefs {
+    readonly id: FieldRef<"RepairBooking", 'String'>
+    readonly userId: FieldRef<"RepairBooking", 'String'>
+    readonly customerName: FieldRef<"RepairBooking", 'String'>
+    readonly customerEmail: FieldRef<"RepairBooking", 'String'>
+    readonly customerPhone: FieldRef<"RepairBooking", 'String'>
+    readonly clothingType: FieldRef<"RepairBooking", 'ClothingType'>
+    readonly clothingItem: FieldRef<"RepairBooking", 'String'>
+    readonly brand: FieldRef<"RepairBooking", 'String'>
+    readonly fabricType: FieldRef<"RepairBooking", 'FabricType'>
+    readonly color: FieldRef<"RepairBooking", 'String'>
+    readonly size: FieldRef<"RepairBooking", 'String'>
+    readonly repairTypes: FieldRef<"RepairBooking", 'RepairType[]'>
+    readonly description: FieldRef<"RepairBooking", 'String'>
+    readonly images: FieldRef<"RepairBooking", 'String[]'>
+    readonly specialInstructions: FieldRef<"RepairBooking", 'String'>
+    readonly currentMeasurements: FieldRef<"RepairBooking", 'Json'>
+    readonly desiredMeasurements: FieldRef<"RepairBooking", 'String'>
+    readonly status: FieldRef<"RepairBooking", 'RepairStatus'>
+    readonly estimatedCost: FieldRef<"RepairBooking", 'Float'>
+    readonly actualCost: FieldRef<"RepairBooking", 'Float'>
+    readonly depositPaid: FieldRef<"RepairBooking", 'Float'>
+    readonly urgency: FieldRef<"RepairBooking", 'Boolean'>
+    readonly tailorNotes: FieldRef<"RepairBooking", 'String'>
+    readonly materialsUsed: FieldRef<"RepairBooking", 'String[]'>
+    readonly completionTime: FieldRef<"RepairBooking", 'Int'>
+    readonly preferredPickupDate: FieldRef<"RepairBooking", 'DateTime'>
+    readonly estimatedReadyDate: FieldRef<"RepairBooking", 'DateTime'>
+    readonly completedAt: FieldRef<"RepairBooking", 'DateTime'>
+    readonly pickupLocationId: FieldRef<"RepairBooking", 'String'>
+    readonly createdAt: FieldRef<"RepairBooking", 'DateTime'>
+    readonly updatedAt: FieldRef<"RepairBooking", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * RepairBooking findUnique
+   */
+  export type RepairBookingFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepairBooking
+     */
+    select?: RepairBookingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepairBooking
+     */
+    omit?: RepairBookingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepairBookingInclude<ExtArgs> | null
+    /**
+     * Filter, which RepairBooking to fetch.
+     */
+    where: RepairBookingWhereUniqueInput
+  }
+
+  /**
+   * RepairBooking findUniqueOrThrow
+   */
+  export type RepairBookingFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepairBooking
+     */
+    select?: RepairBookingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepairBooking
+     */
+    omit?: RepairBookingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepairBookingInclude<ExtArgs> | null
+    /**
+     * Filter, which RepairBooking to fetch.
+     */
+    where: RepairBookingWhereUniqueInput
+  }
+
+  /**
+   * RepairBooking findFirst
+   */
+  export type RepairBookingFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepairBooking
+     */
+    select?: RepairBookingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepairBooking
+     */
+    omit?: RepairBookingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepairBookingInclude<ExtArgs> | null
+    /**
+     * Filter, which RepairBooking to fetch.
+     */
+    where?: RepairBookingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RepairBookings to fetch.
+     */
+    orderBy?: RepairBookingOrderByWithRelationInput | RepairBookingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RepairBookings.
+     */
+    cursor?: RepairBookingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RepairBookings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RepairBookings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RepairBookings.
+     */
+    distinct?: RepairBookingScalarFieldEnum | RepairBookingScalarFieldEnum[]
+  }
+
+  /**
+   * RepairBooking findFirstOrThrow
+   */
+  export type RepairBookingFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepairBooking
+     */
+    select?: RepairBookingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepairBooking
+     */
+    omit?: RepairBookingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepairBookingInclude<ExtArgs> | null
+    /**
+     * Filter, which RepairBooking to fetch.
+     */
+    where?: RepairBookingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RepairBookings to fetch.
+     */
+    orderBy?: RepairBookingOrderByWithRelationInput | RepairBookingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RepairBookings.
+     */
+    cursor?: RepairBookingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RepairBookings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RepairBookings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RepairBookings.
+     */
+    distinct?: RepairBookingScalarFieldEnum | RepairBookingScalarFieldEnum[]
+  }
+
+  /**
+   * RepairBooking findMany
+   */
+  export type RepairBookingFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepairBooking
+     */
+    select?: RepairBookingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepairBooking
+     */
+    omit?: RepairBookingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepairBookingInclude<ExtArgs> | null
+    /**
+     * Filter, which RepairBookings to fetch.
+     */
+    where?: RepairBookingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RepairBookings to fetch.
+     */
+    orderBy?: RepairBookingOrderByWithRelationInput | RepairBookingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing RepairBookings.
+     */
+    cursor?: RepairBookingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RepairBookings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RepairBookings.
+     */
+    skip?: number
+    distinct?: RepairBookingScalarFieldEnum | RepairBookingScalarFieldEnum[]
+  }
+
+  /**
+   * RepairBooking create
+   */
+  export type RepairBookingCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepairBooking
+     */
+    select?: RepairBookingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepairBooking
+     */
+    omit?: RepairBookingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepairBookingInclude<ExtArgs> | null
+    /**
+     * The data needed to create a RepairBooking.
+     */
+    data: XOR<RepairBookingCreateInput, RepairBookingUncheckedCreateInput>
+  }
+
+  /**
+   * RepairBooking createMany
+   */
+  export type RepairBookingCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many RepairBookings.
+     */
+    data: RepairBookingCreateManyInput | RepairBookingCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * RepairBooking createManyAndReturn
+   */
+  export type RepairBookingCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepairBooking
+     */
+    select?: RepairBookingSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepairBooking
+     */
+    omit?: RepairBookingOmit<ExtArgs> | null
+    /**
+     * The data used to create many RepairBookings.
+     */
+    data: RepairBookingCreateManyInput | RepairBookingCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepairBookingIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * RepairBooking update
+   */
+  export type RepairBookingUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepairBooking
+     */
+    select?: RepairBookingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepairBooking
+     */
+    omit?: RepairBookingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepairBookingInclude<ExtArgs> | null
+    /**
+     * The data needed to update a RepairBooking.
+     */
+    data: XOR<RepairBookingUpdateInput, RepairBookingUncheckedUpdateInput>
+    /**
+     * Choose, which RepairBooking to update.
+     */
+    where: RepairBookingWhereUniqueInput
+  }
+
+  /**
+   * RepairBooking updateMany
+   */
+  export type RepairBookingUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update RepairBookings.
+     */
+    data: XOR<RepairBookingUpdateManyMutationInput, RepairBookingUncheckedUpdateManyInput>
+    /**
+     * Filter which RepairBookings to update
+     */
+    where?: RepairBookingWhereInput
+    /**
+     * Limit how many RepairBookings to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * RepairBooking updateManyAndReturn
+   */
+  export type RepairBookingUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepairBooking
+     */
+    select?: RepairBookingSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepairBooking
+     */
+    omit?: RepairBookingOmit<ExtArgs> | null
+    /**
+     * The data used to update RepairBookings.
+     */
+    data: XOR<RepairBookingUpdateManyMutationInput, RepairBookingUncheckedUpdateManyInput>
+    /**
+     * Filter which RepairBookings to update
+     */
+    where?: RepairBookingWhereInput
+    /**
+     * Limit how many RepairBookings to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepairBookingIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * RepairBooking upsert
+   */
+  export type RepairBookingUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepairBooking
+     */
+    select?: RepairBookingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepairBooking
+     */
+    omit?: RepairBookingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepairBookingInclude<ExtArgs> | null
+    /**
+     * The filter to search for the RepairBooking to update in case it exists.
+     */
+    where: RepairBookingWhereUniqueInput
+    /**
+     * In case the RepairBooking found by the `where` argument doesn't exist, create a new RepairBooking with this data.
+     */
+    create: XOR<RepairBookingCreateInput, RepairBookingUncheckedCreateInput>
+    /**
+     * In case the RepairBooking was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<RepairBookingUpdateInput, RepairBookingUncheckedUpdateInput>
+  }
+
+  /**
+   * RepairBooking delete
+   */
+  export type RepairBookingDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepairBooking
+     */
+    select?: RepairBookingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepairBooking
+     */
+    omit?: RepairBookingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepairBookingInclude<ExtArgs> | null
+    /**
+     * Filter which RepairBooking to delete.
+     */
+    where: RepairBookingWhereUniqueInput
+  }
+
+  /**
+   * RepairBooking deleteMany
+   */
+  export type RepairBookingDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which RepairBookings to delete
+     */
+    where?: RepairBookingWhereInput
+    /**
+     * Limit how many RepairBookings to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * RepairBooking.pickupLocation
+   */
+  export type RepairBooking$pickupLocationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Address
+     */
+    select?: AddressSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Address
+     */
+    omit?: AddressOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddressInclude<ExtArgs> | null
+    where?: AddressWhereInput
+  }
+
+  /**
+   * RepairBooking without action
+   */
+  export type RepairBookingDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepairBooking
+     */
+    select?: RepairBookingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepairBooking
+     */
+    omit?: RepairBookingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RepairBookingInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model RepairService
+   */
+
+  export type AggregateRepairService = {
+    _count: RepairServiceCountAggregateOutputType | null
+    _avg: RepairServiceAvgAggregateOutputType | null
+    _sum: RepairServiceSumAggregateOutputType | null
+    _min: RepairServiceMinAggregateOutputType | null
+    _max: RepairServiceMaxAggregateOutputType | null
+  }
+
+  export type RepairServiceAvgAggregateOutputType = {
+    baseCost: number | null
+    estimatedTime: number | null
+  }
+
+  export type RepairServiceSumAggregateOutputType = {
+    baseCost: number | null
+    estimatedTime: number | null
+  }
+
+  export type RepairServiceMinAggregateOutputType = {
+    id: string | null
+    serviceName: string | null
+    repairType: $Enums.RepairType | null
+    clothingType: $Enums.ClothingType | null
+    fabricType: $Enums.FabricType | null
+    description: string | null
+    baseCost: number | null
+    complexity: string | null
+    estimatedTime: number | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type RepairServiceMaxAggregateOutputType = {
+    id: string | null
+    serviceName: string | null
+    repairType: $Enums.RepairType | null
+    clothingType: $Enums.ClothingType | null
+    fabricType: $Enums.FabricType | null
+    description: string | null
+    baseCost: number | null
+    complexity: string | null
+    estimatedTime: number | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type RepairServiceCountAggregateOutputType = {
+    id: number
+    serviceName: number
+    repairType: number
+    clothingType: number
+    fabricType: number
+    description: number
+    baseCost: number
+    complexity: number
+    estimatedTime: number
+    isActive: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type RepairServiceAvgAggregateInputType = {
+    baseCost?: true
+    estimatedTime?: true
+  }
+
+  export type RepairServiceSumAggregateInputType = {
+    baseCost?: true
+    estimatedTime?: true
+  }
+
+  export type RepairServiceMinAggregateInputType = {
+    id?: true
+    serviceName?: true
+    repairType?: true
+    clothingType?: true
+    fabricType?: true
+    description?: true
+    baseCost?: true
+    complexity?: true
+    estimatedTime?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type RepairServiceMaxAggregateInputType = {
+    id?: true
+    serviceName?: true
+    repairType?: true
+    clothingType?: true
+    fabricType?: true
+    description?: true
+    baseCost?: true
+    complexity?: true
+    estimatedTime?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type RepairServiceCountAggregateInputType = {
+    id?: true
+    serviceName?: true
+    repairType?: true
+    clothingType?: true
+    fabricType?: true
+    description?: true
+    baseCost?: true
+    complexity?: true
+    estimatedTime?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type RepairServiceAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which RepairService to aggregate.
+     */
+    where?: RepairServiceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RepairServices to fetch.
+     */
+    orderBy?: RepairServiceOrderByWithRelationInput | RepairServiceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: RepairServiceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RepairServices from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RepairServices.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned RepairServices
+    **/
+    _count?: true | RepairServiceCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: RepairServiceAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: RepairServiceSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: RepairServiceMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: RepairServiceMaxAggregateInputType
+  }
+
+  export type GetRepairServiceAggregateType<T extends RepairServiceAggregateArgs> = {
+        [P in keyof T & keyof AggregateRepairService]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateRepairService[P]>
+      : GetScalarType<T[P], AggregateRepairService[P]>
+  }
+
+
+
+
+  export type RepairServiceGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RepairServiceWhereInput
+    orderBy?: RepairServiceOrderByWithAggregationInput | RepairServiceOrderByWithAggregationInput[]
+    by: RepairServiceScalarFieldEnum[] | RepairServiceScalarFieldEnum
+    having?: RepairServiceScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: RepairServiceCountAggregateInputType | true
+    _avg?: RepairServiceAvgAggregateInputType
+    _sum?: RepairServiceSumAggregateInputType
+    _min?: RepairServiceMinAggregateInputType
+    _max?: RepairServiceMaxAggregateInputType
+  }
+
+  export type RepairServiceGroupByOutputType = {
+    id: string
+    serviceName: string
+    repairType: $Enums.RepairType
+    clothingType: $Enums.ClothingType | null
+    fabricType: $Enums.FabricType | null
+    description: string | null
+    baseCost: number
+    complexity: string | null
+    estimatedTime: number | null
+    isActive: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: RepairServiceCountAggregateOutputType | null
+    _avg: RepairServiceAvgAggregateOutputType | null
+    _sum: RepairServiceSumAggregateOutputType | null
+    _min: RepairServiceMinAggregateOutputType | null
+    _max: RepairServiceMaxAggregateOutputType | null
+  }
+
+  type GetRepairServiceGroupByPayload<T extends RepairServiceGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<RepairServiceGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof RepairServiceGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], RepairServiceGroupByOutputType[P]>
+            : GetScalarType<T[P], RepairServiceGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type RepairServiceSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    serviceName?: boolean
+    repairType?: boolean
+    clothingType?: boolean
+    fabricType?: boolean
+    description?: boolean
+    baseCost?: boolean
+    complexity?: boolean
+    estimatedTime?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["repairService"]>
+
+  export type RepairServiceSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    serviceName?: boolean
+    repairType?: boolean
+    clothingType?: boolean
+    fabricType?: boolean
+    description?: boolean
+    baseCost?: boolean
+    complexity?: boolean
+    estimatedTime?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["repairService"]>
+
+  export type RepairServiceSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    serviceName?: boolean
+    repairType?: boolean
+    clothingType?: boolean
+    fabricType?: boolean
+    description?: boolean
+    baseCost?: boolean
+    complexity?: boolean
+    estimatedTime?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["repairService"]>
+
+  export type RepairServiceSelectScalar = {
+    id?: boolean
+    serviceName?: boolean
+    repairType?: boolean
+    clothingType?: boolean
+    fabricType?: boolean
+    description?: boolean
+    baseCost?: boolean
+    complexity?: boolean
+    estimatedTime?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type RepairServiceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "serviceName" | "repairType" | "clothingType" | "fabricType" | "description" | "baseCost" | "complexity" | "estimatedTime" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["repairService"]>
+
+  export type $RepairServicePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "RepairService"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      serviceName: string
+      repairType: $Enums.RepairType
+      clothingType: $Enums.ClothingType | null
+      fabricType: $Enums.FabricType | null
+      description: string | null
+      baseCost: number
+      complexity: string | null
+      estimatedTime: number | null
+      isActive: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["repairService"]>
+    composites: {}
+  }
+
+  type RepairServiceGetPayload<S extends boolean | null | undefined | RepairServiceDefaultArgs> = $Result.GetResult<Prisma.$RepairServicePayload, S>
+
+  type RepairServiceCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<RepairServiceFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: RepairServiceCountAggregateInputType | true
+    }
+
+  export interface RepairServiceDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['RepairService'], meta: { name: 'RepairService' } }
+    /**
+     * Find zero or one RepairService that matches the filter.
+     * @param {RepairServiceFindUniqueArgs} args - Arguments to find a RepairService
+     * @example
+     * // Get one RepairService
+     * const repairService = await prisma.repairService.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends RepairServiceFindUniqueArgs>(args: SelectSubset<T, RepairServiceFindUniqueArgs<ExtArgs>>): Prisma__RepairServiceClient<$Result.GetResult<Prisma.$RepairServicePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one RepairService that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {RepairServiceFindUniqueOrThrowArgs} args - Arguments to find a RepairService
+     * @example
+     * // Get one RepairService
+     * const repairService = await prisma.repairService.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends RepairServiceFindUniqueOrThrowArgs>(args: SelectSubset<T, RepairServiceFindUniqueOrThrowArgs<ExtArgs>>): Prisma__RepairServiceClient<$Result.GetResult<Prisma.$RepairServicePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first RepairService that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RepairServiceFindFirstArgs} args - Arguments to find a RepairService
+     * @example
+     * // Get one RepairService
+     * const repairService = await prisma.repairService.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends RepairServiceFindFirstArgs>(args?: SelectSubset<T, RepairServiceFindFirstArgs<ExtArgs>>): Prisma__RepairServiceClient<$Result.GetResult<Prisma.$RepairServicePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first RepairService that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RepairServiceFindFirstOrThrowArgs} args - Arguments to find a RepairService
+     * @example
+     * // Get one RepairService
+     * const repairService = await prisma.repairService.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends RepairServiceFindFirstOrThrowArgs>(args?: SelectSubset<T, RepairServiceFindFirstOrThrowArgs<ExtArgs>>): Prisma__RepairServiceClient<$Result.GetResult<Prisma.$RepairServicePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more RepairServices that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RepairServiceFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all RepairServices
+     * const repairServices = await prisma.repairService.findMany()
+     * 
+     * // Get first 10 RepairServices
+     * const repairServices = await prisma.repairService.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const repairServiceWithIdOnly = await prisma.repairService.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends RepairServiceFindManyArgs>(args?: SelectSubset<T, RepairServiceFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RepairServicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a RepairService.
+     * @param {RepairServiceCreateArgs} args - Arguments to create a RepairService.
+     * @example
+     * // Create one RepairService
+     * const RepairService = await prisma.repairService.create({
+     *   data: {
+     *     // ... data to create a RepairService
+     *   }
+     * })
+     * 
+     */
+    create<T extends RepairServiceCreateArgs>(args: SelectSubset<T, RepairServiceCreateArgs<ExtArgs>>): Prisma__RepairServiceClient<$Result.GetResult<Prisma.$RepairServicePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many RepairServices.
+     * @param {RepairServiceCreateManyArgs} args - Arguments to create many RepairServices.
+     * @example
+     * // Create many RepairServices
+     * const repairService = await prisma.repairService.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends RepairServiceCreateManyArgs>(args?: SelectSubset<T, RepairServiceCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many RepairServices and returns the data saved in the database.
+     * @param {RepairServiceCreateManyAndReturnArgs} args - Arguments to create many RepairServices.
+     * @example
+     * // Create many RepairServices
+     * const repairService = await prisma.repairService.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many RepairServices and only return the `id`
+     * const repairServiceWithIdOnly = await prisma.repairService.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends RepairServiceCreateManyAndReturnArgs>(args?: SelectSubset<T, RepairServiceCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RepairServicePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a RepairService.
+     * @param {RepairServiceDeleteArgs} args - Arguments to delete one RepairService.
+     * @example
+     * // Delete one RepairService
+     * const RepairService = await prisma.repairService.delete({
+     *   where: {
+     *     // ... filter to delete one RepairService
+     *   }
+     * })
+     * 
+     */
+    delete<T extends RepairServiceDeleteArgs>(args: SelectSubset<T, RepairServiceDeleteArgs<ExtArgs>>): Prisma__RepairServiceClient<$Result.GetResult<Prisma.$RepairServicePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one RepairService.
+     * @param {RepairServiceUpdateArgs} args - Arguments to update one RepairService.
+     * @example
+     * // Update one RepairService
+     * const repairService = await prisma.repairService.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends RepairServiceUpdateArgs>(args: SelectSubset<T, RepairServiceUpdateArgs<ExtArgs>>): Prisma__RepairServiceClient<$Result.GetResult<Prisma.$RepairServicePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more RepairServices.
+     * @param {RepairServiceDeleteManyArgs} args - Arguments to filter RepairServices to delete.
+     * @example
+     * // Delete a few RepairServices
+     * const { count } = await prisma.repairService.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends RepairServiceDeleteManyArgs>(args?: SelectSubset<T, RepairServiceDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more RepairServices.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RepairServiceUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many RepairServices
+     * const repairService = await prisma.repairService.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends RepairServiceUpdateManyArgs>(args: SelectSubset<T, RepairServiceUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more RepairServices and returns the data updated in the database.
+     * @param {RepairServiceUpdateManyAndReturnArgs} args - Arguments to update many RepairServices.
+     * @example
+     * // Update many RepairServices
+     * const repairService = await prisma.repairService.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more RepairServices and only return the `id`
+     * const repairServiceWithIdOnly = await prisma.repairService.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends RepairServiceUpdateManyAndReturnArgs>(args: SelectSubset<T, RepairServiceUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RepairServicePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one RepairService.
+     * @param {RepairServiceUpsertArgs} args - Arguments to update or create a RepairService.
+     * @example
+     * // Update or create a RepairService
+     * const repairService = await prisma.repairService.upsert({
+     *   create: {
+     *     // ... data to create a RepairService
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the RepairService we want to update
+     *   }
+     * })
+     */
+    upsert<T extends RepairServiceUpsertArgs>(args: SelectSubset<T, RepairServiceUpsertArgs<ExtArgs>>): Prisma__RepairServiceClient<$Result.GetResult<Prisma.$RepairServicePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of RepairServices.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RepairServiceCountArgs} args - Arguments to filter RepairServices to count.
+     * @example
+     * // Count the number of RepairServices
+     * const count = await prisma.repairService.count({
+     *   where: {
+     *     // ... the filter for the RepairServices we want to count
+     *   }
+     * })
+    **/
+    count<T extends RepairServiceCountArgs>(
+      args?: Subset<T, RepairServiceCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], RepairServiceCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a RepairService.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RepairServiceAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends RepairServiceAggregateArgs>(args: Subset<T, RepairServiceAggregateArgs>): Prisma.PrismaPromise<GetRepairServiceAggregateType<T>>
+
+    /**
+     * Group by RepairService.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RepairServiceGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends RepairServiceGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: RepairServiceGroupByArgs['orderBy'] }
+        : { orderBy?: RepairServiceGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, RepairServiceGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetRepairServiceGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the RepairService model
+   */
+  readonly fields: RepairServiceFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for RepairService.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__RepairServiceClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the RepairService model
+   */
+  interface RepairServiceFieldRefs {
+    readonly id: FieldRef<"RepairService", 'String'>
+    readonly serviceName: FieldRef<"RepairService", 'String'>
+    readonly repairType: FieldRef<"RepairService", 'RepairType'>
+    readonly clothingType: FieldRef<"RepairService", 'ClothingType'>
+    readonly fabricType: FieldRef<"RepairService", 'FabricType'>
+    readonly description: FieldRef<"RepairService", 'String'>
+    readonly baseCost: FieldRef<"RepairService", 'Float'>
+    readonly complexity: FieldRef<"RepairService", 'String'>
+    readonly estimatedTime: FieldRef<"RepairService", 'Int'>
+    readonly isActive: FieldRef<"RepairService", 'Boolean'>
+    readonly createdAt: FieldRef<"RepairService", 'DateTime'>
+    readonly updatedAt: FieldRef<"RepairService", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * RepairService findUnique
+   */
+  export type RepairServiceFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepairService
+     */
+    select?: RepairServiceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepairService
+     */
+    omit?: RepairServiceOmit<ExtArgs> | null
+    /**
+     * Filter, which RepairService to fetch.
+     */
+    where: RepairServiceWhereUniqueInput
+  }
+
+  /**
+   * RepairService findUniqueOrThrow
+   */
+  export type RepairServiceFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepairService
+     */
+    select?: RepairServiceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepairService
+     */
+    omit?: RepairServiceOmit<ExtArgs> | null
+    /**
+     * Filter, which RepairService to fetch.
+     */
+    where: RepairServiceWhereUniqueInput
+  }
+
+  /**
+   * RepairService findFirst
+   */
+  export type RepairServiceFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepairService
+     */
+    select?: RepairServiceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepairService
+     */
+    omit?: RepairServiceOmit<ExtArgs> | null
+    /**
+     * Filter, which RepairService to fetch.
+     */
+    where?: RepairServiceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RepairServices to fetch.
+     */
+    orderBy?: RepairServiceOrderByWithRelationInput | RepairServiceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RepairServices.
+     */
+    cursor?: RepairServiceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RepairServices from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RepairServices.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RepairServices.
+     */
+    distinct?: RepairServiceScalarFieldEnum | RepairServiceScalarFieldEnum[]
+  }
+
+  /**
+   * RepairService findFirstOrThrow
+   */
+  export type RepairServiceFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepairService
+     */
+    select?: RepairServiceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepairService
+     */
+    omit?: RepairServiceOmit<ExtArgs> | null
+    /**
+     * Filter, which RepairService to fetch.
+     */
+    where?: RepairServiceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RepairServices to fetch.
+     */
+    orderBy?: RepairServiceOrderByWithRelationInput | RepairServiceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RepairServices.
+     */
+    cursor?: RepairServiceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RepairServices from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RepairServices.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RepairServices.
+     */
+    distinct?: RepairServiceScalarFieldEnum | RepairServiceScalarFieldEnum[]
+  }
+
+  /**
+   * RepairService findMany
+   */
+  export type RepairServiceFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepairService
+     */
+    select?: RepairServiceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepairService
+     */
+    omit?: RepairServiceOmit<ExtArgs> | null
+    /**
+     * Filter, which RepairServices to fetch.
+     */
+    where?: RepairServiceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RepairServices to fetch.
+     */
+    orderBy?: RepairServiceOrderByWithRelationInput | RepairServiceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing RepairServices.
+     */
+    cursor?: RepairServiceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RepairServices from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RepairServices.
+     */
+    skip?: number
+    distinct?: RepairServiceScalarFieldEnum | RepairServiceScalarFieldEnum[]
+  }
+
+  /**
+   * RepairService create
+   */
+  export type RepairServiceCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepairService
+     */
+    select?: RepairServiceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepairService
+     */
+    omit?: RepairServiceOmit<ExtArgs> | null
+    /**
+     * The data needed to create a RepairService.
+     */
+    data: XOR<RepairServiceCreateInput, RepairServiceUncheckedCreateInput>
+  }
+
+  /**
+   * RepairService createMany
+   */
+  export type RepairServiceCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many RepairServices.
+     */
+    data: RepairServiceCreateManyInput | RepairServiceCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * RepairService createManyAndReturn
+   */
+  export type RepairServiceCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepairService
+     */
+    select?: RepairServiceSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepairService
+     */
+    omit?: RepairServiceOmit<ExtArgs> | null
+    /**
+     * The data used to create many RepairServices.
+     */
+    data: RepairServiceCreateManyInput | RepairServiceCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * RepairService update
+   */
+  export type RepairServiceUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepairService
+     */
+    select?: RepairServiceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepairService
+     */
+    omit?: RepairServiceOmit<ExtArgs> | null
+    /**
+     * The data needed to update a RepairService.
+     */
+    data: XOR<RepairServiceUpdateInput, RepairServiceUncheckedUpdateInput>
+    /**
+     * Choose, which RepairService to update.
+     */
+    where: RepairServiceWhereUniqueInput
+  }
+
+  /**
+   * RepairService updateMany
+   */
+  export type RepairServiceUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update RepairServices.
+     */
+    data: XOR<RepairServiceUpdateManyMutationInput, RepairServiceUncheckedUpdateManyInput>
+    /**
+     * Filter which RepairServices to update
+     */
+    where?: RepairServiceWhereInput
+    /**
+     * Limit how many RepairServices to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * RepairService updateManyAndReturn
+   */
+  export type RepairServiceUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepairService
+     */
+    select?: RepairServiceSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepairService
+     */
+    omit?: RepairServiceOmit<ExtArgs> | null
+    /**
+     * The data used to update RepairServices.
+     */
+    data: XOR<RepairServiceUpdateManyMutationInput, RepairServiceUncheckedUpdateManyInput>
+    /**
+     * Filter which RepairServices to update
+     */
+    where?: RepairServiceWhereInput
+    /**
+     * Limit how many RepairServices to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * RepairService upsert
+   */
+  export type RepairServiceUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepairService
+     */
+    select?: RepairServiceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepairService
+     */
+    omit?: RepairServiceOmit<ExtArgs> | null
+    /**
+     * The filter to search for the RepairService to update in case it exists.
+     */
+    where: RepairServiceWhereUniqueInput
+    /**
+     * In case the RepairService found by the `where` argument doesn't exist, create a new RepairService with this data.
+     */
+    create: XOR<RepairServiceCreateInput, RepairServiceUncheckedCreateInput>
+    /**
+     * In case the RepairService was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<RepairServiceUpdateInput, RepairServiceUncheckedUpdateInput>
+  }
+
+  /**
+   * RepairService delete
+   */
+  export type RepairServiceDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepairService
+     */
+    select?: RepairServiceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepairService
+     */
+    omit?: RepairServiceOmit<ExtArgs> | null
+    /**
+     * Filter which RepairService to delete.
+     */
+    where: RepairServiceWhereUniqueInput
+  }
+
+  /**
+   * RepairService deleteMany
+   */
+  export type RepairServiceDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which RepairServices to delete
+     */
+    where?: RepairServiceWhereInput
+    /**
+     * Limit how many RepairServices to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * RepairService without action
+   */
+  export type RepairServiceDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RepairService
+     */
+    select?: RepairServiceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RepairService
+     */
+    omit?: RepairServiceOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Model Review
    */
 
@@ -19609,6 +22557,61 @@ export namespace Prisma {
   export type EmailScalarFieldEnum = (typeof EmailScalarFieldEnum)[keyof typeof EmailScalarFieldEnum]
 
 
+  export const RepairBookingScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    customerName: 'customerName',
+    customerEmail: 'customerEmail',
+    customerPhone: 'customerPhone',
+    clothingType: 'clothingType',
+    clothingItem: 'clothingItem',
+    brand: 'brand',
+    fabricType: 'fabricType',
+    color: 'color',
+    size: 'size',
+    repairTypes: 'repairTypes',
+    description: 'description',
+    images: 'images',
+    specialInstructions: 'specialInstructions',
+    currentMeasurements: 'currentMeasurements',
+    desiredMeasurements: 'desiredMeasurements',
+    status: 'status',
+    estimatedCost: 'estimatedCost',
+    actualCost: 'actualCost',
+    depositPaid: 'depositPaid',
+    urgency: 'urgency',
+    tailorNotes: 'tailorNotes',
+    materialsUsed: 'materialsUsed',
+    completionTime: 'completionTime',
+    preferredPickupDate: 'preferredPickupDate',
+    estimatedReadyDate: 'estimatedReadyDate',
+    completedAt: 'completedAt',
+    pickupLocationId: 'pickupLocationId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type RepairBookingScalarFieldEnum = (typeof RepairBookingScalarFieldEnum)[keyof typeof RepairBookingScalarFieldEnum]
+
+
+  export const RepairServiceScalarFieldEnum: {
+    id: 'id',
+    serviceName: 'serviceName',
+    repairType: 'repairType',
+    clothingType: 'clothingType',
+    fabricType: 'fabricType',
+    description: 'description',
+    baseCost: 'baseCost',
+    complexity: 'complexity',
+    estimatedTime: 'estimatedTime',
+    isActive: 'isActive',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type RepairServiceScalarFieldEnum = (typeof RepairServiceScalarFieldEnum)[keyof typeof RepairServiceScalarFieldEnum]
+
+
   export const ReviewScalarFieldEnum: {
     id: 'id',
     rating: 'rating',
@@ -19630,6 +22633,14 @@ export namespace Prisma {
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+  export const NullableJsonNullValueInput: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull
+  };
+
+  export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
+
+
   export const QueryMode: {
     default: 'default',
     insensitive: 'insensitive'
@@ -19644,6 +22655,15 @@ export namespace Prisma {
   };
 
   export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+  export const JsonNullValueFilter: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull,
+    AnyNull: typeof AnyNull
+  };
+
+  export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
   /**
@@ -19768,6 +22788,76 @@ export namespace Prisma {
    */
   export type ListEnumEmailStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EmailStatus[]'>
     
+
+
+  /**
+   * Reference to a field of type 'ClothingType'
+   */
+  export type EnumClothingTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ClothingType'>
+    
+
+
+  /**
+   * Reference to a field of type 'ClothingType[]'
+   */
+  export type ListEnumClothingTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ClothingType[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'FabricType'
+   */
+  export type EnumFabricTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'FabricType'>
+    
+
+
+  /**
+   * Reference to a field of type 'FabricType[]'
+   */
+  export type ListEnumFabricTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'FabricType[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'RepairType[]'
+   */
+  export type ListEnumRepairTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'RepairType[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'RepairType'
+   */
+  export type EnumRepairTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'RepairType'>
+    
+
+
+  /**
+   * Reference to a field of type 'Json'
+   */
+  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+  /**
+   * Reference to a field of type 'QueryMode'
+   */
+  export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
+    
+
+
+  /**
+   * Reference to a field of type 'RepairStatus'
+   */
+  export type EnumRepairStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'RepairStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'RepairStatus[]'
+   */
+  export type ListEnumRepairStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'RepairStatus[]'>
+    
   /**
    * Deep Input Types
    */
@@ -19789,12 +22879,13 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     accounts?: AccountListRelationFilter
-    address?: XOR<AddressNullableScalarRelationFilter, AddressWhereInput> | null
     orders?: OrderListRelationFilter
     reviews?: ReviewListRelationFilter
     cartItem?: CartItemListRelationFilter
     emails?: EmailListRelationFilter
     resetTokens?: ResetTokenListRelationFilter
+    repairBookings?: RepairBookingListRelationFilter
+    address?: AddressListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -19810,12 +22901,13 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     accounts?: AccountOrderByRelationAggregateInput
-    address?: AddressOrderByWithRelationInput
     orders?: OrderOrderByRelationAggregateInput
     reviews?: ReviewOrderByRelationAggregateInput
     cartItem?: CartItemOrderByRelationAggregateInput
     emails?: EmailOrderByRelationAggregateInput
     resetTokens?: ResetTokenOrderByRelationAggregateInput
+    repairBookings?: RepairBookingOrderByRelationAggregateInput
+    address?: AddressOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -19834,12 +22926,13 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     accounts?: AccountListRelationFilter
-    address?: XOR<AddressNullableScalarRelationFilter, AddressWhereInput> | null
     orders?: OrderListRelationFilter
     reviews?: ReviewListRelationFilter
     cartItem?: CartItemListRelationFilter
     emails?: EmailListRelationFilter
     resetTokens?: ResetTokenListRelationFilter
+    repairBookings?: RepairBookingListRelationFilter
+    address?: AddressListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -20082,6 +23175,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Address"> | Date | string
     updatedAt?: DateTimeFilter<"Address"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    repairBooking?: RepairBookingListRelationFilter
   }
 
   export type AddressOrderByWithRelationInput = {
@@ -20096,11 +23190,11 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     user?: UserOrderByWithRelationInput
+    repairBooking?: RepairBookingOrderByRelationAggregateInput
   }
 
   export type AddressWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    userId?: string
     AND?: AddressWhereInput | AddressWhereInput[]
     OR?: AddressWhereInput[]
     NOT?: AddressWhereInput | AddressWhereInput[]
@@ -20110,10 +23204,12 @@ export namespace Prisma {
     postalCode?: StringFilter<"Address"> | string
     pickupLocation?: StringNullableFilter<"Address"> | string | null
     country?: StringFilter<"Address"> | string
+    userId?: StringFilter<"Address"> | string
     createdAt?: DateTimeFilter<"Address"> | Date | string
     updatedAt?: DateTimeFilter<"Address"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
-  }, "id" | "userId">
+    repairBooking?: RepairBookingListRelationFilter
+  }, "id">
 
   export type AddressOrderByWithAggregationInput = {
     id?: SortOrder
@@ -20744,6 +23840,286 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"Email"> | Date | string
   }
 
+  export type RepairBookingWhereInput = {
+    AND?: RepairBookingWhereInput | RepairBookingWhereInput[]
+    OR?: RepairBookingWhereInput[]
+    NOT?: RepairBookingWhereInput | RepairBookingWhereInput[]
+    id?: StringFilter<"RepairBooking"> | string
+    userId?: StringFilter<"RepairBooking"> | string
+    customerName?: StringFilter<"RepairBooking"> | string
+    customerEmail?: StringFilter<"RepairBooking"> | string
+    customerPhone?: StringFilter<"RepairBooking"> | string
+    clothingType?: EnumClothingTypeFilter<"RepairBooking"> | $Enums.ClothingType
+    clothingItem?: StringFilter<"RepairBooking"> | string
+    brand?: StringNullableFilter<"RepairBooking"> | string | null
+    fabricType?: EnumFabricTypeFilter<"RepairBooking"> | $Enums.FabricType
+    color?: StringNullableFilter<"RepairBooking"> | string | null
+    size?: StringNullableFilter<"RepairBooking"> | string | null
+    repairTypes?: EnumRepairTypeNullableListFilter<"RepairBooking">
+    description?: StringFilter<"RepairBooking"> | string
+    images?: StringNullableListFilter<"RepairBooking">
+    specialInstructions?: StringNullableFilter<"RepairBooking"> | string | null
+    currentMeasurements?: JsonNullableFilter<"RepairBooking">
+    desiredMeasurements?: StringNullableFilter<"RepairBooking"> | string | null
+    status?: EnumRepairStatusFilter<"RepairBooking"> | $Enums.RepairStatus
+    estimatedCost?: FloatNullableFilter<"RepairBooking"> | number | null
+    actualCost?: FloatNullableFilter<"RepairBooking"> | number | null
+    depositPaid?: FloatNullableFilter<"RepairBooking"> | number | null
+    urgency?: BoolFilter<"RepairBooking"> | boolean
+    tailorNotes?: StringNullableFilter<"RepairBooking"> | string | null
+    materialsUsed?: StringNullableListFilter<"RepairBooking">
+    completionTime?: IntNullableFilter<"RepairBooking"> | number | null
+    preferredPickupDate?: DateTimeNullableFilter<"RepairBooking"> | Date | string | null
+    estimatedReadyDate?: DateTimeNullableFilter<"RepairBooking"> | Date | string | null
+    completedAt?: DateTimeNullableFilter<"RepairBooking"> | Date | string | null
+    pickupLocationId?: StringNullableFilter<"RepairBooking"> | string | null
+    createdAt?: DateTimeFilter<"RepairBooking"> | Date | string
+    updatedAt?: DateTimeFilter<"RepairBooking"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    pickupLocation?: XOR<AddressNullableScalarRelationFilter, AddressWhereInput> | null
+  }
+
+  export type RepairBookingOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    customerName?: SortOrder
+    customerEmail?: SortOrder
+    customerPhone?: SortOrder
+    clothingType?: SortOrder
+    clothingItem?: SortOrder
+    brand?: SortOrderInput | SortOrder
+    fabricType?: SortOrder
+    color?: SortOrderInput | SortOrder
+    size?: SortOrderInput | SortOrder
+    repairTypes?: SortOrder
+    description?: SortOrder
+    images?: SortOrder
+    specialInstructions?: SortOrderInput | SortOrder
+    currentMeasurements?: SortOrderInput | SortOrder
+    desiredMeasurements?: SortOrderInput | SortOrder
+    status?: SortOrder
+    estimatedCost?: SortOrderInput | SortOrder
+    actualCost?: SortOrderInput | SortOrder
+    depositPaid?: SortOrderInput | SortOrder
+    urgency?: SortOrder
+    tailorNotes?: SortOrderInput | SortOrder
+    materialsUsed?: SortOrder
+    completionTime?: SortOrderInput | SortOrder
+    preferredPickupDate?: SortOrderInput | SortOrder
+    estimatedReadyDate?: SortOrderInput | SortOrder
+    completedAt?: SortOrderInput | SortOrder
+    pickupLocationId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+    pickupLocation?: AddressOrderByWithRelationInput
+  }
+
+  export type RepairBookingWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: RepairBookingWhereInput | RepairBookingWhereInput[]
+    OR?: RepairBookingWhereInput[]
+    NOT?: RepairBookingWhereInput | RepairBookingWhereInput[]
+    userId?: StringFilter<"RepairBooking"> | string
+    customerName?: StringFilter<"RepairBooking"> | string
+    customerEmail?: StringFilter<"RepairBooking"> | string
+    customerPhone?: StringFilter<"RepairBooking"> | string
+    clothingType?: EnumClothingTypeFilter<"RepairBooking"> | $Enums.ClothingType
+    clothingItem?: StringFilter<"RepairBooking"> | string
+    brand?: StringNullableFilter<"RepairBooking"> | string | null
+    fabricType?: EnumFabricTypeFilter<"RepairBooking"> | $Enums.FabricType
+    color?: StringNullableFilter<"RepairBooking"> | string | null
+    size?: StringNullableFilter<"RepairBooking"> | string | null
+    repairTypes?: EnumRepairTypeNullableListFilter<"RepairBooking">
+    description?: StringFilter<"RepairBooking"> | string
+    images?: StringNullableListFilter<"RepairBooking">
+    specialInstructions?: StringNullableFilter<"RepairBooking"> | string | null
+    currentMeasurements?: JsonNullableFilter<"RepairBooking">
+    desiredMeasurements?: StringNullableFilter<"RepairBooking"> | string | null
+    status?: EnumRepairStatusFilter<"RepairBooking"> | $Enums.RepairStatus
+    estimatedCost?: FloatNullableFilter<"RepairBooking"> | number | null
+    actualCost?: FloatNullableFilter<"RepairBooking"> | number | null
+    depositPaid?: FloatNullableFilter<"RepairBooking"> | number | null
+    urgency?: BoolFilter<"RepairBooking"> | boolean
+    tailorNotes?: StringNullableFilter<"RepairBooking"> | string | null
+    materialsUsed?: StringNullableListFilter<"RepairBooking">
+    completionTime?: IntNullableFilter<"RepairBooking"> | number | null
+    preferredPickupDate?: DateTimeNullableFilter<"RepairBooking"> | Date | string | null
+    estimatedReadyDate?: DateTimeNullableFilter<"RepairBooking"> | Date | string | null
+    completedAt?: DateTimeNullableFilter<"RepairBooking"> | Date | string | null
+    pickupLocationId?: StringNullableFilter<"RepairBooking"> | string | null
+    createdAt?: DateTimeFilter<"RepairBooking"> | Date | string
+    updatedAt?: DateTimeFilter<"RepairBooking"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    pickupLocation?: XOR<AddressNullableScalarRelationFilter, AddressWhereInput> | null
+  }, "id">
+
+  export type RepairBookingOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    customerName?: SortOrder
+    customerEmail?: SortOrder
+    customerPhone?: SortOrder
+    clothingType?: SortOrder
+    clothingItem?: SortOrder
+    brand?: SortOrderInput | SortOrder
+    fabricType?: SortOrder
+    color?: SortOrderInput | SortOrder
+    size?: SortOrderInput | SortOrder
+    repairTypes?: SortOrder
+    description?: SortOrder
+    images?: SortOrder
+    specialInstructions?: SortOrderInput | SortOrder
+    currentMeasurements?: SortOrderInput | SortOrder
+    desiredMeasurements?: SortOrderInput | SortOrder
+    status?: SortOrder
+    estimatedCost?: SortOrderInput | SortOrder
+    actualCost?: SortOrderInput | SortOrder
+    depositPaid?: SortOrderInput | SortOrder
+    urgency?: SortOrder
+    tailorNotes?: SortOrderInput | SortOrder
+    materialsUsed?: SortOrder
+    completionTime?: SortOrderInput | SortOrder
+    preferredPickupDate?: SortOrderInput | SortOrder
+    estimatedReadyDate?: SortOrderInput | SortOrder
+    completedAt?: SortOrderInput | SortOrder
+    pickupLocationId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: RepairBookingCountOrderByAggregateInput
+    _avg?: RepairBookingAvgOrderByAggregateInput
+    _max?: RepairBookingMaxOrderByAggregateInput
+    _min?: RepairBookingMinOrderByAggregateInput
+    _sum?: RepairBookingSumOrderByAggregateInput
+  }
+
+  export type RepairBookingScalarWhereWithAggregatesInput = {
+    AND?: RepairBookingScalarWhereWithAggregatesInput | RepairBookingScalarWhereWithAggregatesInput[]
+    OR?: RepairBookingScalarWhereWithAggregatesInput[]
+    NOT?: RepairBookingScalarWhereWithAggregatesInput | RepairBookingScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"RepairBooking"> | string
+    userId?: StringWithAggregatesFilter<"RepairBooking"> | string
+    customerName?: StringWithAggregatesFilter<"RepairBooking"> | string
+    customerEmail?: StringWithAggregatesFilter<"RepairBooking"> | string
+    customerPhone?: StringWithAggregatesFilter<"RepairBooking"> | string
+    clothingType?: EnumClothingTypeWithAggregatesFilter<"RepairBooking"> | $Enums.ClothingType
+    clothingItem?: StringWithAggregatesFilter<"RepairBooking"> | string
+    brand?: StringNullableWithAggregatesFilter<"RepairBooking"> | string | null
+    fabricType?: EnumFabricTypeWithAggregatesFilter<"RepairBooking"> | $Enums.FabricType
+    color?: StringNullableWithAggregatesFilter<"RepairBooking"> | string | null
+    size?: StringNullableWithAggregatesFilter<"RepairBooking"> | string | null
+    repairTypes?: EnumRepairTypeNullableListFilter<"RepairBooking">
+    description?: StringWithAggregatesFilter<"RepairBooking"> | string
+    images?: StringNullableListFilter<"RepairBooking">
+    specialInstructions?: StringNullableWithAggregatesFilter<"RepairBooking"> | string | null
+    currentMeasurements?: JsonNullableWithAggregatesFilter<"RepairBooking">
+    desiredMeasurements?: StringNullableWithAggregatesFilter<"RepairBooking"> | string | null
+    status?: EnumRepairStatusWithAggregatesFilter<"RepairBooking"> | $Enums.RepairStatus
+    estimatedCost?: FloatNullableWithAggregatesFilter<"RepairBooking"> | number | null
+    actualCost?: FloatNullableWithAggregatesFilter<"RepairBooking"> | number | null
+    depositPaid?: FloatNullableWithAggregatesFilter<"RepairBooking"> | number | null
+    urgency?: BoolWithAggregatesFilter<"RepairBooking"> | boolean
+    tailorNotes?: StringNullableWithAggregatesFilter<"RepairBooking"> | string | null
+    materialsUsed?: StringNullableListFilter<"RepairBooking">
+    completionTime?: IntNullableWithAggregatesFilter<"RepairBooking"> | number | null
+    preferredPickupDate?: DateTimeNullableWithAggregatesFilter<"RepairBooking"> | Date | string | null
+    estimatedReadyDate?: DateTimeNullableWithAggregatesFilter<"RepairBooking"> | Date | string | null
+    completedAt?: DateTimeNullableWithAggregatesFilter<"RepairBooking"> | Date | string | null
+    pickupLocationId?: StringNullableWithAggregatesFilter<"RepairBooking"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"RepairBooking"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"RepairBooking"> | Date | string
+  }
+
+  export type RepairServiceWhereInput = {
+    AND?: RepairServiceWhereInput | RepairServiceWhereInput[]
+    OR?: RepairServiceWhereInput[]
+    NOT?: RepairServiceWhereInput | RepairServiceWhereInput[]
+    id?: StringFilter<"RepairService"> | string
+    serviceName?: StringFilter<"RepairService"> | string
+    repairType?: EnumRepairTypeFilter<"RepairService"> | $Enums.RepairType
+    clothingType?: EnumClothingTypeNullableFilter<"RepairService"> | $Enums.ClothingType | null
+    fabricType?: EnumFabricTypeNullableFilter<"RepairService"> | $Enums.FabricType | null
+    description?: StringNullableFilter<"RepairService"> | string | null
+    baseCost?: FloatFilter<"RepairService"> | number
+    complexity?: StringNullableFilter<"RepairService"> | string | null
+    estimatedTime?: IntNullableFilter<"RepairService"> | number | null
+    isActive?: BoolFilter<"RepairService"> | boolean
+    createdAt?: DateTimeFilter<"RepairService"> | Date | string
+    updatedAt?: DateTimeFilter<"RepairService"> | Date | string
+  }
+
+  export type RepairServiceOrderByWithRelationInput = {
+    id?: SortOrder
+    serviceName?: SortOrder
+    repairType?: SortOrder
+    clothingType?: SortOrderInput | SortOrder
+    fabricType?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
+    baseCost?: SortOrder
+    complexity?: SortOrderInput | SortOrder
+    estimatedTime?: SortOrderInput | SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type RepairServiceWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    serviceName_repairType_clothingType?: RepairServiceServiceNameRepairTypeClothingTypeCompoundUniqueInput
+    AND?: RepairServiceWhereInput | RepairServiceWhereInput[]
+    OR?: RepairServiceWhereInput[]
+    NOT?: RepairServiceWhereInput | RepairServiceWhereInput[]
+    serviceName?: StringFilter<"RepairService"> | string
+    repairType?: EnumRepairTypeFilter<"RepairService"> | $Enums.RepairType
+    clothingType?: EnumClothingTypeNullableFilter<"RepairService"> | $Enums.ClothingType | null
+    fabricType?: EnumFabricTypeNullableFilter<"RepairService"> | $Enums.FabricType | null
+    description?: StringNullableFilter<"RepairService"> | string | null
+    baseCost?: FloatFilter<"RepairService"> | number
+    complexity?: StringNullableFilter<"RepairService"> | string | null
+    estimatedTime?: IntNullableFilter<"RepairService"> | number | null
+    isActive?: BoolFilter<"RepairService"> | boolean
+    createdAt?: DateTimeFilter<"RepairService"> | Date | string
+    updatedAt?: DateTimeFilter<"RepairService"> | Date | string
+  }, "id" | "serviceName_repairType_clothingType">
+
+  export type RepairServiceOrderByWithAggregationInput = {
+    id?: SortOrder
+    serviceName?: SortOrder
+    repairType?: SortOrder
+    clothingType?: SortOrderInput | SortOrder
+    fabricType?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
+    baseCost?: SortOrder
+    complexity?: SortOrderInput | SortOrder
+    estimatedTime?: SortOrderInput | SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: RepairServiceCountOrderByAggregateInput
+    _avg?: RepairServiceAvgOrderByAggregateInput
+    _max?: RepairServiceMaxOrderByAggregateInput
+    _min?: RepairServiceMinOrderByAggregateInput
+    _sum?: RepairServiceSumOrderByAggregateInput
+  }
+
+  export type RepairServiceScalarWhereWithAggregatesInput = {
+    AND?: RepairServiceScalarWhereWithAggregatesInput | RepairServiceScalarWhereWithAggregatesInput[]
+    OR?: RepairServiceScalarWhereWithAggregatesInput[]
+    NOT?: RepairServiceScalarWhereWithAggregatesInput | RepairServiceScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"RepairService"> | string
+    serviceName?: StringWithAggregatesFilter<"RepairService"> | string
+    repairType?: EnumRepairTypeWithAggregatesFilter<"RepairService"> | $Enums.RepairType
+    clothingType?: EnumClothingTypeNullableWithAggregatesFilter<"RepairService"> | $Enums.ClothingType | null
+    fabricType?: EnumFabricTypeNullableWithAggregatesFilter<"RepairService"> | $Enums.FabricType | null
+    description?: StringNullableWithAggregatesFilter<"RepairService"> | string | null
+    baseCost?: FloatWithAggregatesFilter<"RepairService"> | number
+    complexity?: StringNullableWithAggregatesFilter<"RepairService"> | string | null
+    estimatedTime?: IntNullableWithAggregatesFilter<"RepairService"> | number | null
+    isActive?: BoolWithAggregatesFilter<"RepairService"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"RepairService"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"RepairService"> | Date | string
+  }
+
   export type ReviewWhereInput = {
     AND?: ReviewWhereInput | ReviewWhereInput[]
     OR?: ReviewWhereInput[]
@@ -20827,12 +24203,13 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     accounts?: AccountCreateNestedManyWithoutUserInput
-    address?: AddressCreateNestedOneWithoutUserInput
     orders?: OrderCreateNestedManyWithoutUserInput
     reviews?: ReviewCreateNestedManyWithoutUserInput
     cartItem?: CartItemCreateNestedManyWithoutUserInput
     emails?: EmailCreateNestedManyWithoutUserInput
     resetTokens?: ResetTokenCreateNestedManyWithoutUserInput
+    repairBookings?: RepairBookingCreateNestedManyWithoutUserInput
+    address?: AddressCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -20848,12 +24225,13 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
-    address?: AddressUncheckedCreateNestedOneWithoutUserInput
     orders?: OrderUncheckedCreateNestedManyWithoutUserInput
     reviews?: ReviewUncheckedCreateNestedManyWithoutUserInput
     cartItem?: CartItemUncheckedCreateNestedManyWithoutUserInput
     emails?: EmailUncheckedCreateNestedManyWithoutUserInput
     resetTokens?: ResetTokenUncheckedCreateNestedManyWithoutUserInput
+    repairBookings?: RepairBookingUncheckedCreateNestedManyWithoutUserInput
+    address?: AddressUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -20869,12 +24247,13 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUpdateManyWithoutUserNestedInput
-    address?: AddressUpdateOneWithoutUserNestedInput
     orders?: OrderUpdateManyWithoutUserNestedInput
     reviews?: ReviewUpdateManyWithoutUserNestedInput
     cartItem?: CartItemUpdateManyWithoutUserNestedInput
     emails?: EmailUpdateManyWithoutUserNestedInput
     resetTokens?: ResetTokenUpdateManyWithoutUserNestedInput
+    repairBookings?: RepairBookingUpdateManyWithoutUserNestedInput
+    address?: AddressUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -20890,12 +24269,13 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
-    address?: AddressUncheckedUpdateOneWithoutUserNestedInput
     orders?: OrderUncheckedUpdateManyWithoutUserNestedInput
     reviews?: ReviewUncheckedUpdateManyWithoutUserNestedInput
     cartItem?: CartItemUncheckedUpdateManyWithoutUserNestedInput
     emails?: EmailUncheckedUpdateManyWithoutUserNestedInput
     resetTokens?: ResetTokenUncheckedUpdateManyWithoutUserNestedInput
+    repairBookings?: RepairBookingUncheckedUpdateManyWithoutUserNestedInput
+    address?: AddressUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -21152,6 +24532,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutAddressInput
+    repairBooking?: RepairBookingCreateNestedManyWithoutPickupLocationInput
   }
 
   export type AddressUncheckedCreateInput = {
@@ -21165,6 +24546,7 @@ export namespace Prisma {
     userId: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    repairBooking?: RepairBookingUncheckedCreateNestedManyWithoutPickupLocationInput
   }
 
   export type AddressUpdateInput = {
@@ -21178,6 +24560,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutAddressNestedInput
+    repairBooking?: RepairBookingUpdateManyWithoutPickupLocationNestedInput
   }
 
   export type AddressUncheckedUpdateInput = {
@@ -21191,6 +24574,7 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    repairBooking?: RepairBookingUncheckedUpdateManyWithoutPickupLocationNestedInput
   }
 
   export type AddressCreateManyInput = {
@@ -21838,6 +25222,347 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type RepairBookingCreateInput = {
+    id?: string
+    customerName: string
+    customerEmail: string
+    customerPhone: string
+    clothingType: $Enums.ClothingType
+    clothingItem: string
+    brand?: string | null
+    fabricType: $Enums.FabricType
+    color?: string | null
+    size?: string | null
+    repairTypes?: RepairBookingCreaterepairTypesInput | $Enums.RepairType[]
+    description: string
+    images?: RepairBookingCreateimagesInput | string[]
+    specialInstructions?: string | null
+    currentMeasurements?: NullableJsonNullValueInput | InputJsonValue
+    desiredMeasurements?: string | null
+    status?: $Enums.RepairStatus
+    estimatedCost?: number | null
+    actualCost?: number | null
+    depositPaid?: number | null
+    urgency?: boolean
+    tailorNotes?: string | null
+    materialsUsed?: RepairBookingCreatematerialsUsedInput | string[]
+    completionTime?: number | null
+    preferredPickupDate?: Date | string | null
+    estimatedReadyDate?: Date | string | null
+    completedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutRepairBookingsInput
+    pickupLocation?: AddressCreateNestedOneWithoutRepairBookingInput
+  }
+
+  export type RepairBookingUncheckedCreateInput = {
+    id?: string
+    userId: string
+    customerName: string
+    customerEmail: string
+    customerPhone: string
+    clothingType: $Enums.ClothingType
+    clothingItem: string
+    brand?: string | null
+    fabricType: $Enums.FabricType
+    color?: string | null
+    size?: string | null
+    repairTypes?: RepairBookingCreaterepairTypesInput | $Enums.RepairType[]
+    description: string
+    images?: RepairBookingCreateimagesInput | string[]
+    specialInstructions?: string | null
+    currentMeasurements?: NullableJsonNullValueInput | InputJsonValue
+    desiredMeasurements?: string | null
+    status?: $Enums.RepairStatus
+    estimatedCost?: number | null
+    actualCost?: number | null
+    depositPaid?: number | null
+    urgency?: boolean
+    tailorNotes?: string | null
+    materialsUsed?: RepairBookingCreatematerialsUsedInput | string[]
+    completionTime?: number | null
+    preferredPickupDate?: Date | string | null
+    estimatedReadyDate?: Date | string | null
+    completedAt?: Date | string | null
+    pickupLocationId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RepairBookingUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    customerName?: StringFieldUpdateOperationsInput | string
+    customerEmail?: StringFieldUpdateOperationsInput | string
+    customerPhone?: StringFieldUpdateOperationsInput | string
+    clothingType?: EnumClothingTypeFieldUpdateOperationsInput | $Enums.ClothingType
+    clothingItem?: StringFieldUpdateOperationsInput | string
+    brand?: NullableStringFieldUpdateOperationsInput | string | null
+    fabricType?: EnumFabricTypeFieldUpdateOperationsInput | $Enums.FabricType
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    size?: NullableStringFieldUpdateOperationsInput | string | null
+    repairTypes?: RepairBookingUpdaterepairTypesInput | $Enums.RepairType[]
+    description?: StringFieldUpdateOperationsInput | string
+    images?: RepairBookingUpdateimagesInput | string[]
+    specialInstructions?: NullableStringFieldUpdateOperationsInput | string | null
+    currentMeasurements?: NullableJsonNullValueInput | InputJsonValue
+    desiredMeasurements?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumRepairStatusFieldUpdateOperationsInput | $Enums.RepairStatus
+    estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    actualCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    depositPaid?: NullableFloatFieldUpdateOperationsInput | number | null
+    urgency?: BoolFieldUpdateOperationsInput | boolean
+    tailorNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    materialsUsed?: RepairBookingUpdatematerialsUsedInput | string[]
+    completionTime?: NullableIntFieldUpdateOperationsInput | number | null
+    preferredPickupDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    estimatedReadyDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutRepairBookingsNestedInput
+    pickupLocation?: AddressUpdateOneWithoutRepairBookingNestedInput
+  }
+
+  export type RepairBookingUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    customerName?: StringFieldUpdateOperationsInput | string
+    customerEmail?: StringFieldUpdateOperationsInput | string
+    customerPhone?: StringFieldUpdateOperationsInput | string
+    clothingType?: EnumClothingTypeFieldUpdateOperationsInput | $Enums.ClothingType
+    clothingItem?: StringFieldUpdateOperationsInput | string
+    brand?: NullableStringFieldUpdateOperationsInput | string | null
+    fabricType?: EnumFabricTypeFieldUpdateOperationsInput | $Enums.FabricType
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    size?: NullableStringFieldUpdateOperationsInput | string | null
+    repairTypes?: RepairBookingUpdaterepairTypesInput | $Enums.RepairType[]
+    description?: StringFieldUpdateOperationsInput | string
+    images?: RepairBookingUpdateimagesInput | string[]
+    specialInstructions?: NullableStringFieldUpdateOperationsInput | string | null
+    currentMeasurements?: NullableJsonNullValueInput | InputJsonValue
+    desiredMeasurements?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumRepairStatusFieldUpdateOperationsInput | $Enums.RepairStatus
+    estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    actualCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    depositPaid?: NullableFloatFieldUpdateOperationsInput | number | null
+    urgency?: BoolFieldUpdateOperationsInput | boolean
+    tailorNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    materialsUsed?: RepairBookingUpdatematerialsUsedInput | string[]
+    completionTime?: NullableIntFieldUpdateOperationsInput | number | null
+    preferredPickupDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    estimatedReadyDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    pickupLocationId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RepairBookingCreateManyInput = {
+    id?: string
+    userId: string
+    customerName: string
+    customerEmail: string
+    customerPhone: string
+    clothingType: $Enums.ClothingType
+    clothingItem: string
+    brand?: string | null
+    fabricType: $Enums.FabricType
+    color?: string | null
+    size?: string | null
+    repairTypes?: RepairBookingCreaterepairTypesInput | $Enums.RepairType[]
+    description: string
+    images?: RepairBookingCreateimagesInput | string[]
+    specialInstructions?: string | null
+    currentMeasurements?: NullableJsonNullValueInput | InputJsonValue
+    desiredMeasurements?: string | null
+    status?: $Enums.RepairStatus
+    estimatedCost?: number | null
+    actualCost?: number | null
+    depositPaid?: number | null
+    urgency?: boolean
+    tailorNotes?: string | null
+    materialsUsed?: RepairBookingCreatematerialsUsedInput | string[]
+    completionTime?: number | null
+    preferredPickupDate?: Date | string | null
+    estimatedReadyDate?: Date | string | null
+    completedAt?: Date | string | null
+    pickupLocationId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RepairBookingUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    customerName?: StringFieldUpdateOperationsInput | string
+    customerEmail?: StringFieldUpdateOperationsInput | string
+    customerPhone?: StringFieldUpdateOperationsInput | string
+    clothingType?: EnumClothingTypeFieldUpdateOperationsInput | $Enums.ClothingType
+    clothingItem?: StringFieldUpdateOperationsInput | string
+    brand?: NullableStringFieldUpdateOperationsInput | string | null
+    fabricType?: EnumFabricTypeFieldUpdateOperationsInput | $Enums.FabricType
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    size?: NullableStringFieldUpdateOperationsInput | string | null
+    repairTypes?: RepairBookingUpdaterepairTypesInput | $Enums.RepairType[]
+    description?: StringFieldUpdateOperationsInput | string
+    images?: RepairBookingUpdateimagesInput | string[]
+    specialInstructions?: NullableStringFieldUpdateOperationsInput | string | null
+    currentMeasurements?: NullableJsonNullValueInput | InputJsonValue
+    desiredMeasurements?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumRepairStatusFieldUpdateOperationsInput | $Enums.RepairStatus
+    estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    actualCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    depositPaid?: NullableFloatFieldUpdateOperationsInput | number | null
+    urgency?: BoolFieldUpdateOperationsInput | boolean
+    tailorNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    materialsUsed?: RepairBookingUpdatematerialsUsedInput | string[]
+    completionTime?: NullableIntFieldUpdateOperationsInput | number | null
+    preferredPickupDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    estimatedReadyDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RepairBookingUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    customerName?: StringFieldUpdateOperationsInput | string
+    customerEmail?: StringFieldUpdateOperationsInput | string
+    customerPhone?: StringFieldUpdateOperationsInput | string
+    clothingType?: EnumClothingTypeFieldUpdateOperationsInput | $Enums.ClothingType
+    clothingItem?: StringFieldUpdateOperationsInput | string
+    brand?: NullableStringFieldUpdateOperationsInput | string | null
+    fabricType?: EnumFabricTypeFieldUpdateOperationsInput | $Enums.FabricType
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    size?: NullableStringFieldUpdateOperationsInput | string | null
+    repairTypes?: RepairBookingUpdaterepairTypesInput | $Enums.RepairType[]
+    description?: StringFieldUpdateOperationsInput | string
+    images?: RepairBookingUpdateimagesInput | string[]
+    specialInstructions?: NullableStringFieldUpdateOperationsInput | string | null
+    currentMeasurements?: NullableJsonNullValueInput | InputJsonValue
+    desiredMeasurements?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumRepairStatusFieldUpdateOperationsInput | $Enums.RepairStatus
+    estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    actualCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    depositPaid?: NullableFloatFieldUpdateOperationsInput | number | null
+    urgency?: BoolFieldUpdateOperationsInput | boolean
+    tailorNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    materialsUsed?: RepairBookingUpdatematerialsUsedInput | string[]
+    completionTime?: NullableIntFieldUpdateOperationsInput | number | null
+    preferredPickupDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    estimatedReadyDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    pickupLocationId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RepairServiceCreateInput = {
+    id?: string
+    serviceName: string
+    repairType: $Enums.RepairType
+    clothingType?: $Enums.ClothingType | null
+    fabricType?: $Enums.FabricType | null
+    description?: string | null
+    baseCost: number
+    complexity?: string | null
+    estimatedTime?: number | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RepairServiceUncheckedCreateInput = {
+    id?: string
+    serviceName: string
+    repairType: $Enums.RepairType
+    clothingType?: $Enums.ClothingType | null
+    fabricType?: $Enums.FabricType | null
+    description?: string | null
+    baseCost: number
+    complexity?: string | null
+    estimatedTime?: number | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RepairServiceUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    serviceName?: StringFieldUpdateOperationsInput | string
+    repairType?: EnumRepairTypeFieldUpdateOperationsInput | $Enums.RepairType
+    clothingType?: NullableEnumClothingTypeFieldUpdateOperationsInput | $Enums.ClothingType | null
+    fabricType?: NullableEnumFabricTypeFieldUpdateOperationsInput | $Enums.FabricType | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    baseCost?: FloatFieldUpdateOperationsInput | number
+    complexity?: NullableStringFieldUpdateOperationsInput | string | null
+    estimatedTime?: NullableIntFieldUpdateOperationsInput | number | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RepairServiceUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    serviceName?: StringFieldUpdateOperationsInput | string
+    repairType?: EnumRepairTypeFieldUpdateOperationsInput | $Enums.RepairType
+    clothingType?: NullableEnumClothingTypeFieldUpdateOperationsInput | $Enums.ClothingType | null
+    fabricType?: NullableEnumFabricTypeFieldUpdateOperationsInput | $Enums.FabricType | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    baseCost?: FloatFieldUpdateOperationsInput | number
+    complexity?: NullableStringFieldUpdateOperationsInput | string | null
+    estimatedTime?: NullableIntFieldUpdateOperationsInput | number | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RepairServiceCreateManyInput = {
+    id?: string
+    serviceName: string
+    repairType: $Enums.RepairType
+    clothingType?: $Enums.ClothingType | null
+    fabricType?: $Enums.FabricType | null
+    description?: string | null
+    baseCost: number
+    complexity?: string | null
+    estimatedTime?: number | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RepairServiceUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    serviceName?: StringFieldUpdateOperationsInput | string
+    repairType?: EnumRepairTypeFieldUpdateOperationsInput | $Enums.RepairType
+    clothingType?: NullableEnumClothingTypeFieldUpdateOperationsInput | $Enums.ClothingType | null
+    fabricType?: NullableEnumFabricTypeFieldUpdateOperationsInput | $Enums.FabricType | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    baseCost?: FloatFieldUpdateOperationsInput | number
+    complexity?: NullableStringFieldUpdateOperationsInput | string | null
+    estimatedTime?: NullableIntFieldUpdateOperationsInput | number | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RepairServiceUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    serviceName?: StringFieldUpdateOperationsInput | string
+    repairType?: EnumRepairTypeFieldUpdateOperationsInput | $Enums.RepairType
+    clothingType?: NullableEnumClothingTypeFieldUpdateOperationsInput | $Enums.ClothingType | null
+    fabricType?: NullableEnumFabricTypeFieldUpdateOperationsInput | $Enums.FabricType | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    baseCost?: FloatFieldUpdateOperationsInput | number
+    complexity?: NullableStringFieldUpdateOperationsInput | string | null
+    estimatedTime?: NullableIntFieldUpdateOperationsInput | number | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type ReviewCreateInput = {
     id?: string
     rating: number
@@ -21971,11 +25696,6 @@ export namespace Prisma {
     none?: AccountWhereInput
   }
 
-  export type AddressNullableScalarRelationFilter = {
-    is?: AddressWhereInput | null
-    isNot?: AddressWhereInput | null
-  }
-
   export type OrderListRelationFilter = {
     every?: OrderWhereInput
     some?: OrderWhereInput
@@ -22006,6 +25726,18 @@ export namespace Prisma {
     none?: ResetTokenWhereInput
   }
 
+  export type RepairBookingListRelationFilter = {
+    every?: RepairBookingWhereInput
+    some?: RepairBookingWhereInput
+    none?: RepairBookingWhereInput
+  }
+
+  export type AddressListRelationFilter = {
+    every?: AddressWhereInput
+    some?: AddressWhereInput
+    none?: AddressWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -22032,6 +25764,14 @@ export namespace Prisma {
   }
 
   export type ResetTokenOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type RepairBookingOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type AddressOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -22825,6 +26565,366 @@ export namespace Prisma {
     _max?: NestedEnumEmailStatusFilter<$PrismaModel>
   }
 
+  export type EnumClothingTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.ClothingType | EnumClothingTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.ClothingType[] | ListEnumClothingTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ClothingType[] | ListEnumClothingTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumClothingTypeFilter<$PrismaModel> | $Enums.ClothingType
+  }
+
+  export type EnumFabricTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.FabricType | EnumFabricTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.FabricType[] | ListEnumFabricTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.FabricType[] | ListEnumFabricTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumFabricTypeFilter<$PrismaModel> | $Enums.FabricType
+  }
+
+  export type EnumRepairTypeNullableListFilter<$PrismaModel = never> = {
+    equals?: $Enums.RepairType[] | ListEnumRepairTypeFieldRefInput<$PrismaModel> | null
+    has?: $Enums.RepairType | EnumRepairTypeFieldRefInput<$PrismaModel> | null
+    hasEvery?: $Enums.RepairType[] | ListEnumRepairTypeFieldRefInput<$PrismaModel>
+    hasSome?: $Enums.RepairType[] | ListEnumRepairTypeFieldRefInput<$PrismaModel>
+    isEmpty?: boolean
+  }
+  export type JsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type EnumRepairStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.RepairStatus | EnumRepairStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.RepairStatus[] | ListEnumRepairStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.RepairStatus[] | ListEnumRepairStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumRepairStatusFilter<$PrismaModel> | $Enums.RepairStatus
+  }
+
+  export type FloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type AddressNullableScalarRelationFilter = {
+    is?: AddressWhereInput | null
+    isNot?: AddressWhereInput | null
+  }
+
+  export type RepairBookingCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    customerName?: SortOrder
+    customerEmail?: SortOrder
+    customerPhone?: SortOrder
+    clothingType?: SortOrder
+    clothingItem?: SortOrder
+    brand?: SortOrder
+    fabricType?: SortOrder
+    color?: SortOrder
+    size?: SortOrder
+    repairTypes?: SortOrder
+    description?: SortOrder
+    images?: SortOrder
+    specialInstructions?: SortOrder
+    currentMeasurements?: SortOrder
+    desiredMeasurements?: SortOrder
+    status?: SortOrder
+    estimatedCost?: SortOrder
+    actualCost?: SortOrder
+    depositPaid?: SortOrder
+    urgency?: SortOrder
+    tailorNotes?: SortOrder
+    materialsUsed?: SortOrder
+    completionTime?: SortOrder
+    preferredPickupDate?: SortOrder
+    estimatedReadyDate?: SortOrder
+    completedAt?: SortOrder
+    pickupLocationId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type RepairBookingAvgOrderByAggregateInput = {
+    estimatedCost?: SortOrder
+    actualCost?: SortOrder
+    depositPaid?: SortOrder
+    completionTime?: SortOrder
+  }
+
+  export type RepairBookingMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    customerName?: SortOrder
+    customerEmail?: SortOrder
+    customerPhone?: SortOrder
+    clothingType?: SortOrder
+    clothingItem?: SortOrder
+    brand?: SortOrder
+    fabricType?: SortOrder
+    color?: SortOrder
+    size?: SortOrder
+    description?: SortOrder
+    specialInstructions?: SortOrder
+    desiredMeasurements?: SortOrder
+    status?: SortOrder
+    estimatedCost?: SortOrder
+    actualCost?: SortOrder
+    depositPaid?: SortOrder
+    urgency?: SortOrder
+    tailorNotes?: SortOrder
+    completionTime?: SortOrder
+    preferredPickupDate?: SortOrder
+    estimatedReadyDate?: SortOrder
+    completedAt?: SortOrder
+    pickupLocationId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type RepairBookingMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    customerName?: SortOrder
+    customerEmail?: SortOrder
+    customerPhone?: SortOrder
+    clothingType?: SortOrder
+    clothingItem?: SortOrder
+    brand?: SortOrder
+    fabricType?: SortOrder
+    color?: SortOrder
+    size?: SortOrder
+    description?: SortOrder
+    specialInstructions?: SortOrder
+    desiredMeasurements?: SortOrder
+    status?: SortOrder
+    estimatedCost?: SortOrder
+    actualCost?: SortOrder
+    depositPaid?: SortOrder
+    urgency?: SortOrder
+    tailorNotes?: SortOrder
+    completionTime?: SortOrder
+    preferredPickupDate?: SortOrder
+    estimatedReadyDate?: SortOrder
+    completedAt?: SortOrder
+    pickupLocationId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type RepairBookingSumOrderByAggregateInput = {
+    estimatedCost?: SortOrder
+    actualCost?: SortOrder
+    depositPaid?: SortOrder
+    completionTime?: SortOrder
+  }
+
+  export type EnumClothingTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ClothingType | EnumClothingTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.ClothingType[] | ListEnumClothingTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ClothingType[] | ListEnumClothingTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumClothingTypeWithAggregatesFilter<$PrismaModel> | $Enums.ClothingType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumClothingTypeFilter<$PrismaModel>
+    _max?: NestedEnumClothingTypeFilter<$PrismaModel>
+  }
+
+  export type EnumFabricTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.FabricType | EnumFabricTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.FabricType[] | ListEnumFabricTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.FabricType[] | ListEnumFabricTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumFabricTypeWithAggregatesFilter<$PrismaModel> | $Enums.FabricType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumFabricTypeFilter<$PrismaModel>
+    _max?: NestedEnumFabricTypeFilter<$PrismaModel>
+  }
+  export type JsonNullableWithAggregatesFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedJsonNullableFilter<$PrismaModel>
+    _max?: NestedJsonNullableFilter<$PrismaModel>
+  }
+
+  export type EnumRepairStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.RepairStatus | EnumRepairStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.RepairStatus[] | ListEnumRepairStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.RepairStatus[] | ListEnumRepairStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumRepairStatusWithAggregatesFilter<$PrismaModel> | $Enums.RepairStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumRepairStatusFilter<$PrismaModel>
+    _max?: NestedEnumRepairStatusFilter<$PrismaModel>
+  }
+
+  export type FloatNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedFloatNullableFilter<$PrismaModel>
+    _min?: NestedFloatNullableFilter<$PrismaModel>
+    _max?: NestedFloatNullableFilter<$PrismaModel>
+  }
+
+  export type EnumRepairTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.RepairType | EnumRepairTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.RepairType[] | ListEnumRepairTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.RepairType[] | ListEnumRepairTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumRepairTypeFilter<$PrismaModel> | $Enums.RepairType
+  }
+
+  export type EnumClothingTypeNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.ClothingType | EnumClothingTypeFieldRefInput<$PrismaModel> | null
+    in?: $Enums.ClothingType[] | ListEnumClothingTypeFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.ClothingType[] | ListEnumClothingTypeFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumClothingTypeNullableFilter<$PrismaModel> | $Enums.ClothingType | null
+  }
+
+  export type EnumFabricTypeNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.FabricType | EnumFabricTypeFieldRefInput<$PrismaModel> | null
+    in?: $Enums.FabricType[] | ListEnumFabricTypeFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.FabricType[] | ListEnumFabricTypeFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumFabricTypeNullableFilter<$PrismaModel> | $Enums.FabricType | null
+  }
+
+  export type RepairServiceServiceNameRepairTypeClothingTypeCompoundUniqueInput = {
+    serviceName: string
+    repairType: $Enums.RepairType
+    clothingType: $Enums.ClothingType
+  }
+
+  export type RepairServiceCountOrderByAggregateInput = {
+    id?: SortOrder
+    serviceName?: SortOrder
+    repairType?: SortOrder
+    clothingType?: SortOrder
+    fabricType?: SortOrder
+    description?: SortOrder
+    baseCost?: SortOrder
+    complexity?: SortOrder
+    estimatedTime?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type RepairServiceAvgOrderByAggregateInput = {
+    baseCost?: SortOrder
+    estimatedTime?: SortOrder
+  }
+
+  export type RepairServiceMaxOrderByAggregateInput = {
+    id?: SortOrder
+    serviceName?: SortOrder
+    repairType?: SortOrder
+    clothingType?: SortOrder
+    fabricType?: SortOrder
+    description?: SortOrder
+    baseCost?: SortOrder
+    complexity?: SortOrder
+    estimatedTime?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type RepairServiceMinOrderByAggregateInput = {
+    id?: SortOrder
+    serviceName?: SortOrder
+    repairType?: SortOrder
+    clothingType?: SortOrder
+    fabricType?: SortOrder
+    description?: SortOrder
+    baseCost?: SortOrder
+    complexity?: SortOrder
+    estimatedTime?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type RepairServiceSumOrderByAggregateInput = {
+    baseCost?: SortOrder
+    estimatedTime?: SortOrder
+  }
+
+  export type EnumRepairTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.RepairType | EnumRepairTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.RepairType[] | ListEnumRepairTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.RepairType[] | ListEnumRepairTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumRepairTypeWithAggregatesFilter<$PrismaModel> | $Enums.RepairType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumRepairTypeFilter<$PrismaModel>
+    _max?: NestedEnumRepairTypeFilter<$PrismaModel>
+  }
+
+  export type EnumClothingTypeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ClothingType | EnumClothingTypeFieldRefInput<$PrismaModel> | null
+    in?: $Enums.ClothingType[] | ListEnumClothingTypeFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.ClothingType[] | ListEnumClothingTypeFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumClothingTypeNullableWithAggregatesFilter<$PrismaModel> | $Enums.ClothingType | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumClothingTypeNullableFilter<$PrismaModel>
+    _max?: NestedEnumClothingTypeNullableFilter<$PrismaModel>
+  }
+
+  export type EnumFabricTypeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.FabricType | EnumFabricTypeFieldRefInput<$PrismaModel> | null
+    in?: $Enums.FabricType[] | ListEnumFabricTypeFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.FabricType[] | ListEnumFabricTypeFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumFabricTypeNullableWithAggregatesFilter<$PrismaModel> | $Enums.FabricType | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumFabricTypeNullableFilter<$PrismaModel>
+    _max?: NestedEnumFabricTypeNullableFilter<$PrismaModel>
+  }
+
   export type ReviewCountOrderByAggregateInput = {
     id?: SortOrder
     rating?: SortOrder
@@ -22870,12 +26970,6 @@ export namespace Prisma {
     connect?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
   }
 
-  export type AddressCreateNestedOneWithoutUserInput = {
-    create?: XOR<AddressCreateWithoutUserInput, AddressUncheckedCreateWithoutUserInput>
-    connectOrCreate?: AddressCreateOrConnectWithoutUserInput
-    connect?: AddressWhereUniqueInput
-  }
-
   export type OrderCreateNestedManyWithoutUserInput = {
     create?: XOR<OrderCreateWithoutUserInput, OrderUncheckedCreateWithoutUserInput> | OrderCreateWithoutUserInput[] | OrderUncheckedCreateWithoutUserInput[]
     connectOrCreate?: OrderCreateOrConnectWithoutUserInput | OrderCreateOrConnectWithoutUserInput[]
@@ -22911,17 +27005,25 @@ export namespace Prisma {
     connect?: ResetTokenWhereUniqueInput | ResetTokenWhereUniqueInput[]
   }
 
+  export type RepairBookingCreateNestedManyWithoutUserInput = {
+    create?: XOR<RepairBookingCreateWithoutUserInput, RepairBookingUncheckedCreateWithoutUserInput> | RepairBookingCreateWithoutUserInput[] | RepairBookingUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: RepairBookingCreateOrConnectWithoutUserInput | RepairBookingCreateOrConnectWithoutUserInput[]
+    createMany?: RepairBookingCreateManyUserInputEnvelope
+    connect?: RepairBookingWhereUniqueInput | RepairBookingWhereUniqueInput[]
+  }
+
+  export type AddressCreateNestedManyWithoutUserInput = {
+    create?: XOR<AddressCreateWithoutUserInput, AddressUncheckedCreateWithoutUserInput> | AddressCreateWithoutUserInput[] | AddressUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: AddressCreateOrConnectWithoutUserInput | AddressCreateOrConnectWithoutUserInput[]
+    createMany?: AddressCreateManyUserInputEnvelope
+    connect?: AddressWhereUniqueInput | AddressWhereUniqueInput[]
+  }
+
   export type AccountUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
     createMany?: AccountCreateManyUserInputEnvelope
     connect?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
-  }
-
-  export type AddressUncheckedCreateNestedOneWithoutUserInput = {
-    create?: XOR<AddressCreateWithoutUserInput, AddressUncheckedCreateWithoutUserInput>
-    connectOrCreate?: AddressCreateOrConnectWithoutUserInput
-    connect?: AddressWhereUniqueInput
   }
 
   export type OrderUncheckedCreateNestedManyWithoutUserInput = {
@@ -22959,6 +27061,20 @@ export namespace Prisma {
     connect?: ResetTokenWhereUniqueInput | ResetTokenWhereUniqueInput[]
   }
 
+  export type RepairBookingUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<RepairBookingCreateWithoutUserInput, RepairBookingUncheckedCreateWithoutUserInput> | RepairBookingCreateWithoutUserInput[] | RepairBookingUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: RepairBookingCreateOrConnectWithoutUserInput | RepairBookingCreateOrConnectWithoutUserInput[]
+    createMany?: RepairBookingCreateManyUserInputEnvelope
+    connect?: RepairBookingWhereUniqueInput | RepairBookingWhereUniqueInput[]
+  }
+
+  export type AddressUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<AddressCreateWithoutUserInput, AddressUncheckedCreateWithoutUserInput> | AddressCreateWithoutUserInput[] | AddressUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: AddressCreateOrConnectWithoutUserInput | AddressCreateOrConnectWithoutUserInput[]
+    createMany?: AddressCreateManyUserInputEnvelope
+    connect?: AddressWhereUniqueInput | AddressWhereUniqueInput[]
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -22991,16 +27107,6 @@ export namespace Prisma {
     update?: AccountUpdateWithWhereUniqueWithoutUserInput | AccountUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: AccountUpdateManyWithWhereWithoutUserInput | AccountUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: AccountScalarWhereInput | AccountScalarWhereInput[]
-  }
-
-  export type AddressUpdateOneWithoutUserNestedInput = {
-    create?: XOR<AddressCreateWithoutUserInput, AddressUncheckedCreateWithoutUserInput>
-    connectOrCreate?: AddressCreateOrConnectWithoutUserInput
-    upsert?: AddressUpsertWithoutUserInput
-    disconnect?: AddressWhereInput | boolean
-    delete?: AddressWhereInput | boolean
-    connect?: AddressWhereUniqueInput
-    update?: XOR<XOR<AddressUpdateToOneWithWhereWithoutUserInput, AddressUpdateWithoutUserInput>, AddressUncheckedUpdateWithoutUserInput>
   }
 
   export type OrderUpdateManyWithoutUserNestedInput = {
@@ -23073,6 +27179,34 @@ export namespace Prisma {
     deleteMany?: ResetTokenScalarWhereInput | ResetTokenScalarWhereInput[]
   }
 
+  export type RepairBookingUpdateManyWithoutUserNestedInput = {
+    create?: XOR<RepairBookingCreateWithoutUserInput, RepairBookingUncheckedCreateWithoutUserInput> | RepairBookingCreateWithoutUserInput[] | RepairBookingUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: RepairBookingCreateOrConnectWithoutUserInput | RepairBookingCreateOrConnectWithoutUserInput[]
+    upsert?: RepairBookingUpsertWithWhereUniqueWithoutUserInput | RepairBookingUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: RepairBookingCreateManyUserInputEnvelope
+    set?: RepairBookingWhereUniqueInput | RepairBookingWhereUniqueInput[]
+    disconnect?: RepairBookingWhereUniqueInput | RepairBookingWhereUniqueInput[]
+    delete?: RepairBookingWhereUniqueInput | RepairBookingWhereUniqueInput[]
+    connect?: RepairBookingWhereUniqueInput | RepairBookingWhereUniqueInput[]
+    update?: RepairBookingUpdateWithWhereUniqueWithoutUserInput | RepairBookingUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: RepairBookingUpdateManyWithWhereWithoutUserInput | RepairBookingUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: RepairBookingScalarWhereInput | RepairBookingScalarWhereInput[]
+  }
+
+  export type AddressUpdateManyWithoutUserNestedInput = {
+    create?: XOR<AddressCreateWithoutUserInput, AddressUncheckedCreateWithoutUserInput> | AddressCreateWithoutUserInput[] | AddressUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: AddressCreateOrConnectWithoutUserInput | AddressCreateOrConnectWithoutUserInput[]
+    upsert?: AddressUpsertWithWhereUniqueWithoutUserInput | AddressUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: AddressCreateManyUserInputEnvelope
+    set?: AddressWhereUniqueInput | AddressWhereUniqueInput[]
+    disconnect?: AddressWhereUniqueInput | AddressWhereUniqueInput[]
+    delete?: AddressWhereUniqueInput | AddressWhereUniqueInput[]
+    connect?: AddressWhereUniqueInput | AddressWhereUniqueInput[]
+    update?: AddressUpdateWithWhereUniqueWithoutUserInput | AddressUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: AddressUpdateManyWithWhereWithoutUserInput | AddressUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: AddressScalarWhereInput | AddressScalarWhereInput[]
+  }
+
   export type AccountUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
@@ -23085,16 +27219,6 @@ export namespace Prisma {
     update?: AccountUpdateWithWhereUniqueWithoutUserInput | AccountUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: AccountUpdateManyWithWhereWithoutUserInput | AccountUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: AccountScalarWhereInput | AccountScalarWhereInput[]
-  }
-
-  export type AddressUncheckedUpdateOneWithoutUserNestedInput = {
-    create?: XOR<AddressCreateWithoutUserInput, AddressUncheckedCreateWithoutUserInput>
-    connectOrCreate?: AddressCreateOrConnectWithoutUserInput
-    upsert?: AddressUpsertWithoutUserInput
-    disconnect?: AddressWhereInput | boolean
-    delete?: AddressWhereInput | boolean
-    connect?: AddressWhereUniqueInput
-    update?: XOR<XOR<AddressUpdateToOneWithWhereWithoutUserInput, AddressUpdateWithoutUserInput>, AddressUncheckedUpdateWithoutUserInput>
   }
 
   export type OrderUncheckedUpdateManyWithoutUserNestedInput = {
@@ -23167,6 +27291,34 @@ export namespace Prisma {
     deleteMany?: ResetTokenScalarWhereInput | ResetTokenScalarWhereInput[]
   }
 
+  export type RepairBookingUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<RepairBookingCreateWithoutUserInput, RepairBookingUncheckedCreateWithoutUserInput> | RepairBookingCreateWithoutUserInput[] | RepairBookingUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: RepairBookingCreateOrConnectWithoutUserInput | RepairBookingCreateOrConnectWithoutUserInput[]
+    upsert?: RepairBookingUpsertWithWhereUniqueWithoutUserInput | RepairBookingUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: RepairBookingCreateManyUserInputEnvelope
+    set?: RepairBookingWhereUniqueInput | RepairBookingWhereUniqueInput[]
+    disconnect?: RepairBookingWhereUniqueInput | RepairBookingWhereUniqueInput[]
+    delete?: RepairBookingWhereUniqueInput | RepairBookingWhereUniqueInput[]
+    connect?: RepairBookingWhereUniqueInput | RepairBookingWhereUniqueInput[]
+    update?: RepairBookingUpdateWithWhereUniqueWithoutUserInput | RepairBookingUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: RepairBookingUpdateManyWithWhereWithoutUserInput | RepairBookingUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: RepairBookingScalarWhereInput | RepairBookingScalarWhereInput[]
+  }
+
+  export type AddressUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<AddressCreateWithoutUserInput, AddressUncheckedCreateWithoutUserInput> | AddressCreateWithoutUserInput[] | AddressUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: AddressCreateOrConnectWithoutUserInput | AddressCreateOrConnectWithoutUserInput[]
+    upsert?: AddressUpsertWithWhereUniqueWithoutUserInput | AddressUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: AddressCreateManyUserInputEnvelope
+    set?: AddressWhereUniqueInput | AddressWhereUniqueInput[]
+    disconnect?: AddressWhereUniqueInput | AddressWhereUniqueInput[]
+    delete?: AddressWhereUniqueInput | AddressWhereUniqueInput[]
+    connect?: AddressWhereUniqueInput | AddressWhereUniqueInput[]
+    update?: AddressUpdateWithWhereUniqueWithoutUserInput | AddressUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: AddressUpdateManyWithWhereWithoutUserInput | AddressUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: AddressScalarWhereInput | AddressScalarWhereInput[]
+  }
+
   export type UserCreateNestedOneWithoutAccountsInput = {
     create?: XOR<UserCreateWithoutAccountsInput, UserUncheckedCreateWithoutAccountsInput>
     connectOrCreate?: UserCreateOrConnectWithoutAccountsInput
@@ -23213,12 +27365,54 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
+  export type RepairBookingCreateNestedManyWithoutPickupLocationInput = {
+    create?: XOR<RepairBookingCreateWithoutPickupLocationInput, RepairBookingUncheckedCreateWithoutPickupLocationInput> | RepairBookingCreateWithoutPickupLocationInput[] | RepairBookingUncheckedCreateWithoutPickupLocationInput[]
+    connectOrCreate?: RepairBookingCreateOrConnectWithoutPickupLocationInput | RepairBookingCreateOrConnectWithoutPickupLocationInput[]
+    createMany?: RepairBookingCreateManyPickupLocationInputEnvelope
+    connect?: RepairBookingWhereUniqueInput | RepairBookingWhereUniqueInput[]
+  }
+
+  export type RepairBookingUncheckedCreateNestedManyWithoutPickupLocationInput = {
+    create?: XOR<RepairBookingCreateWithoutPickupLocationInput, RepairBookingUncheckedCreateWithoutPickupLocationInput> | RepairBookingCreateWithoutPickupLocationInput[] | RepairBookingUncheckedCreateWithoutPickupLocationInput[]
+    connectOrCreate?: RepairBookingCreateOrConnectWithoutPickupLocationInput | RepairBookingCreateOrConnectWithoutPickupLocationInput[]
+    createMany?: RepairBookingCreateManyPickupLocationInputEnvelope
+    connect?: RepairBookingWhereUniqueInput | RepairBookingWhereUniqueInput[]
+  }
+
   export type UserUpdateOneRequiredWithoutAddressNestedInput = {
     create?: XOR<UserCreateWithoutAddressInput, UserUncheckedCreateWithoutAddressInput>
     connectOrCreate?: UserCreateOrConnectWithoutAddressInput
     upsert?: UserUpsertWithoutAddressInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutAddressInput, UserUpdateWithoutAddressInput>, UserUncheckedUpdateWithoutAddressInput>
+  }
+
+  export type RepairBookingUpdateManyWithoutPickupLocationNestedInput = {
+    create?: XOR<RepairBookingCreateWithoutPickupLocationInput, RepairBookingUncheckedCreateWithoutPickupLocationInput> | RepairBookingCreateWithoutPickupLocationInput[] | RepairBookingUncheckedCreateWithoutPickupLocationInput[]
+    connectOrCreate?: RepairBookingCreateOrConnectWithoutPickupLocationInput | RepairBookingCreateOrConnectWithoutPickupLocationInput[]
+    upsert?: RepairBookingUpsertWithWhereUniqueWithoutPickupLocationInput | RepairBookingUpsertWithWhereUniqueWithoutPickupLocationInput[]
+    createMany?: RepairBookingCreateManyPickupLocationInputEnvelope
+    set?: RepairBookingWhereUniqueInput | RepairBookingWhereUniqueInput[]
+    disconnect?: RepairBookingWhereUniqueInput | RepairBookingWhereUniqueInput[]
+    delete?: RepairBookingWhereUniqueInput | RepairBookingWhereUniqueInput[]
+    connect?: RepairBookingWhereUniqueInput | RepairBookingWhereUniqueInput[]
+    update?: RepairBookingUpdateWithWhereUniqueWithoutPickupLocationInput | RepairBookingUpdateWithWhereUniqueWithoutPickupLocationInput[]
+    updateMany?: RepairBookingUpdateManyWithWhereWithoutPickupLocationInput | RepairBookingUpdateManyWithWhereWithoutPickupLocationInput[]
+    deleteMany?: RepairBookingScalarWhereInput | RepairBookingScalarWhereInput[]
+  }
+
+  export type RepairBookingUncheckedUpdateManyWithoutPickupLocationNestedInput = {
+    create?: XOR<RepairBookingCreateWithoutPickupLocationInput, RepairBookingUncheckedCreateWithoutPickupLocationInput> | RepairBookingCreateWithoutPickupLocationInput[] | RepairBookingUncheckedCreateWithoutPickupLocationInput[]
+    connectOrCreate?: RepairBookingCreateOrConnectWithoutPickupLocationInput | RepairBookingCreateOrConnectWithoutPickupLocationInput[]
+    upsert?: RepairBookingUpsertWithWhereUniqueWithoutPickupLocationInput | RepairBookingUpsertWithWhereUniqueWithoutPickupLocationInput[]
+    createMany?: RepairBookingCreateManyPickupLocationInputEnvelope
+    set?: RepairBookingWhereUniqueInput | RepairBookingWhereUniqueInput[]
+    disconnect?: RepairBookingWhereUniqueInput | RepairBookingWhereUniqueInput[]
+    delete?: RepairBookingWhereUniqueInput | RepairBookingWhereUniqueInput[]
+    connect?: RepairBookingWhereUniqueInput | RepairBookingWhereUniqueInput[]
+    update?: RepairBookingUpdateWithWhereUniqueWithoutPickupLocationInput | RepairBookingUpdateWithWhereUniqueWithoutPickupLocationInput[]
+    updateMany?: RepairBookingUpdateManyWithWhereWithoutPickupLocationInput | RepairBookingUpdateManyWithWhereWithoutPickupLocationInput[]
+    deleteMany?: RepairBookingScalarWhereInput | RepairBookingScalarWhereInput[]
   }
 
   export type ProductCreateNestedManyWithoutCategoryInput = {
@@ -23788,6 +27982,95 @@ export namespace Prisma {
     update?: XOR<XOR<OrderUpdateToOneWithWhereWithoutEmailInput, OrderUpdateWithoutEmailInput>, OrderUncheckedUpdateWithoutEmailInput>
   }
 
+  export type RepairBookingCreaterepairTypesInput = {
+    set: $Enums.RepairType[]
+  }
+
+  export type RepairBookingCreateimagesInput = {
+    set: string[]
+  }
+
+  export type RepairBookingCreatematerialsUsedInput = {
+    set: string[]
+  }
+
+  export type UserCreateNestedOneWithoutRepairBookingsInput = {
+    create?: XOR<UserCreateWithoutRepairBookingsInput, UserUncheckedCreateWithoutRepairBookingsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutRepairBookingsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type AddressCreateNestedOneWithoutRepairBookingInput = {
+    create?: XOR<AddressCreateWithoutRepairBookingInput, AddressUncheckedCreateWithoutRepairBookingInput>
+    connectOrCreate?: AddressCreateOrConnectWithoutRepairBookingInput
+    connect?: AddressWhereUniqueInput
+  }
+
+  export type EnumClothingTypeFieldUpdateOperationsInput = {
+    set?: $Enums.ClothingType
+  }
+
+  export type EnumFabricTypeFieldUpdateOperationsInput = {
+    set?: $Enums.FabricType
+  }
+
+  export type RepairBookingUpdaterepairTypesInput = {
+    set?: $Enums.RepairType[]
+    push?: $Enums.RepairType | $Enums.RepairType[]
+  }
+
+  export type RepairBookingUpdateimagesInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
+  export type EnumRepairStatusFieldUpdateOperationsInput = {
+    set?: $Enums.RepairStatus
+  }
+
+  export type NullableFloatFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type RepairBookingUpdatematerialsUsedInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
+  export type UserUpdateOneRequiredWithoutRepairBookingsNestedInput = {
+    create?: XOR<UserCreateWithoutRepairBookingsInput, UserUncheckedCreateWithoutRepairBookingsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutRepairBookingsInput
+    upsert?: UserUpsertWithoutRepairBookingsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutRepairBookingsInput, UserUpdateWithoutRepairBookingsInput>, UserUncheckedUpdateWithoutRepairBookingsInput>
+  }
+
+  export type AddressUpdateOneWithoutRepairBookingNestedInput = {
+    create?: XOR<AddressCreateWithoutRepairBookingInput, AddressUncheckedCreateWithoutRepairBookingInput>
+    connectOrCreate?: AddressCreateOrConnectWithoutRepairBookingInput
+    upsert?: AddressUpsertWithoutRepairBookingInput
+    disconnect?: AddressWhereInput | boolean
+    delete?: AddressWhereInput | boolean
+    connect?: AddressWhereUniqueInput
+    update?: XOR<XOR<AddressUpdateToOneWithWhereWithoutRepairBookingInput, AddressUpdateWithoutRepairBookingInput>, AddressUncheckedUpdateWithoutRepairBookingInput>
+  }
+
+  export type EnumRepairTypeFieldUpdateOperationsInput = {
+    set?: $Enums.RepairType
+  }
+
+  export type NullableEnumClothingTypeFieldUpdateOperationsInput = {
+    set?: $Enums.ClothingType | null
+  }
+
+  export type NullableEnumFabricTypeFieldUpdateOperationsInput = {
+    set?: $Enums.FabricType | null
+  }
+
   export type UserCreateNestedOneWithoutReviewsInput = {
     create?: XOR<UserCreateWithoutReviewsInput, UserUncheckedCreateWithoutReviewsInput>
     connectOrCreate?: UserCreateOrConnectWithoutReviewsInput
@@ -24101,6 +28384,147 @@ export namespace Prisma {
     _max?: NestedEnumEmailStatusFilter<$PrismaModel>
   }
 
+  export type NestedEnumClothingTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.ClothingType | EnumClothingTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.ClothingType[] | ListEnumClothingTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ClothingType[] | ListEnumClothingTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumClothingTypeFilter<$PrismaModel> | $Enums.ClothingType
+  }
+
+  export type NestedEnumFabricTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.FabricType | EnumFabricTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.FabricType[] | ListEnumFabricTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.FabricType[] | ListEnumFabricTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumFabricTypeFilter<$PrismaModel> | $Enums.FabricType
+  }
+
+  export type NestedEnumRepairStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.RepairStatus | EnumRepairStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.RepairStatus[] | ListEnumRepairStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.RepairStatus[] | ListEnumRepairStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumRepairStatusFilter<$PrismaModel> | $Enums.RepairStatus
+  }
+
+  export type NestedEnumClothingTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ClothingType | EnumClothingTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.ClothingType[] | ListEnumClothingTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ClothingType[] | ListEnumClothingTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumClothingTypeWithAggregatesFilter<$PrismaModel> | $Enums.ClothingType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumClothingTypeFilter<$PrismaModel>
+    _max?: NestedEnumClothingTypeFilter<$PrismaModel>
+  }
+
+  export type NestedEnumFabricTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.FabricType | EnumFabricTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.FabricType[] | ListEnumFabricTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.FabricType[] | ListEnumFabricTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumFabricTypeWithAggregatesFilter<$PrismaModel> | $Enums.FabricType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumFabricTypeFilter<$PrismaModel>
+    _max?: NestedEnumFabricTypeFilter<$PrismaModel>
+  }
+  export type NestedJsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<NestedJsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type NestedEnumRepairStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.RepairStatus | EnumRepairStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.RepairStatus[] | ListEnumRepairStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.RepairStatus[] | ListEnumRepairStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumRepairStatusWithAggregatesFilter<$PrismaModel> | $Enums.RepairStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumRepairStatusFilter<$PrismaModel>
+    _max?: NestedEnumRepairStatusFilter<$PrismaModel>
+  }
+
+  export type NestedFloatNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedFloatNullableFilter<$PrismaModel>
+    _min?: NestedFloatNullableFilter<$PrismaModel>
+    _max?: NestedFloatNullableFilter<$PrismaModel>
+  }
+
+  export type NestedEnumRepairTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.RepairType | EnumRepairTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.RepairType[] | ListEnumRepairTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.RepairType[] | ListEnumRepairTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumRepairTypeFilter<$PrismaModel> | $Enums.RepairType
+  }
+
+  export type NestedEnumClothingTypeNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.ClothingType | EnumClothingTypeFieldRefInput<$PrismaModel> | null
+    in?: $Enums.ClothingType[] | ListEnumClothingTypeFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.ClothingType[] | ListEnumClothingTypeFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumClothingTypeNullableFilter<$PrismaModel> | $Enums.ClothingType | null
+  }
+
+  export type NestedEnumFabricTypeNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.FabricType | EnumFabricTypeFieldRefInput<$PrismaModel> | null
+    in?: $Enums.FabricType[] | ListEnumFabricTypeFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.FabricType[] | ListEnumFabricTypeFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumFabricTypeNullableFilter<$PrismaModel> | $Enums.FabricType | null
+  }
+
+  export type NestedEnumRepairTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.RepairType | EnumRepairTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.RepairType[] | ListEnumRepairTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.RepairType[] | ListEnumRepairTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumRepairTypeWithAggregatesFilter<$PrismaModel> | $Enums.RepairType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumRepairTypeFilter<$PrismaModel>
+    _max?: NestedEnumRepairTypeFilter<$PrismaModel>
+  }
+
+  export type NestedEnumClothingTypeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ClothingType | EnumClothingTypeFieldRefInput<$PrismaModel> | null
+    in?: $Enums.ClothingType[] | ListEnumClothingTypeFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.ClothingType[] | ListEnumClothingTypeFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumClothingTypeNullableWithAggregatesFilter<$PrismaModel> | $Enums.ClothingType | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumClothingTypeNullableFilter<$PrismaModel>
+    _max?: NestedEnumClothingTypeNullableFilter<$PrismaModel>
+  }
+
+  export type NestedEnumFabricTypeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.FabricType | EnumFabricTypeFieldRefInput<$PrismaModel> | null
+    in?: $Enums.FabricType[] | ListEnumFabricTypeFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.FabricType[] | ListEnumFabricTypeFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumFabricTypeNullableWithAggregatesFilter<$PrismaModel> | $Enums.FabricType | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumFabricTypeNullableFilter<$PrismaModel>
+    _max?: NestedEnumFabricTypeNullableFilter<$PrismaModel>
+  }
+
   export type AccountCreateWithoutUserInput = {
     provider: string
     providerAccountId: string
@@ -24135,35 +28559,6 @@ export namespace Prisma {
   export type AccountCreateManyUserInputEnvelope = {
     data: AccountCreateManyUserInput | AccountCreateManyUserInput[]
     skipDuplicates?: boolean
-  }
-
-  export type AddressCreateWithoutUserInput = {
-    id?: string
-    street: string
-    city: string
-    county: string
-    postalCode: string
-    pickupLocation?: string | null
-    country?: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type AddressUncheckedCreateWithoutUserInput = {
-    id?: string
-    street: string
-    city: string
-    county: string
-    postalCode: string
-    pickupLocation?: string | null
-    country?: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type AddressCreateOrConnectWithoutUserInput = {
-    where: AddressWhereUniqueInput
-    create: XOR<AddressCreateWithoutUserInput, AddressUncheckedCreateWithoutUserInput>
   }
 
   export type OrderCreateWithoutUserInput = {
@@ -24318,6 +28713,118 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type RepairBookingCreateWithoutUserInput = {
+    id?: string
+    customerName: string
+    customerEmail: string
+    customerPhone: string
+    clothingType: $Enums.ClothingType
+    clothingItem: string
+    brand?: string | null
+    fabricType: $Enums.FabricType
+    color?: string | null
+    size?: string | null
+    repairTypes?: RepairBookingCreaterepairTypesInput | $Enums.RepairType[]
+    description: string
+    images?: RepairBookingCreateimagesInput | string[]
+    specialInstructions?: string | null
+    currentMeasurements?: NullableJsonNullValueInput | InputJsonValue
+    desiredMeasurements?: string | null
+    status?: $Enums.RepairStatus
+    estimatedCost?: number | null
+    actualCost?: number | null
+    depositPaid?: number | null
+    urgency?: boolean
+    tailorNotes?: string | null
+    materialsUsed?: RepairBookingCreatematerialsUsedInput | string[]
+    completionTime?: number | null
+    preferredPickupDate?: Date | string | null
+    estimatedReadyDate?: Date | string | null
+    completedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    pickupLocation?: AddressCreateNestedOneWithoutRepairBookingInput
+  }
+
+  export type RepairBookingUncheckedCreateWithoutUserInput = {
+    id?: string
+    customerName: string
+    customerEmail: string
+    customerPhone: string
+    clothingType: $Enums.ClothingType
+    clothingItem: string
+    brand?: string | null
+    fabricType: $Enums.FabricType
+    color?: string | null
+    size?: string | null
+    repairTypes?: RepairBookingCreaterepairTypesInput | $Enums.RepairType[]
+    description: string
+    images?: RepairBookingCreateimagesInput | string[]
+    specialInstructions?: string | null
+    currentMeasurements?: NullableJsonNullValueInput | InputJsonValue
+    desiredMeasurements?: string | null
+    status?: $Enums.RepairStatus
+    estimatedCost?: number | null
+    actualCost?: number | null
+    depositPaid?: number | null
+    urgency?: boolean
+    tailorNotes?: string | null
+    materialsUsed?: RepairBookingCreatematerialsUsedInput | string[]
+    completionTime?: number | null
+    preferredPickupDate?: Date | string | null
+    estimatedReadyDate?: Date | string | null
+    completedAt?: Date | string | null
+    pickupLocationId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RepairBookingCreateOrConnectWithoutUserInput = {
+    where: RepairBookingWhereUniqueInput
+    create: XOR<RepairBookingCreateWithoutUserInput, RepairBookingUncheckedCreateWithoutUserInput>
+  }
+
+  export type RepairBookingCreateManyUserInputEnvelope = {
+    data: RepairBookingCreateManyUserInput | RepairBookingCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type AddressCreateWithoutUserInput = {
+    id?: string
+    street: string
+    city: string
+    county: string
+    postalCode: string
+    pickupLocation?: string | null
+    country?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    repairBooking?: RepairBookingCreateNestedManyWithoutPickupLocationInput
+  }
+
+  export type AddressUncheckedCreateWithoutUserInput = {
+    id?: string
+    street: string
+    city: string
+    county: string
+    postalCode: string
+    pickupLocation?: string | null
+    country?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    repairBooking?: RepairBookingUncheckedCreateNestedManyWithoutPickupLocationInput
+  }
+
+  export type AddressCreateOrConnectWithoutUserInput = {
+    where: AddressWhereUniqueInput
+    create: XOR<AddressCreateWithoutUserInput, AddressUncheckedCreateWithoutUserInput>
+  }
+
+  export type AddressCreateManyUserInputEnvelope = {
+    data: AddressCreateManyUserInput | AddressCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
   export type AccountUpsertWithWhereUniqueWithoutUserInput = {
     where: AccountWhereUniqueInput
     update: XOR<AccountUpdateWithoutUserInput, AccountUncheckedUpdateWithoutUserInput>
@@ -24349,41 +28856,6 @@ export namespace Prisma {
     scope?: StringNullableFilter<"Account"> | string | null
     id_token?: StringNullableFilter<"Account"> | string | null
     session_state?: StringNullableFilter<"Account"> | string | null
-  }
-
-  export type AddressUpsertWithoutUserInput = {
-    update: XOR<AddressUpdateWithoutUserInput, AddressUncheckedUpdateWithoutUserInput>
-    create: XOR<AddressCreateWithoutUserInput, AddressUncheckedCreateWithoutUserInput>
-    where?: AddressWhereInput
-  }
-
-  export type AddressUpdateToOneWithWhereWithoutUserInput = {
-    where?: AddressWhereInput
-    data: XOR<AddressUpdateWithoutUserInput, AddressUncheckedUpdateWithoutUserInput>
-  }
-
-  export type AddressUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    street?: StringFieldUpdateOperationsInput | string
-    city?: StringFieldUpdateOperationsInput | string
-    county?: StringFieldUpdateOperationsInput | string
-    postalCode?: StringFieldUpdateOperationsInput | string
-    pickupLocation?: NullableStringFieldUpdateOperationsInput | string | null
-    country?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type AddressUncheckedUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    street?: StringFieldUpdateOperationsInput | string
-    city?: StringFieldUpdateOperationsInput | string
-    county?: StringFieldUpdateOperationsInput | string
-    postalCode?: StringFieldUpdateOperationsInput | string
-    pickupLocation?: NullableStringFieldUpdateOperationsInput | string | null
-    country?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type OrderUpsertWithWhereUniqueWithoutUserInput = {
@@ -24534,6 +29006,91 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"ResetToken"> | Date | string
   }
 
+  export type RepairBookingUpsertWithWhereUniqueWithoutUserInput = {
+    where: RepairBookingWhereUniqueInput
+    update: XOR<RepairBookingUpdateWithoutUserInput, RepairBookingUncheckedUpdateWithoutUserInput>
+    create: XOR<RepairBookingCreateWithoutUserInput, RepairBookingUncheckedCreateWithoutUserInput>
+  }
+
+  export type RepairBookingUpdateWithWhereUniqueWithoutUserInput = {
+    where: RepairBookingWhereUniqueInput
+    data: XOR<RepairBookingUpdateWithoutUserInput, RepairBookingUncheckedUpdateWithoutUserInput>
+  }
+
+  export type RepairBookingUpdateManyWithWhereWithoutUserInput = {
+    where: RepairBookingScalarWhereInput
+    data: XOR<RepairBookingUpdateManyMutationInput, RepairBookingUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type RepairBookingScalarWhereInput = {
+    AND?: RepairBookingScalarWhereInput | RepairBookingScalarWhereInput[]
+    OR?: RepairBookingScalarWhereInput[]
+    NOT?: RepairBookingScalarWhereInput | RepairBookingScalarWhereInput[]
+    id?: StringFilter<"RepairBooking"> | string
+    userId?: StringFilter<"RepairBooking"> | string
+    customerName?: StringFilter<"RepairBooking"> | string
+    customerEmail?: StringFilter<"RepairBooking"> | string
+    customerPhone?: StringFilter<"RepairBooking"> | string
+    clothingType?: EnumClothingTypeFilter<"RepairBooking"> | $Enums.ClothingType
+    clothingItem?: StringFilter<"RepairBooking"> | string
+    brand?: StringNullableFilter<"RepairBooking"> | string | null
+    fabricType?: EnumFabricTypeFilter<"RepairBooking"> | $Enums.FabricType
+    color?: StringNullableFilter<"RepairBooking"> | string | null
+    size?: StringNullableFilter<"RepairBooking"> | string | null
+    repairTypes?: EnumRepairTypeNullableListFilter<"RepairBooking">
+    description?: StringFilter<"RepairBooking"> | string
+    images?: StringNullableListFilter<"RepairBooking">
+    specialInstructions?: StringNullableFilter<"RepairBooking"> | string | null
+    currentMeasurements?: JsonNullableFilter<"RepairBooking">
+    desiredMeasurements?: StringNullableFilter<"RepairBooking"> | string | null
+    status?: EnumRepairStatusFilter<"RepairBooking"> | $Enums.RepairStatus
+    estimatedCost?: FloatNullableFilter<"RepairBooking"> | number | null
+    actualCost?: FloatNullableFilter<"RepairBooking"> | number | null
+    depositPaid?: FloatNullableFilter<"RepairBooking"> | number | null
+    urgency?: BoolFilter<"RepairBooking"> | boolean
+    tailorNotes?: StringNullableFilter<"RepairBooking"> | string | null
+    materialsUsed?: StringNullableListFilter<"RepairBooking">
+    completionTime?: IntNullableFilter<"RepairBooking"> | number | null
+    preferredPickupDate?: DateTimeNullableFilter<"RepairBooking"> | Date | string | null
+    estimatedReadyDate?: DateTimeNullableFilter<"RepairBooking"> | Date | string | null
+    completedAt?: DateTimeNullableFilter<"RepairBooking"> | Date | string | null
+    pickupLocationId?: StringNullableFilter<"RepairBooking"> | string | null
+    createdAt?: DateTimeFilter<"RepairBooking"> | Date | string
+    updatedAt?: DateTimeFilter<"RepairBooking"> | Date | string
+  }
+
+  export type AddressUpsertWithWhereUniqueWithoutUserInput = {
+    where: AddressWhereUniqueInput
+    update: XOR<AddressUpdateWithoutUserInput, AddressUncheckedUpdateWithoutUserInput>
+    create: XOR<AddressCreateWithoutUserInput, AddressUncheckedCreateWithoutUserInput>
+  }
+
+  export type AddressUpdateWithWhereUniqueWithoutUserInput = {
+    where: AddressWhereUniqueInput
+    data: XOR<AddressUpdateWithoutUserInput, AddressUncheckedUpdateWithoutUserInput>
+  }
+
+  export type AddressUpdateManyWithWhereWithoutUserInput = {
+    where: AddressScalarWhereInput
+    data: XOR<AddressUpdateManyMutationInput, AddressUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type AddressScalarWhereInput = {
+    AND?: AddressScalarWhereInput | AddressScalarWhereInput[]
+    OR?: AddressScalarWhereInput[]
+    NOT?: AddressScalarWhereInput | AddressScalarWhereInput[]
+    id?: StringFilter<"Address"> | string
+    street?: StringFilter<"Address"> | string
+    city?: StringFilter<"Address"> | string
+    county?: StringFilter<"Address"> | string
+    postalCode?: StringFilter<"Address"> | string
+    pickupLocation?: StringNullableFilter<"Address"> | string | null
+    country?: StringFilter<"Address"> | string
+    userId?: StringFilter<"Address"> | string
+    createdAt?: DateTimeFilter<"Address"> | Date | string
+    updatedAt?: DateTimeFilter<"Address"> | Date | string
+  }
+
   export type UserCreateWithoutAccountsInput = {
     id?: string
     name?: string | null
@@ -24546,12 +29103,13 @@ export namespace Prisma {
     refreshToken?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    address?: AddressCreateNestedOneWithoutUserInput
     orders?: OrderCreateNestedManyWithoutUserInput
     reviews?: ReviewCreateNestedManyWithoutUserInput
     cartItem?: CartItemCreateNestedManyWithoutUserInput
     emails?: EmailCreateNestedManyWithoutUserInput
     resetTokens?: ResetTokenCreateNestedManyWithoutUserInput
+    repairBookings?: RepairBookingCreateNestedManyWithoutUserInput
+    address?: AddressCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAccountsInput = {
@@ -24566,12 +29124,13 @@ export namespace Prisma {
     refreshToken?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    address?: AddressUncheckedCreateNestedOneWithoutUserInput
     orders?: OrderUncheckedCreateNestedManyWithoutUserInput
     reviews?: ReviewUncheckedCreateNestedManyWithoutUserInput
     cartItem?: CartItemUncheckedCreateNestedManyWithoutUserInput
     emails?: EmailUncheckedCreateNestedManyWithoutUserInput
     resetTokens?: ResetTokenUncheckedCreateNestedManyWithoutUserInput
+    repairBookings?: RepairBookingUncheckedCreateNestedManyWithoutUserInput
+    address?: AddressUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAccountsInput = {
@@ -24602,12 +29161,13 @@ export namespace Prisma {
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    address?: AddressUpdateOneWithoutUserNestedInput
     orders?: OrderUpdateManyWithoutUserNestedInput
     reviews?: ReviewUpdateManyWithoutUserNestedInput
     cartItem?: CartItemUpdateManyWithoutUserNestedInput
     emails?: EmailUpdateManyWithoutUserNestedInput
     resetTokens?: ResetTokenUpdateManyWithoutUserNestedInput
+    repairBookings?: RepairBookingUpdateManyWithoutUserNestedInput
+    address?: AddressUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -24622,12 +29182,13 @@ export namespace Prisma {
     refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    address?: AddressUncheckedUpdateOneWithoutUserNestedInput
     orders?: OrderUncheckedUpdateManyWithoutUserNestedInput
     reviews?: ReviewUncheckedUpdateManyWithoutUserNestedInput
     cartItem?: CartItemUncheckedUpdateManyWithoutUserNestedInput
     emails?: EmailUncheckedUpdateManyWithoutUserNestedInput
     resetTokens?: ResetTokenUncheckedUpdateManyWithoutUserNestedInput
+    repairBookings?: RepairBookingUncheckedUpdateManyWithoutUserNestedInput
+    address?: AddressUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutResetTokensInput = {
@@ -24643,11 +29204,12 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     accounts?: AccountCreateNestedManyWithoutUserInput
-    address?: AddressCreateNestedOneWithoutUserInput
     orders?: OrderCreateNestedManyWithoutUserInput
     reviews?: ReviewCreateNestedManyWithoutUserInput
     cartItem?: CartItemCreateNestedManyWithoutUserInput
     emails?: EmailCreateNestedManyWithoutUserInput
+    repairBookings?: RepairBookingCreateNestedManyWithoutUserInput
+    address?: AddressCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutResetTokensInput = {
@@ -24663,11 +29225,12 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
-    address?: AddressUncheckedCreateNestedOneWithoutUserInput
     orders?: OrderUncheckedCreateNestedManyWithoutUserInput
     reviews?: ReviewUncheckedCreateNestedManyWithoutUserInput
     cartItem?: CartItemUncheckedCreateNestedManyWithoutUserInput
     emails?: EmailUncheckedCreateNestedManyWithoutUserInput
+    repairBookings?: RepairBookingUncheckedCreateNestedManyWithoutUserInput
+    address?: AddressUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutResetTokensInput = {
@@ -24699,11 +29262,12 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUpdateManyWithoutUserNestedInput
-    address?: AddressUpdateOneWithoutUserNestedInput
     orders?: OrderUpdateManyWithoutUserNestedInput
     reviews?: ReviewUpdateManyWithoutUserNestedInput
     cartItem?: CartItemUpdateManyWithoutUserNestedInput
     emails?: EmailUpdateManyWithoutUserNestedInput
+    repairBookings?: RepairBookingUpdateManyWithoutUserNestedInput
+    address?: AddressUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutResetTokensInput = {
@@ -24719,11 +29283,12 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
-    address?: AddressUncheckedUpdateOneWithoutUserNestedInput
     orders?: OrderUncheckedUpdateManyWithoutUserNestedInput
     reviews?: ReviewUncheckedUpdateManyWithoutUserNestedInput
     cartItem?: CartItemUncheckedUpdateManyWithoutUserNestedInput
     emails?: EmailUncheckedUpdateManyWithoutUserNestedInput
+    repairBookings?: RepairBookingUncheckedUpdateManyWithoutUserNestedInput
+    address?: AddressUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutAddressInput = {
@@ -24744,6 +29309,7 @@ export namespace Prisma {
     cartItem?: CartItemCreateNestedManyWithoutUserInput
     emails?: EmailCreateNestedManyWithoutUserInput
     resetTokens?: ResetTokenCreateNestedManyWithoutUserInput
+    repairBookings?: RepairBookingCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAddressInput = {
@@ -24764,11 +29330,88 @@ export namespace Prisma {
     cartItem?: CartItemUncheckedCreateNestedManyWithoutUserInput
     emails?: EmailUncheckedCreateNestedManyWithoutUserInput
     resetTokens?: ResetTokenUncheckedCreateNestedManyWithoutUserInput
+    repairBookings?: RepairBookingUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAddressInput = {
     where: UserWhereUniqueInput
     create: XOR<UserCreateWithoutAddressInput, UserUncheckedCreateWithoutAddressInput>
+  }
+
+  export type RepairBookingCreateWithoutPickupLocationInput = {
+    id?: string
+    customerName: string
+    customerEmail: string
+    customerPhone: string
+    clothingType: $Enums.ClothingType
+    clothingItem: string
+    brand?: string | null
+    fabricType: $Enums.FabricType
+    color?: string | null
+    size?: string | null
+    repairTypes?: RepairBookingCreaterepairTypesInput | $Enums.RepairType[]
+    description: string
+    images?: RepairBookingCreateimagesInput | string[]
+    specialInstructions?: string | null
+    currentMeasurements?: NullableJsonNullValueInput | InputJsonValue
+    desiredMeasurements?: string | null
+    status?: $Enums.RepairStatus
+    estimatedCost?: number | null
+    actualCost?: number | null
+    depositPaid?: number | null
+    urgency?: boolean
+    tailorNotes?: string | null
+    materialsUsed?: RepairBookingCreatematerialsUsedInput | string[]
+    completionTime?: number | null
+    preferredPickupDate?: Date | string | null
+    estimatedReadyDate?: Date | string | null
+    completedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutRepairBookingsInput
+  }
+
+  export type RepairBookingUncheckedCreateWithoutPickupLocationInput = {
+    id?: string
+    userId: string
+    customerName: string
+    customerEmail: string
+    customerPhone: string
+    clothingType: $Enums.ClothingType
+    clothingItem: string
+    brand?: string | null
+    fabricType: $Enums.FabricType
+    color?: string | null
+    size?: string | null
+    repairTypes?: RepairBookingCreaterepairTypesInput | $Enums.RepairType[]
+    description: string
+    images?: RepairBookingCreateimagesInput | string[]
+    specialInstructions?: string | null
+    currentMeasurements?: NullableJsonNullValueInput | InputJsonValue
+    desiredMeasurements?: string | null
+    status?: $Enums.RepairStatus
+    estimatedCost?: number | null
+    actualCost?: number | null
+    depositPaid?: number | null
+    urgency?: boolean
+    tailorNotes?: string | null
+    materialsUsed?: RepairBookingCreatematerialsUsedInput | string[]
+    completionTime?: number | null
+    preferredPickupDate?: Date | string | null
+    estimatedReadyDate?: Date | string | null
+    completedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RepairBookingCreateOrConnectWithoutPickupLocationInput = {
+    where: RepairBookingWhereUniqueInput
+    create: XOR<RepairBookingCreateWithoutPickupLocationInput, RepairBookingUncheckedCreateWithoutPickupLocationInput>
+  }
+
+  export type RepairBookingCreateManyPickupLocationInputEnvelope = {
+    data: RepairBookingCreateManyPickupLocationInput | RepairBookingCreateManyPickupLocationInput[]
+    skipDuplicates?: boolean
   }
 
   export type UserUpsertWithoutAddressInput = {
@@ -24800,6 +29443,7 @@ export namespace Prisma {
     cartItem?: CartItemUpdateManyWithoutUserNestedInput
     emails?: EmailUpdateManyWithoutUserNestedInput
     resetTokens?: ResetTokenUpdateManyWithoutUserNestedInput
+    repairBookings?: RepairBookingUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAddressInput = {
@@ -24820,6 +29464,23 @@ export namespace Prisma {
     cartItem?: CartItemUncheckedUpdateManyWithoutUserNestedInput
     emails?: EmailUncheckedUpdateManyWithoutUserNestedInput
     resetTokens?: ResetTokenUncheckedUpdateManyWithoutUserNestedInput
+    repairBookings?: RepairBookingUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type RepairBookingUpsertWithWhereUniqueWithoutPickupLocationInput = {
+    where: RepairBookingWhereUniqueInput
+    update: XOR<RepairBookingUpdateWithoutPickupLocationInput, RepairBookingUncheckedUpdateWithoutPickupLocationInput>
+    create: XOR<RepairBookingCreateWithoutPickupLocationInput, RepairBookingUncheckedCreateWithoutPickupLocationInput>
+  }
+
+  export type RepairBookingUpdateWithWhereUniqueWithoutPickupLocationInput = {
+    where: RepairBookingWhereUniqueInput
+    data: XOR<RepairBookingUpdateWithoutPickupLocationInput, RepairBookingUncheckedUpdateWithoutPickupLocationInput>
+  }
+
+  export type RepairBookingUpdateManyWithWhereWithoutPickupLocationInput = {
+    where: RepairBookingScalarWhereInput
+    data: XOR<RepairBookingUpdateManyMutationInput, RepairBookingUncheckedUpdateManyWithoutPickupLocationInput>
   }
 
   export type ProductCreateWithoutCategoryInput = {
@@ -25277,11 +29938,12 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     accounts?: AccountCreateNestedManyWithoutUserInput
-    address?: AddressCreateNestedOneWithoutUserInput
     orders?: OrderCreateNestedManyWithoutUserInput
     reviews?: ReviewCreateNestedManyWithoutUserInput
     emails?: EmailCreateNestedManyWithoutUserInput
     resetTokens?: ResetTokenCreateNestedManyWithoutUserInput
+    repairBookings?: RepairBookingCreateNestedManyWithoutUserInput
+    address?: AddressCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutCartItemInput = {
@@ -25297,11 +29959,12 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
-    address?: AddressUncheckedCreateNestedOneWithoutUserInput
     orders?: OrderUncheckedCreateNestedManyWithoutUserInput
     reviews?: ReviewUncheckedCreateNestedManyWithoutUserInput
     emails?: EmailUncheckedCreateNestedManyWithoutUserInput
     resetTokens?: ResetTokenUncheckedCreateNestedManyWithoutUserInput
+    repairBookings?: RepairBookingUncheckedCreateNestedManyWithoutUserInput
+    address?: AddressUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutCartItemInput = {
@@ -25370,11 +30033,12 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUpdateManyWithoutUserNestedInput
-    address?: AddressUpdateOneWithoutUserNestedInput
     orders?: OrderUpdateManyWithoutUserNestedInput
     reviews?: ReviewUpdateManyWithoutUserNestedInput
     emails?: EmailUpdateManyWithoutUserNestedInput
     resetTokens?: ResetTokenUpdateManyWithoutUserNestedInput
+    repairBookings?: RepairBookingUpdateManyWithoutUserNestedInput
+    address?: AddressUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCartItemInput = {
@@ -25390,11 +30054,12 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
-    address?: AddressUncheckedUpdateOneWithoutUserNestedInput
     orders?: OrderUncheckedUpdateManyWithoutUserNestedInput
     reviews?: ReviewUncheckedUpdateManyWithoutUserNestedInput
     emails?: EmailUncheckedUpdateManyWithoutUserNestedInput
     resetTokens?: ResetTokenUncheckedUpdateManyWithoutUserNestedInput
+    repairBookings?: RepairBookingUncheckedUpdateManyWithoutUserNestedInput
+    address?: AddressUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ProductUpsertWithoutCartItemInput = {
@@ -25453,11 +30118,12 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     accounts?: AccountCreateNestedManyWithoutUserInput
-    address?: AddressCreateNestedOneWithoutUserInput
     reviews?: ReviewCreateNestedManyWithoutUserInput
     cartItem?: CartItemCreateNestedManyWithoutUserInput
     emails?: EmailCreateNestedManyWithoutUserInput
     resetTokens?: ResetTokenCreateNestedManyWithoutUserInput
+    repairBookings?: RepairBookingCreateNestedManyWithoutUserInput
+    address?: AddressCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutOrdersInput = {
@@ -25473,11 +30139,12 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
-    address?: AddressUncheckedCreateNestedOneWithoutUserInput
     reviews?: ReviewUncheckedCreateNestedManyWithoutUserInput
     cartItem?: CartItemUncheckedCreateNestedManyWithoutUserInput
     emails?: EmailUncheckedCreateNestedManyWithoutUserInput
     resetTokens?: ResetTokenUncheckedCreateNestedManyWithoutUserInput
+    repairBookings?: RepairBookingUncheckedCreateNestedManyWithoutUserInput
+    address?: AddressUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutOrdersInput = {
@@ -25602,11 +30269,12 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUpdateManyWithoutUserNestedInput
-    address?: AddressUpdateOneWithoutUserNestedInput
     reviews?: ReviewUpdateManyWithoutUserNestedInput
     cartItem?: CartItemUpdateManyWithoutUserNestedInput
     emails?: EmailUpdateManyWithoutUserNestedInput
     resetTokens?: ResetTokenUpdateManyWithoutUserNestedInput
+    repairBookings?: RepairBookingUpdateManyWithoutUserNestedInput
+    address?: AddressUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutOrdersInput = {
@@ -25622,11 +30290,12 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
-    address?: AddressUncheckedUpdateOneWithoutUserNestedInput
     reviews?: ReviewUncheckedUpdateManyWithoutUserNestedInput
     cartItem?: CartItemUncheckedUpdateManyWithoutUserNestedInput
     emails?: EmailUncheckedUpdateManyWithoutUserNestedInput
     resetTokens?: ResetTokenUncheckedUpdateManyWithoutUserNestedInput
+    repairBookings?: RepairBookingUncheckedUpdateManyWithoutUserNestedInput
+    address?: AddressUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type OrderItemUpsertWithWhereUniqueWithoutOrderInput = {
@@ -25899,11 +30568,12 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     accounts?: AccountCreateNestedManyWithoutUserInput
-    address?: AddressCreateNestedOneWithoutUserInput
     orders?: OrderCreateNestedManyWithoutUserInput
     reviews?: ReviewCreateNestedManyWithoutUserInput
     cartItem?: CartItemCreateNestedManyWithoutUserInput
     resetTokens?: ResetTokenCreateNestedManyWithoutUserInput
+    repairBookings?: RepairBookingCreateNestedManyWithoutUserInput
+    address?: AddressCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutEmailsInput = {
@@ -25919,11 +30589,12 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
-    address?: AddressUncheckedCreateNestedOneWithoutUserInput
     orders?: OrderUncheckedCreateNestedManyWithoutUserInput
     reviews?: ReviewUncheckedCreateNestedManyWithoutUserInput
     cartItem?: CartItemUncheckedCreateNestedManyWithoutUserInput
     resetTokens?: ResetTokenUncheckedCreateNestedManyWithoutUserInput
+    repairBookings?: RepairBookingUncheckedCreateNestedManyWithoutUserInput
+    address?: AddressUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutEmailsInput = {
@@ -25980,11 +30651,12 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUpdateManyWithoutUserNestedInput
-    address?: AddressUpdateOneWithoutUserNestedInput
     orders?: OrderUpdateManyWithoutUserNestedInput
     reviews?: ReviewUpdateManyWithoutUserNestedInput
     cartItem?: CartItemUpdateManyWithoutUserNestedInput
     resetTokens?: ResetTokenUpdateManyWithoutUserNestedInput
+    repairBookings?: RepairBookingUpdateManyWithoutUserNestedInput
+    address?: AddressUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutEmailsInput = {
@@ -26000,11 +30672,12 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
-    address?: AddressUncheckedUpdateOneWithoutUserNestedInput
     orders?: OrderUncheckedUpdateManyWithoutUserNestedInput
     reviews?: ReviewUncheckedUpdateManyWithoutUserNestedInput
     cartItem?: CartItemUncheckedUpdateManyWithoutUserNestedInput
     resetTokens?: ResetTokenUncheckedUpdateManyWithoutUserNestedInput
+    repairBookings?: RepairBookingUncheckedUpdateManyWithoutUserNestedInput
+    address?: AddressUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type OrderUpsertWithoutEmailInput = {
@@ -26038,6 +30711,174 @@ export namespace Prisma {
     payment?: PaymentUncheckedUpdateOneWithoutOrderNestedInput
   }
 
+  export type UserCreateWithoutRepairBookingsInput = {
+    id?: string
+    name?: string | null
+    email: string
+    emailVerified?: Date | string | null
+    mobileNumber?: string | null
+    image?: string | null
+    password?: string | null
+    role?: $Enums.Role
+    refreshToken?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    orders?: OrderCreateNestedManyWithoutUserInput
+    reviews?: ReviewCreateNestedManyWithoutUserInput
+    cartItem?: CartItemCreateNestedManyWithoutUserInput
+    emails?: EmailCreateNestedManyWithoutUserInput
+    resetTokens?: ResetTokenCreateNestedManyWithoutUserInput
+    address?: AddressCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutRepairBookingsInput = {
+    id?: string
+    name?: string | null
+    email: string
+    emailVerified?: Date | string | null
+    mobileNumber?: string | null
+    image?: string | null
+    password?: string | null
+    role?: $Enums.Role
+    refreshToken?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    orders?: OrderUncheckedCreateNestedManyWithoutUserInput
+    reviews?: ReviewUncheckedCreateNestedManyWithoutUserInput
+    cartItem?: CartItemUncheckedCreateNestedManyWithoutUserInput
+    emails?: EmailUncheckedCreateNestedManyWithoutUserInput
+    resetTokens?: ResetTokenUncheckedCreateNestedManyWithoutUserInput
+    address?: AddressUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutRepairBookingsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutRepairBookingsInput, UserUncheckedCreateWithoutRepairBookingsInput>
+  }
+
+  export type AddressCreateWithoutRepairBookingInput = {
+    id?: string
+    street: string
+    city: string
+    county: string
+    postalCode: string
+    pickupLocation?: string | null
+    country?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutAddressInput
+  }
+
+  export type AddressUncheckedCreateWithoutRepairBookingInput = {
+    id?: string
+    street: string
+    city: string
+    county: string
+    postalCode: string
+    pickupLocation?: string | null
+    country?: string
+    userId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AddressCreateOrConnectWithoutRepairBookingInput = {
+    where: AddressWhereUniqueInput
+    create: XOR<AddressCreateWithoutRepairBookingInput, AddressUncheckedCreateWithoutRepairBookingInput>
+  }
+
+  export type UserUpsertWithoutRepairBookingsInput = {
+    update: XOR<UserUpdateWithoutRepairBookingsInput, UserUncheckedUpdateWithoutRepairBookingsInput>
+    create: XOR<UserCreateWithoutRepairBookingsInput, UserUncheckedCreateWithoutRepairBookingsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutRepairBookingsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutRepairBookingsInput, UserUncheckedUpdateWithoutRepairBookingsInput>
+  }
+
+  export type UserUpdateWithoutRepairBookingsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    mobileNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    orders?: OrderUpdateManyWithoutUserNestedInput
+    reviews?: ReviewUpdateManyWithoutUserNestedInput
+    cartItem?: CartItemUpdateManyWithoutUserNestedInput
+    emails?: EmailUpdateManyWithoutUserNestedInput
+    resetTokens?: ResetTokenUpdateManyWithoutUserNestedInput
+    address?: AddressUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutRepairBookingsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    mobileNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    orders?: OrderUncheckedUpdateManyWithoutUserNestedInput
+    reviews?: ReviewUncheckedUpdateManyWithoutUserNestedInput
+    cartItem?: CartItemUncheckedUpdateManyWithoutUserNestedInput
+    emails?: EmailUncheckedUpdateManyWithoutUserNestedInput
+    resetTokens?: ResetTokenUncheckedUpdateManyWithoutUserNestedInput
+    address?: AddressUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type AddressUpsertWithoutRepairBookingInput = {
+    update: XOR<AddressUpdateWithoutRepairBookingInput, AddressUncheckedUpdateWithoutRepairBookingInput>
+    create: XOR<AddressCreateWithoutRepairBookingInput, AddressUncheckedCreateWithoutRepairBookingInput>
+    where?: AddressWhereInput
+  }
+
+  export type AddressUpdateToOneWithWhereWithoutRepairBookingInput = {
+    where?: AddressWhereInput
+    data: XOR<AddressUpdateWithoutRepairBookingInput, AddressUncheckedUpdateWithoutRepairBookingInput>
+  }
+
+  export type AddressUpdateWithoutRepairBookingInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    street?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
+    county?: StringFieldUpdateOperationsInput | string
+    postalCode?: StringFieldUpdateOperationsInput | string
+    pickupLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    country?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutAddressNestedInput
+  }
+
+  export type AddressUncheckedUpdateWithoutRepairBookingInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    street?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
+    county?: StringFieldUpdateOperationsInput | string
+    postalCode?: StringFieldUpdateOperationsInput | string
+    pickupLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    country?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type UserCreateWithoutReviewsInput = {
     id?: string
     name?: string | null
@@ -26051,11 +30892,12 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     accounts?: AccountCreateNestedManyWithoutUserInput
-    address?: AddressCreateNestedOneWithoutUserInput
     orders?: OrderCreateNestedManyWithoutUserInput
     cartItem?: CartItemCreateNestedManyWithoutUserInput
     emails?: EmailCreateNestedManyWithoutUserInput
     resetTokens?: ResetTokenCreateNestedManyWithoutUserInput
+    repairBookings?: RepairBookingCreateNestedManyWithoutUserInput
+    address?: AddressCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutReviewsInput = {
@@ -26071,11 +30913,12 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
-    address?: AddressUncheckedCreateNestedOneWithoutUserInput
     orders?: OrderUncheckedCreateNestedManyWithoutUserInput
     cartItem?: CartItemUncheckedCreateNestedManyWithoutUserInput
     emails?: EmailUncheckedCreateNestedManyWithoutUserInput
     resetTokens?: ResetTokenUncheckedCreateNestedManyWithoutUserInput
+    repairBookings?: RepairBookingUncheckedCreateNestedManyWithoutUserInput
+    address?: AddressUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutReviewsInput = {
@@ -26144,11 +30987,12 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUpdateManyWithoutUserNestedInput
-    address?: AddressUpdateOneWithoutUserNestedInput
     orders?: OrderUpdateManyWithoutUserNestedInput
     cartItem?: CartItemUpdateManyWithoutUserNestedInput
     emails?: EmailUpdateManyWithoutUserNestedInput
     resetTokens?: ResetTokenUpdateManyWithoutUserNestedInput
+    repairBookings?: RepairBookingUpdateManyWithoutUserNestedInput
+    address?: AddressUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutReviewsInput = {
@@ -26164,11 +31008,12 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
-    address?: AddressUncheckedUpdateOneWithoutUserNestedInput
     orders?: OrderUncheckedUpdateManyWithoutUserNestedInput
     cartItem?: CartItemUncheckedUpdateManyWithoutUserNestedInput
     emails?: EmailUncheckedUpdateManyWithoutUserNestedInput
     resetTokens?: ResetTokenUncheckedUpdateManyWithoutUserNestedInput
+    repairBookings?: RepairBookingUncheckedUpdateManyWithoutUserNestedInput
+    address?: AddressUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ProductUpsertWithoutReviewsInput = {
@@ -26273,6 +31118,51 @@ export namespace Prisma {
     expires: Date | string
     used?: boolean
     createdAt?: Date | string
+  }
+
+  export type RepairBookingCreateManyUserInput = {
+    id?: string
+    customerName: string
+    customerEmail: string
+    customerPhone: string
+    clothingType: $Enums.ClothingType
+    clothingItem: string
+    brand?: string | null
+    fabricType: $Enums.FabricType
+    color?: string | null
+    size?: string | null
+    repairTypes?: RepairBookingCreaterepairTypesInput | $Enums.RepairType[]
+    description: string
+    images?: RepairBookingCreateimagesInput | string[]
+    specialInstructions?: string | null
+    currentMeasurements?: NullableJsonNullValueInput | InputJsonValue
+    desiredMeasurements?: string | null
+    status?: $Enums.RepairStatus
+    estimatedCost?: number | null
+    actualCost?: number | null
+    depositPaid?: number | null
+    urgency?: boolean
+    tailorNotes?: string | null
+    materialsUsed?: RepairBookingCreatematerialsUsedInput | string[]
+    completionTime?: number | null
+    preferredPickupDate?: Date | string | null
+    estimatedReadyDate?: Date | string | null
+    completedAt?: Date | string | null
+    pickupLocationId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AddressCreateManyUserInput = {
+    id?: string
+    street: string
+    city: string
+    county: string
+    postalCode: string
+    pickupLocation?: string | null
+    country?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type AccountUpdateWithoutUserInput = {
@@ -26462,6 +31352,275 @@ export namespace Prisma {
     expires?: DateTimeFieldUpdateOperationsInput | Date | string
     used?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RepairBookingUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    customerName?: StringFieldUpdateOperationsInput | string
+    customerEmail?: StringFieldUpdateOperationsInput | string
+    customerPhone?: StringFieldUpdateOperationsInput | string
+    clothingType?: EnumClothingTypeFieldUpdateOperationsInput | $Enums.ClothingType
+    clothingItem?: StringFieldUpdateOperationsInput | string
+    brand?: NullableStringFieldUpdateOperationsInput | string | null
+    fabricType?: EnumFabricTypeFieldUpdateOperationsInput | $Enums.FabricType
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    size?: NullableStringFieldUpdateOperationsInput | string | null
+    repairTypes?: RepairBookingUpdaterepairTypesInput | $Enums.RepairType[]
+    description?: StringFieldUpdateOperationsInput | string
+    images?: RepairBookingUpdateimagesInput | string[]
+    specialInstructions?: NullableStringFieldUpdateOperationsInput | string | null
+    currentMeasurements?: NullableJsonNullValueInput | InputJsonValue
+    desiredMeasurements?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumRepairStatusFieldUpdateOperationsInput | $Enums.RepairStatus
+    estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    actualCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    depositPaid?: NullableFloatFieldUpdateOperationsInput | number | null
+    urgency?: BoolFieldUpdateOperationsInput | boolean
+    tailorNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    materialsUsed?: RepairBookingUpdatematerialsUsedInput | string[]
+    completionTime?: NullableIntFieldUpdateOperationsInput | number | null
+    preferredPickupDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    estimatedReadyDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    pickupLocation?: AddressUpdateOneWithoutRepairBookingNestedInput
+  }
+
+  export type RepairBookingUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    customerName?: StringFieldUpdateOperationsInput | string
+    customerEmail?: StringFieldUpdateOperationsInput | string
+    customerPhone?: StringFieldUpdateOperationsInput | string
+    clothingType?: EnumClothingTypeFieldUpdateOperationsInput | $Enums.ClothingType
+    clothingItem?: StringFieldUpdateOperationsInput | string
+    brand?: NullableStringFieldUpdateOperationsInput | string | null
+    fabricType?: EnumFabricTypeFieldUpdateOperationsInput | $Enums.FabricType
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    size?: NullableStringFieldUpdateOperationsInput | string | null
+    repairTypes?: RepairBookingUpdaterepairTypesInput | $Enums.RepairType[]
+    description?: StringFieldUpdateOperationsInput | string
+    images?: RepairBookingUpdateimagesInput | string[]
+    specialInstructions?: NullableStringFieldUpdateOperationsInput | string | null
+    currentMeasurements?: NullableJsonNullValueInput | InputJsonValue
+    desiredMeasurements?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumRepairStatusFieldUpdateOperationsInput | $Enums.RepairStatus
+    estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    actualCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    depositPaid?: NullableFloatFieldUpdateOperationsInput | number | null
+    urgency?: BoolFieldUpdateOperationsInput | boolean
+    tailorNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    materialsUsed?: RepairBookingUpdatematerialsUsedInput | string[]
+    completionTime?: NullableIntFieldUpdateOperationsInput | number | null
+    preferredPickupDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    estimatedReadyDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    pickupLocationId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RepairBookingUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    customerName?: StringFieldUpdateOperationsInput | string
+    customerEmail?: StringFieldUpdateOperationsInput | string
+    customerPhone?: StringFieldUpdateOperationsInput | string
+    clothingType?: EnumClothingTypeFieldUpdateOperationsInput | $Enums.ClothingType
+    clothingItem?: StringFieldUpdateOperationsInput | string
+    brand?: NullableStringFieldUpdateOperationsInput | string | null
+    fabricType?: EnumFabricTypeFieldUpdateOperationsInput | $Enums.FabricType
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    size?: NullableStringFieldUpdateOperationsInput | string | null
+    repairTypes?: RepairBookingUpdaterepairTypesInput | $Enums.RepairType[]
+    description?: StringFieldUpdateOperationsInput | string
+    images?: RepairBookingUpdateimagesInput | string[]
+    specialInstructions?: NullableStringFieldUpdateOperationsInput | string | null
+    currentMeasurements?: NullableJsonNullValueInput | InputJsonValue
+    desiredMeasurements?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumRepairStatusFieldUpdateOperationsInput | $Enums.RepairStatus
+    estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    actualCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    depositPaid?: NullableFloatFieldUpdateOperationsInput | number | null
+    urgency?: BoolFieldUpdateOperationsInput | boolean
+    tailorNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    materialsUsed?: RepairBookingUpdatematerialsUsedInput | string[]
+    completionTime?: NullableIntFieldUpdateOperationsInput | number | null
+    preferredPickupDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    estimatedReadyDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    pickupLocationId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AddressUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    street?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
+    county?: StringFieldUpdateOperationsInput | string
+    postalCode?: StringFieldUpdateOperationsInput | string
+    pickupLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    country?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    repairBooking?: RepairBookingUpdateManyWithoutPickupLocationNestedInput
+  }
+
+  export type AddressUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    street?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
+    county?: StringFieldUpdateOperationsInput | string
+    postalCode?: StringFieldUpdateOperationsInput | string
+    pickupLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    country?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    repairBooking?: RepairBookingUncheckedUpdateManyWithoutPickupLocationNestedInput
+  }
+
+  export type AddressUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    street?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
+    county?: StringFieldUpdateOperationsInput | string
+    postalCode?: StringFieldUpdateOperationsInput | string
+    pickupLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    country?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RepairBookingCreateManyPickupLocationInput = {
+    id?: string
+    userId: string
+    customerName: string
+    customerEmail: string
+    customerPhone: string
+    clothingType: $Enums.ClothingType
+    clothingItem: string
+    brand?: string | null
+    fabricType: $Enums.FabricType
+    color?: string | null
+    size?: string | null
+    repairTypes?: RepairBookingCreaterepairTypesInput | $Enums.RepairType[]
+    description: string
+    images?: RepairBookingCreateimagesInput | string[]
+    specialInstructions?: string | null
+    currentMeasurements?: NullableJsonNullValueInput | InputJsonValue
+    desiredMeasurements?: string | null
+    status?: $Enums.RepairStatus
+    estimatedCost?: number | null
+    actualCost?: number | null
+    depositPaid?: number | null
+    urgency?: boolean
+    tailorNotes?: string | null
+    materialsUsed?: RepairBookingCreatematerialsUsedInput | string[]
+    completionTime?: number | null
+    preferredPickupDate?: Date | string | null
+    estimatedReadyDate?: Date | string | null
+    completedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RepairBookingUpdateWithoutPickupLocationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    customerName?: StringFieldUpdateOperationsInput | string
+    customerEmail?: StringFieldUpdateOperationsInput | string
+    customerPhone?: StringFieldUpdateOperationsInput | string
+    clothingType?: EnumClothingTypeFieldUpdateOperationsInput | $Enums.ClothingType
+    clothingItem?: StringFieldUpdateOperationsInput | string
+    brand?: NullableStringFieldUpdateOperationsInput | string | null
+    fabricType?: EnumFabricTypeFieldUpdateOperationsInput | $Enums.FabricType
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    size?: NullableStringFieldUpdateOperationsInput | string | null
+    repairTypes?: RepairBookingUpdaterepairTypesInput | $Enums.RepairType[]
+    description?: StringFieldUpdateOperationsInput | string
+    images?: RepairBookingUpdateimagesInput | string[]
+    specialInstructions?: NullableStringFieldUpdateOperationsInput | string | null
+    currentMeasurements?: NullableJsonNullValueInput | InputJsonValue
+    desiredMeasurements?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumRepairStatusFieldUpdateOperationsInput | $Enums.RepairStatus
+    estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    actualCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    depositPaid?: NullableFloatFieldUpdateOperationsInput | number | null
+    urgency?: BoolFieldUpdateOperationsInput | boolean
+    tailorNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    materialsUsed?: RepairBookingUpdatematerialsUsedInput | string[]
+    completionTime?: NullableIntFieldUpdateOperationsInput | number | null
+    preferredPickupDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    estimatedReadyDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutRepairBookingsNestedInput
+  }
+
+  export type RepairBookingUncheckedUpdateWithoutPickupLocationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    customerName?: StringFieldUpdateOperationsInput | string
+    customerEmail?: StringFieldUpdateOperationsInput | string
+    customerPhone?: StringFieldUpdateOperationsInput | string
+    clothingType?: EnumClothingTypeFieldUpdateOperationsInput | $Enums.ClothingType
+    clothingItem?: StringFieldUpdateOperationsInput | string
+    brand?: NullableStringFieldUpdateOperationsInput | string | null
+    fabricType?: EnumFabricTypeFieldUpdateOperationsInput | $Enums.FabricType
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    size?: NullableStringFieldUpdateOperationsInput | string | null
+    repairTypes?: RepairBookingUpdaterepairTypesInput | $Enums.RepairType[]
+    description?: StringFieldUpdateOperationsInput | string
+    images?: RepairBookingUpdateimagesInput | string[]
+    specialInstructions?: NullableStringFieldUpdateOperationsInput | string | null
+    currentMeasurements?: NullableJsonNullValueInput | InputJsonValue
+    desiredMeasurements?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumRepairStatusFieldUpdateOperationsInput | $Enums.RepairStatus
+    estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    actualCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    depositPaid?: NullableFloatFieldUpdateOperationsInput | number | null
+    urgency?: BoolFieldUpdateOperationsInput | boolean
+    tailorNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    materialsUsed?: RepairBookingUpdatematerialsUsedInput | string[]
+    completionTime?: NullableIntFieldUpdateOperationsInput | number | null
+    preferredPickupDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    estimatedReadyDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RepairBookingUncheckedUpdateManyWithoutPickupLocationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    customerName?: StringFieldUpdateOperationsInput | string
+    customerEmail?: StringFieldUpdateOperationsInput | string
+    customerPhone?: StringFieldUpdateOperationsInput | string
+    clothingType?: EnumClothingTypeFieldUpdateOperationsInput | $Enums.ClothingType
+    clothingItem?: StringFieldUpdateOperationsInput | string
+    brand?: NullableStringFieldUpdateOperationsInput | string | null
+    fabricType?: EnumFabricTypeFieldUpdateOperationsInput | $Enums.FabricType
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    size?: NullableStringFieldUpdateOperationsInput | string | null
+    repairTypes?: RepairBookingUpdaterepairTypesInput | $Enums.RepairType[]
+    description?: StringFieldUpdateOperationsInput | string
+    images?: RepairBookingUpdateimagesInput | string[]
+    specialInstructions?: NullableStringFieldUpdateOperationsInput | string | null
+    currentMeasurements?: NullableJsonNullValueInput | InputJsonValue
+    desiredMeasurements?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumRepairStatusFieldUpdateOperationsInput | $Enums.RepairStatus
+    estimatedCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    actualCost?: NullableFloatFieldUpdateOperationsInput | number | null
+    depositPaid?: NullableFloatFieldUpdateOperationsInput | number | null
+    urgency?: BoolFieldUpdateOperationsInput | boolean
+    tailorNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    materialsUsed?: RepairBookingUpdatematerialsUsedInput | string[]
+    completionTime?: NullableIntFieldUpdateOperationsInput | number | null
+    preferredPickupDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    estimatedReadyDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ProductCreateManyCategoryInput = {

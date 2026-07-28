@@ -24,6 +24,8 @@ import mpesaRoute from "./routes/mpesa";
 import dashboardRoute from "./routes/dashboard";
 import searchProductsRoute from "./routes/search-products";
 import emailsRoute from "./routes/email";
+import repairBookingRoute from "./routes/repair-booking";
+import repairServiceRoute from "./routes/repair-service";
 import envalid from "./utils/validEnv";
 import jwt, { JwtPayload, VerifyErrors } from "jsonwebtoken";
 
@@ -84,6 +86,8 @@ app.use("/v1/api", paymentRoute);
 app.use("/v1/api", dashboardRoute);
 app.use("/v1/api", searchProductsRoute);
 app.use("/v1/api", emailsRoute);
+app.use("/v1/api", repairBookingRoute);
+app.use("/v1/api", repairServiceRoute);
 
 app.get("/", (_: Request, res: Response) =>
   res.status(200).json({ message: "Welcome home!" }),

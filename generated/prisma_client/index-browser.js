@@ -259,6 +259,55 @@ exports.Prisma.EmailScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.RepairBookingScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  customerName: 'customerName',
+  customerEmail: 'customerEmail',
+  customerPhone: 'customerPhone',
+  clothingType: 'clothingType',
+  clothingItem: 'clothingItem',
+  brand: 'brand',
+  fabricType: 'fabricType',
+  color: 'color',
+  size: 'size',
+  repairTypes: 'repairTypes',
+  description: 'description',
+  images: 'images',
+  specialInstructions: 'specialInstructions',
+  currentMeasurements: 'currentMeasurements',
+  desiredMeasurements: 'desiredMeasurements',
+  status: 'status',
+  estimatedCost: 'estimatedCost',
+  actualCost: 'actualCost',
+  depositPaid: 'depositPaid',
+  urgency: 'urgency',
+  tailorNotes: 'tailorNotes',
+  materialsUsed: 'materialsUsed',
+  completionTime: 'completionTime',
+  preferredPickupDate: 'preferredPickupDate',
+  estimatedReadyDate: 'estimatedReadyDate',
+  completedAt: 'completedAt',
+  pickupLocationId: 'pickupLocationId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.RepairServiceScalarFieldEnum = {
+  id: 'id',
+  serviceName: 'serviceName',
+  repairType: 'repairType',
+  clothingType: 'clothingType',
+  fabricType: 'fabricType',
+  description: 'description',
+  baseCost: 'baseCost',
+  complexity: 'complexity',
+  estimatedTime: 'estimatedTime',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.ReviewScalarFieldEnum = {
   id: 'id',
   rating: 'rating',
@@ -274,6 +323,11 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
+exports.Prisma.NullableJsonNullValueInput = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull
+};
+
 exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
@@ -282,6 +336,12 @@ exports.Prisma.QueryMode = {
 exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
+};
+
+exports.Prisma.JsonNullValueFilter = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull,
+  AnyNull: Prisma.AnyNull
 };
 exports.Role = exports.$Enums.Role = {
   USER: 'USER',
@@ -329,6 +389,55 @@ exports.EmailStatus = exports.$Enums.EmailStatus = {
   CLICKED: 'CLICKED'
 };
 
+exports.ClothingType = exports.$Enums.ClothingType = {
+  SHIRT: 'SHIRT',
+  TROUSERS: 'TROUSERS',
+  DRESS: 'DRESS',
+  SKIRT: 'SKIRT',
+  JACKET: 'JACKET',
+  COAT: 'COAT',
+  SUIT: 'SUIT',
+  JEANS: 'JEANS',
+  SWEATER: 'SWEATER',
+  OTHER: 'OTHER'
+};
+
+exports.FabricType = exports.$Enums.FabricType = {
+  COTTON: 'COTTON',
+  LINEN: 'LINEN',
+  SILK: 'SILK',
+  WOOL: 'WOOL',
+  POLYESTER: 'POLYESTER',
+  DENIM: 'DENIM',
+  KNIT: 'KNIT',
+  LEATHER: 'LEATHER',
+  SUEDE: 'SUEDE',
+  OTHER: 'OTHER'
+};
+
+exports.RepairStatus = exports.$Enums.RepairStatus = {
+  PENDING: 'PENDING',
+  CONFIRMED: 'CONFIRMED',
+  IN_PROGRESS: 'IN_PROGRESS',
+  WAITING_FOR_MATERIALS: 'WAITING_FOR_MATERIALS',
+  READY_FOR_PICKUP: 'READY_FOR_PICKUP',
+  COMPLETED: 'COMPLETED',
+  CANCELLED: 'CANCELLED'
+};
+
+exports.RepairType = exports.$Enums.RepairType = {
+  ALTERATION: 'ALTERATION',
+  HEM_MENDING: 'HEM_MENDING',
+  ZIPPER_REPLACEMENT: 'ZIPPER_REPLACEMENT',
+  BUTTON_REPLACEMENT: 'BUTTON_REPLACEMENT',
+  PATCH_REPAIR: 'PATCH_REPAIR',
+  SEAM_MENDING: 'SEAM_MENDING',
+  SIZE_ADJUSTMENT: 'SIZE_ADJUSTMENT',
+  FABRIC_PATCHING: 'FABRIC_PATCHING',
+  TAILORING: 'TAILORING',
+  OTHER: 'OTHER'
+};
+
 exports.Prisma.ModelName = {
   User: 'User',
   Account: 'Account',
@@ -344,6 +453,8 @@ exports.Prisma.ModelName = {
   OrderItem: 'OrderItem',
   Payment: 'Payment',
   Email: 'Email',
+  RepairBooking: 'RepairBooking',
+  RepairService: 'RepairService',
   Review: 'Review'
 };
 
