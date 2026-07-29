@@ -10,7 +10,7 @@ const formatZodIssue = (issue: ZodIssue): string => {
 // Format the Zod error message with only the current error
 export const formatZodError = (error: ZodError): string[] => {
   const { issues } = error;
-  const errors = [];
+  const errors: string[] = [];
   for (let i = 0; i < issues.length; i++) {
     errors.push(formatZodIssue(issues[i]));
   }

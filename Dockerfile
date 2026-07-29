@@ -50,6 +50,6 @@ COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/generated ./generated
 COPY --from=builder /app/dist ./dist
 
-EXPOSE 8500
+EXPOSE 8000
 
 CMD ["npm", "start"]
