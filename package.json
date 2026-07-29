@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "nodemon src/index.ts",
     "start": "node dist/index.js",
+    "build": "tsc",
     "db:deploy": "npx prisma migrate deploy && npx prisma generate && npx prisma db seed"
   },
   "keywords": [],

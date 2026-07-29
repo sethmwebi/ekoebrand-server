@@ -11,7 +11,7 @@ export interface UserPayload {
 
 const generateToken = (res: Response, user: UserPayload) => {
   const payload = { id: user.id, email: user.email, role: user.role };
-  const token = jwt.sign(payload, validEnv.ACCESS_TOKEN_SCRET, {
+  const token = jwt.sign(payload, validEnv.ACCESS_TOKEN_SECRET, {
     expiresIn: "30d",
   });
   res.cookie("jwt", token, {

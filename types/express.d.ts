@@ -1,7 +1,11 @@
-import { User } from "../../generated/prisma_client"; // Adjust path to your Prisma User
+import { SerializedUser } from "./auth";
 
-declare module "express" {
-  export interface Request {
-    user?: User;
+declare global {
+  namespace Express {
+    interface User extends SerializedUser {}
+
+    interface Request {
+      user?: User;
+    }
   }
 }
