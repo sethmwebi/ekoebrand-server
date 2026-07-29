@@ -28,7 +28,7 @@ import repairBookingRoute from "./routes/repair-booking";
 import repairServiceRoute from "./routes/repair-service";
 import envalid from "./utils/validEnv";
 import jwt, { JwtPayload, VerifyErrors } from "jsonwebtoken";
-import "./config/passport-config";
+import "./utils/passport-config";
 
 const app: Express = express();
 
