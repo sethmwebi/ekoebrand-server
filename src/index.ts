@@ -47,6 +47,8 @@ app.use(
     origin: [
       "http://localhost:3000",
       "http://localhost:5173",
+      "https://ekoebrand.com",
+      "https://main.d115ai8pjr925p.amplifyapp.com",
       "https://main.dvpnrpvkagcfy.amplifyapp.com",
     ],
     credentials: true,
