@@ -37,7 +37,7 @@ const server = app.listen(Number(envalid.PORT) || 8000, "0.0.0.0", () => {
 });
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: "https://ekoebrand.com",
     methods: ["GET", "POST"],
     credentials: true,
   },
